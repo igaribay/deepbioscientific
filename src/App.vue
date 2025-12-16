@@ -6,9 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const scrolled = ref(false)
-const dnaCanvas = ref<HTMLCanvasElement | null>(null)
-const proteinViewer = ref<HTMLDivElement | null>(null)
-let viewer: any = null
+const heroCanvas = ref<HTMLCanvasElement | null>(null)
+let animationId: number | null = null
+let rotation = 0
 
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', () => {
@@ -16,7 +16,138 @@ if (typeof window !== 'undefined') {
   })
 }
 
-onMounted(async () => {
+interface Particle {
+  x: number
+  y: number
+  z: number
+  vx: number
+  vy: number
+  vz: number
+  color: string
+  size: number
+  type: 'dna' | 'protein'
+}
+
+const particles: Particle[] = []
+
+function initParticles() {
+  particles.length = 0
+
+  // DNA strand particles (helix)
+  for (let i = 0; i < 150; i++) {
+    const angle = (i / 150) * Math.PI * 8
+    const radius = 100
+    const y = (i / 150) * 400 - 200
+    const x = Math.cos(angle) * radius
+    const z = Math.sin(angle) * radius
+
+    particles.push({
+      x,
+      y,
+      z,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.1,
+      vz: (Math.random() - 0.5) * 0.5,
+      color: Math.random() > 0.5 ? '#0ea5e9' : '#a855f7',
+      size: Math.random() * 2 + 1,
+      type: 'dna',
+    })
+  }
+
+  // Protein particles (scattered around)
+  for (let i = 0; i < 200; i++) {
+    const angle = Math.random() * Math.PI * 2
+    const distance = 150 + Math.random() * 150
+    const x = Math.cos(angle) * distance
+    const z = Math.sin(angle) * distance
+    const y = (Math.random() - 0.5) * 400
+
+    const hue = (i / 200) * 360
+    particles.push({
+      x,
+      y,
+      z,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      vz: (Math.random() - 0.5) * 0.3,
+      color: `hsl(${hue}, 100%, 50%)`,
+      size: Math.random() * 1.5 + 0.5,
+      type: 'protein',
+    })
+  }
+}
+
+function drawHeroBackground() {
+  const canvas = heroCanvas.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  canvas.width = canvas.offsetWidth
+  canvas.height = canvas.offsetHeight
+
+  const centerX = canvas.width / 2
+  const centerY = canvas.height / 2
+
+  // Clear with subtle gradient
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+  gradient.addColorStop(0, 'rgba(15, 23, 42, 0)')
+  gradient.addColorStop(1, 'rgba(15, 23, 42, 0.3)')
+  ctx.fillStyle = gradient
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+  // Update and draw particles
+  particles.forEach((particle) => {
+    // Add some rotation
+    const cos = Math.cos(rotation * 0.01)
+    const sin = Math.sin(rotation * 0.01)
+
+    // Rotate around Y axis
+    const x = particle.x * cos - particle.z * sin
+    const z = particle.x * sin + particle.z * cos
+
+    // Simple perspective
+    const scale = 300 / (z + 300)
+    const screenX = centerX + x * scale
+    const screenY = centerY + particle.y * scale
+
+    // Draw particle
+    ctx.fillStyle = particle.color
+    ctx.globalAlpha = Math.max(0.1, Math.min(1, scale * 1.5))
+    ctx.beginPath()
+    ctx.arc(screenX, screenY, particle.size * scale, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Update particle position
+    particle.x += particle.vx
+    particle.y += particle.vy
+    particle.z += particle.vz
+
+    // Wrap around
+    if (Math.abs(particle.x) > 300) particle.x *= -0.8
+    if (Math.abs(particle.y) > 300) particle.y *= -0.8
+    if (Math.abs(particle.z) > 300) particle.z *= -0.8
+  })
+
+  ctx.globalAlpha = 1
+}
+
+function animateHero() {
+  rotation += 0.5
+  drawHeroBackground()
+  animationId = requestAnimationFrame(animateHero)
+}
+
+onMounted(() => {
+  // Initialize particles
+  initParticles()
+
+  // Start animation
+  if (heroCanvas.value) {
+    animateHero()
+  }
+
   // Hero text stagger animation
   gsap.from('.hero-word', {
     duration: 0.8,
@@ -34,6 +165,12 @@ onMounted(async () => {
     stagger: 0.2,
     delay: 0.3,
     ease: 'back.out',
+  })
+
+  // Increase rotation speed on scroll
+  window.addEventListener('scroll', () => {
+    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
+    rotation += scrollPercent * 0.5
   })
 
   // Section reveals with scroll trigger
@@ -70,61 +207,6 @@ onMounted(async () => {
     })
   })
 
-  // Draw DNA strand
-  if (dnaCanvas.value) {
-    drawDNAStrand()
-    // Animate DNA on scroll
-    gsap.to('.dna-strand-container', {
-      scrollTrigger: {
-        trigger: '.protein-hero',
-        start: 'top center',
-        scrub: 1,
-      },
-      rotation: 360,
-      duration: 10,
-      ease: 'none',
-    })
-  }
-
-  // Initialize 3D Protein Viewer
-  if (proteinViewer.value) {
-    try {
-      // Dynamically import 3Dmol
-      const $3Dmol = (await import('3dmol')).default
-      
-      // Create viewer
-      viewer = $3Dmol.createViewer(proteinViewer.value, { backgroundColor: 'rgba(0, 0, 0, 0)' })
-      
-      // Load a sample PDB structure (1MB1 - Myoglobin)
-      const pdbData = await fetch('https://files.rcsb.org/download/1MB1.pdb').then(r => r.text())
-      viewer.addModel(pdbData, 'pdb')
-      
-      // Set rainbow coloring by spectrum
-      const model = viewer.getModel()
-      viewer.setStyle({ ss: 'h' }, { cartoon: { color: 'spectrum' } })
-      viewer.setStyle({ ss: 's' }, { cartoon: { color: 'spectrum' } })
-      viewer.setStyle({ ss: 'c' }, { cartoon: { color: 'spectrum' } })
-      
-      viewer.zoomTo()
-      viewer.render()
-
-      // Rotate protein based on scroll
-      window.addEventListener('scroll', () => {
-        if (viewer) {
-          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 360
-          viewer.spin(false)
-          // Manually rotate by updating the model view
-          const model = viewer.getModel()
-          if (model) {
-            viewer.setStyle({}, { cartoon: { color: 'spectrum' } })
-          }
-        }
-      })
-    } catch (error) {
-      console.error('Failed to load protein viewer:', error)
-    }
-  }
-
   // Floating animation for elements
   gsap.to('.float', {
     duration: 4,
@@ -134,95 +216,13 @@ onMounted(async () => {
     ease: 'sine.inOut',
   })
 
-  // Parallax effect for hero background
-  gsap.to('.hero-bg', {
-    scrollTrigger: {
-      trigger: '.hero-section',
-      scrub: 1,
-    },
-    y: 100,
-    ease: 'none',
-  })
-})
-
-function drawDNAStrand() {
-  const canvas = dnaCanvas.value
-  if (!canvas) return
-
-  const ctx = canvas.getContext('2d')
-  if (!ctx) return
-
-  // Set canvas size to match container
-  canvas.width = canvas.offsetWidth
-  canvas.height = canvas.offsetHeight
-
-  const centerX = canvas.width / 2
-  const centerY = canvas.height / 2
-  const radius = 50
-  const amplitude = 30
-
-  // Clear canvas
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.02)'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-  // Draw double helix strands
-  const colors = ['#0ea5e9', '#a855f7']
-  
-  for (let strand = 0; strand < 2; strand++) {
-    ctx.strokeStyle = colors[strand]
-    ctx.lineWidth = 3
-    ctx.globalAlpha = 0.8
-    
-    ctx.beginPath()
-    for (let i = 0; i < Math.PI * 6; i += 0.05) {
-      const x = centerX + Math.cos(i + strand * Math.PI) * radius
-      const y = centerY + Math.sin(i) * amplitude + (i / Math.PI) * 40
-      
-      if (i === 0) {
-        ctx.moveTo(x, y)
-      } else {
-        ctx.lineTo(x, y)
-      }
+  // Cleanup on unmount
+  return () => {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId)
     }
-    ctx.stroke()
   }
-
-  // Draw connecting rungs
-  ctx.strokeStyle = 'rgba(168, 85, 247, 0.4)'
-  ctx.lineWidth = 1.5
-  ctx.globalAlpha = 0.6
-  
-  for (let i = 0; i < Math.PI * 6; i += 0.3) {
-    const x1 = centerX + Math.cos(i) * radius
-    const y = centerY + Math.sin(i) * amplitude + (i / Math.PI) * 40
-    const x2 = centerX + Math.cos(i + Math.PI) * radius
-
-    ctx.beginPath()
-    ctx.moveTo(x1, y)
-    ctx.lineTo(x2, y)
-    ctx.stroke()
-  }
-
-  // Draw base pairs as dots
-  ctx.fillStyle = 'rgba(14, 165, 233, 0.5)'
-  ctx.globalAlpha = 0.7
-  
-  for (let i = 0; i < Math.PI * 6; i += 0.4) {
-    const x1 = centerX + Math.cos(i) * (radius + 8)
-    const y = centerY + Math.sin(i) * amplitude + (i / Math.PI) * 40
-    const x2 = centerX + Math.cos(i + Math.PI) * (radius + 8)
-    
-    ctx.beginPath()
-    ctx.arc(x1, y, 2, 0, Math.PI * 2)
-    ctx.fill()
-    
-    ctx.beginPath()
-    ctx.arc(x2, y, 2, 0, Math.PI * 2)
-    ctx.fill()
-  }
-
-  ctx.globalAlpha = 1
-}
+})
 </script>
 
 <template>
@@ -243,11 +243,17 @@ function drawDNAStrand() {
       </div>
     </nav>
 
-    <!-- Hero Section with Protein & DNA -->
-    <section class="hero-section protein-hero pt-32 pb-32 px-6 relative overflow-hidden">
-      <div class="hero-bg absolute inset-0 opacity-40 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)"></div>
-      
-      <div class="max-w-6xl mx-auto relative z-10">
+    <!-- Hero Section with Animated Background -->
+    <section class="hero-section relative pt-32 pb-32 px-6 min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- Animated Background Canvas -->
+      <canvas 
+        ref="heroCanvas" 
+        class="absolute inset-0 w-full h-full"
+        style="opacity: 0.6;"
+      ></canvas>
+
+      <!-- Content Container -->
+      <div class="max-w-5xl mx-auto relative z-10">
         <!-- Hero text with word-by-word animation -->
         <h1 class="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight text-center">
           <span class="hero-word block">Design</span>
@@ -261,33 +267,9 @@ function drawDNAStrand() {
           Partner with Sequentia to discover and develop breakthrough therapeutic proteins and peptides. From natural language design through clinical validation.
         </p>
         
-        <div class="flex gap-4 justify-center flex-wrap mb-20">
+        <div class="flex gap-4 justify-center flex-wrap">
           <button class="hero-btn btn-primary text-lg shadow-xl shadow-primary-600/50 hover:shadow-primary-600/70">Start a Partnership</button>
           <button class="hero-btn btn-secondary text-lg">Learn Our Technology</button>
-        </div>
-
-        <!-- Two Column Layout: Protein Viewer & DNA -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <!-- 3D Protein Viewer -->
-          <div class="relative mx-auto w-full h-96 rounded-2xl overflow-hidden border-2 border-primary-500/30 bg-dark-950 shadow-2xl shadow-primary-600/20">
-            <div ref="proteinViewer" style="width: 100%; height: 100%; position: relative;"></div>
-            <div class="absolute top-4 left-4 text-xs font-mono text-primary-300 bg-dark-900/70 px-3 py-1 rounded-lg backdrop-blur">
-              Protein Structure (PDB)
-            </div>
-          </div>
-
-          <!-- DNA Strand -->
-          <div class="relative mx-auto w-full h-96 rounded-2xl overflow-hidden border-2 border-accent-500/30 bg-dark-950 shadow-2xl shadow-accent-600/20">
-            <div class="dna-strand-container" style="width: 100%; height: 100%; transform-origin: center;">
-              <canvas 
-                ref="dnaCanvas" 
-                class="dna-strand w-full h-full"
-              ></canvas>
-            </div>
-            <div class="absolute top-4 right-4 text-xs font-mono text-accent-300 bg-dark-900/70 px-3 py-1 rounded-lg backdrop-blur">
-              DNA Double Helix
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -795,5 +777,10 @@ html {
 
 .section-subtitle {
   @apply text-xl text-dark-400;
+}
+
+/* Canvas styling */
+canvas {
+  display: block;
 }
 </style>
