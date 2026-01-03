@@ -688,7 +688,7 @@ watch(isHomePage, (newVal) => {
           </div>
           <span
             class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-2xl font-bold tracking-tight text-transparent"
-            >Sequentia</span
+            >Deep Bio Scientific</span
           >
         </RouterLink>
 
