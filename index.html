@@ -2,15 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/deepbio-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Natural language to mRNA platform for designing therapeutic proteins, peptides, and their encoding mRNA sequences with evolutionary computing and delivery co-design."
     />
-    <title>Sequentia - Natural Language to mRNA Design Platform</title>
-    <script type="module" crossorigin src="/assets/index-AsVdvwHl.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CZIKoDwo.css">
+    <title>DeepBio Scientific - Natural Language to mRNA Design Platform</title>
+    <!-- Single Page App redirect script for GitHub Pages -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+        
+        // Handle the 404.html redirect query params
+        var l = window.location;
+        if (l.search[1] === 'p') {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          
+          var path = decoded.split('p=/')[1];
+          if (path) {
+            path = '/' + path.split('&q=')[0];
+            var query = decoded.split('&q=')[1] || '';
+            var hash = l.hash || '';
+            
+            history.replaceState(null, null, 
+              l.pathname.slice(0, -1) + path + (query ? '?' + query : '') + hash
+            );
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-C7H7x0Sd.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DdyOgL6T.css">
   </head>
   <body>
     <div id="app"></div>
