@@ -3,6 +3,8 @@ import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import deepbioLogo from '@/assets/deepbio-logo.png'
+import deepbioText from '@/assets/deepbio-text.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,9 +18,7 @@ const navLinks = [
   { name: 'Technology', path: '/technology' },
   { name: 'Research', path: '/research' },
   { name: 'Case Studies', path: '/case-studies' },
-  { name: 'Blog', path: '/blog' },
   { name: 'About', path: '/about' },
-  { name: 'Careers', path: '/careers' },
 ]
 const heroCanvas = ref<HTMLCanvasElement | null>(null)
 let animationId: number | null = null
@@ -78,10 +78,10 @@ function initVisualization() {
   nucleotides.length = 0
   molecules.length = 0
 
-  // Create mRNA double helix structure
-  const helixLength = 80
-  const helixRadius = 120
-  const helixPitch = 6
+  // Create mRNA double helix structure - prominent size
+  const helixLength = 70
+  const helixRadius = 130
+  const helixPitch = 5.5
 
   for (let i = 0; i < helixLength; i++) {
     const t = i / helixLength
@@ -135,15 +135,15 @@ function initVisualization() {
   }
 
   // Create floating molecules (ribosomes, amino acids, codons)
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 25; i++) {
     const angle = Math.random() * Math.PI * 2
-    const distance = 200 + Math.random() * 200
+    const distance = 180 + Math.random() * 200
     const types: ('ribosome' | 'amino' | 'codon')[] = ['ribosome', 'amino', 'codon']
     const type = types[Math.floor(Math.random() * 3)]
 
     molecules.push({
       x: Math.cos(angle) * distance,
-      y: (Math.random() - 0.5) * 600,
+      y: (Math.random() - 0.5) * 500,
       z: Math.sin(angle) * distance,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.2,
@@ -174,12 +174,13 @@ function drawHeroBackground() {
 
   const width = rect.width
   const height = rect.height
-  const centerX = width / 2
+  // Position DNA center on the right side (65% from left on desktop, centered on mobile)
+  const isMobile = width < 1024
+  const centerX = isMobile ? width / 2 : width * 0.65
   const centerY = height / 2
 
-  // Clear canvas with gradient
-  ctx.fillStyle = 'rgba(2, 6, 23, 0.15)'
-  ctx.fillRect(0, 0, width, height)
+  // Clear canvas - full clear for crisp rendering
+  ctx.clearRect(0, 0, width, height)
 
   // Mouse influence for interactivity
   const targetMouseX = (mouseX - centerX) * 0.0003
@@ -207,8 +208,8 @@ function drawHeroBackground() {
     const y2 = n2.baseY + Math.sin(time * 0.015 + n2.phase) * 3
     const z2 = n2.baseZ + wave * Math.sin(n2.phase)
 
-    // Rotate based on time and mouse
-    const rotY = time * 0.008 + targetMouseX * 2
+    // Rotate based on time and mouse - faster rotation for more dynamic feel
+    const rotY = time * 0.012 + targetMouseX * 2
     const rotX = targetMouseY
 
     const cos1 = Math.cos(rotY)
@@ -279,9 +280,9 @@ function drawHeroBackground() {
     const screenX = centerX + n.x * scale
     const screenY = centerY + n.y * scale
 
-    // Calculate radius with safety check
-    const baseRadius = 6
-    const radius = Math.max(0.5, baseRadius * scale)
+    // Calculate radius with safety check - larger nucleotides for better visibility
+    const baseRadius = 8
+    const radius = Math.max(1, baseRadius * scale)
 
     // Draw glow
     const gradient = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, radius * 3)
@@ -326,8 +327,8 @@ function drawHeroBackground() {
     if (Math.abs(mol.y) > 400) mol.vy *= -1
     if (Math.abs(mol.z) > 400) mol.vz *= -1
 
-    // Apply rotation
-    const rotY = time * 0.008 + targetMouseX * 2
+    // Apply rotation - match helix rotation speed
+    const rotY = time * 0.012 + targetMouseX * 2
     const cos = Math.cos(rotY)
     const sin = Math.sin(rotY)
 
@@ -442,15 +443,10 @@ onMounted(() => {
   })
 
   // Hero buttons
-  gsap.from('.hero-btn', {
-    duration: 0.8,
-    opacity: 0,
-    y: 20,
-    scale: 0.9,
-    stagger: 0.15,
-    delay: 1.1,
-    ease: 'back.out(1.7)',
-  })
+  gsap.fromTo('.hero-btn', 
+    { opacity: 0, y: 20, scale: 0.9 },
+    { duration: 0.8, opacity: 1, y: 0, scale: 1, stagger: 0.15, delay: 1.1, ease: 'back.out(1.7)' }
+  )
 
   // Floating badge animation
   gsap.from('.hero-badge', {
@@ -635,6 +631,35 @@ watch(isHomePage, (newVal) => {
         revealObserver.observe(section)
       })
       
+      // Immediately animate all card-reveal elements that are in viewport
+      document.querySelectorAll('.card-reveal').forEach((card) => {
+        gsap.set(card, { opacity: 1, y: 0, scale: 1 })
+      })
+      
+      // Setup card group observer for staggered reveal (for elements not yet in viewport)
+      const cardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const cards = entry.target.querySelectorAll('.card-reveal')
+              gsap.fromTo(cards, 
+                { opacity: 0, y: 40, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.6, ease: 'power3.out' }
+              )
+              cardObserver.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+      
+      document.querySelectorAll('.card-group').forEach((group) => {
+        // Reset cards first for animation
+        const cards = group.querySelectorAll('.card-reveal')
+        gsap.set(cards, { opacity: 0, y: 40, scale: 0.95 })
+        cardObserver.observe(group)
+      })
+      
       // Re-run hero animations
       gsap.fromTo('.hero-word', 
         { opacity: 0, y: 50 },
@@ -651,6 +676,12 @@ watch(isHomePage, (newVal) => {
       gsap.fromTo('.hero-badge',
         { opacity: 0, scale: 0.8 },
         { duration: 1, opacity: 1, scale: 1, delay: 0.2, ease: 'elastic.out(1, 0.5)' }
+      )
+      
+      // Animate hero stats
+      gsap.fromTo('.hero-stat',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.6, ease: 'power3.out', delay: 0.5 }
       )
       
       setTimeout(() => ScrollTrigger.refresh(), 100)
@@ -678,18 +709,16 @@ watch(isHomePage, (newVal) => {
     >
       <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <RouterLink to="/" class="flex items-center gap-3">
-          <div
-            class="dna-icon relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 shadow-lg shadow-cyan-500/30"
-          >
-            <span class="text-xl font-bold text-white">Σ</span>
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-transparent to-white/20"
-            ></div>
-          </div>
-          <span
-            class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-2xl font-bold tracking-tight text-transparent"
-            >Deep Bio Scientific</span
-          >
+          <img 
+            :src="deepbioLogo" 
+            alt="DeepBio Scientific Logo" 
+            class="h-10 w-auto"
+          />
+          <img 
+            :src="deepbioText" 
+            alt="DeepBio Scientific" 
+            class="h-8 w-auto"
+          />
         </RouterLink>
 
         <!-- Desktop Navigation -->
@@ -762,68 +791,132 @@ watch(isHomePage, (newVal) => {
 
     <!-- Home Page Content (only shown on home route) -->
     <template v-if="isHomePage">
+    
+    <!-- Global Fancy Background for Homepage -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      <!-- Gradient orbs -->
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute bottom-1/3 left-1/3 w-[350px] h-[350px] bg-green-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s"></div>
+      
+      <!-- Grid pattern -->
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.02)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+      
+      <!-- Floating particles -->
+      <div 
+        v-for="i in 25" 
+        :key="'particle-' + i" 
+        class="floating-particle absolute rounded-full"
+        :class="[
+          i % 4 === 0 ? 'bg-cyan-400 w-1.5 h-1.5' : 
+          i % 4 === 1 ? 'bg-purple-400 w-1 h-1' : 
+          i % 4 === 2 ? 'bg-blue-400 w-1.5 h-1.5' : 
+          'bg-green-400 w-1 h-1'
+        ]"
+        :style="{
+          left: `${(i * 17) % 100}%`,
+          top: `${(i * 23) % 100}%`,
+          opacity: 0.2 + (i % 5) * 0.1,
+        }"
+      ></div>
+    </div>
+    
     <!-- Hero Section -->
     <section
-      class="hero-section relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-32"
+      class="hero-section relative min-h-screen overflow-hidden"
     >
-      <!-- Gradient Overlay -->
+      <!-- Full Background Glow Effects -->
+      <div class="absolute inset-0 pointer-events-none">
+        <!-- Main glow centered on right side where DNA is -->
+        <div class="absolute top-1/2 right-[15%] -translate-y-1/2 w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] rounded-full bg-gradient-to-br from-cyan-500/25 via-purple-500/15 to-blue-500/20 blur-[120px]"></div>
+        <!-- Secondary glow extending to the left -->
+        <div class="absolute top-1/2 left-[20%] -translate-y-1/2 w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] rounded-full bg-gradient-to-r from-purple-500/10 via-cyan-500/8 to-transparent blur-[100px]"></div>
+        <!-- Top accent glow -->
+        <div class="absolute top-0 right-[30%] w-[300px] h-[300px] rounded-full bg-cyan-400/10 blur-[80px]"></div>
+      </div>
+
+      <!-- Gradient Overlays -->
       <div
-        class="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] z-10 pointer-events-none"
+        class="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] z-[5] pointer-events-none"
       ></div>
       <div
-        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08),transparent_60%)]"
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(34,211,238,0.08),transparent_60%)]"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(168,85,247,0.05),transparent_50%)]"
       ></div>
 
-      <!-- Animated Background Canvas -->
+      <!-- DNA Canvas - Full width, positioned to the right -->
       <canvas
         ref="heroCanvas"
-        class="hero-canvas absolute inset-0 h-full w-full"
-        style="opacity: 0.85"
+        class="hero-canvas absolute inset-0 w-full h-full z-[1]"
       ></canvas>
 
-      <!-- Content Container -->
-      <div class="hero-content relative z-20 mx-auto max-w-5xl text-center">
-        <!-- Badge -->
-        <div class="hero-badge mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 backdrop-blur-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
-          </span>
-          <span class="text-sm font-medium text-cyan-300">AI-Powered Therapeutic Design</span>
+      <!-- Content Layer -->
+      <div class="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col lg:flex-row lg:items-center px-6 pt-24 lg:pt-0">
+        
+        <!-- Left Column - Hero Content -->
+        <div class="hero-content relative flex-1 flex flex-col justify-center py-12 lg:py-0 text-center lg:text-left lg:pr-8">
+          <!-- Badge -->
+          <div class="hero-badge mb-6 lg:mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 backdrop-blur-sm self-center lg:self-start">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+            </span>
+            <span class="text-sm font-medium text-cyan-300">End-to-End Drug Discovery AI</span>
+          </div>
+
+          <!-- Slogan -->
+          <p class="hero-word text-lg lg:text-xl font-medium text-emerald-400 mb-4 tracking-wide">
+            From Molecule to Market, Faster.
+          </p>
+
+          <!-- Hero text -->
+          <h1 class="mb-6 lg:mb-8 text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
+            <span class="hero-word block">Reinventing</span>
+            <span class="hero-word block">
+              <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Drug Discovery</span>
+            </span>
+          </h1>
+
+          <p class="hero-subtext mb-8 lg:mb-10 max-w-xl text-base text-slate-400 md:text-lg lg:text-xl mx-auto lg:mx-0">
+            <span class="text-white font-medium">90% of clinical trials fail.</span> We're changing that with 
+            <span class="text-cyan-400">AgentFabric™</span> that optimizes every stage, from target discovery to regulatory approval.
+          </p>
+
+          <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+            <RouterLink
+              to="/contact"
+              class="hero-btn group relative inline-block overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 px-6 py-3 lg:px-8 lg:py-4 text-base lg:text-lg font-semibold text-white shadow-2xl shadow-cyan-500/30 transition-all hover:shadow-emerald-500/50 hover:scale-105"
+              style="opacity: 1; visibility: visible;"
+            >
+              <span class="relative z-10">Partner With Us</span>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-0 transition-opacity group-hover:opacity-100"
+              ></div>
+            </RouterLink>
+          </div>
+
+          <!-- Key Stats Row -->
+          <div class="mt-10 lg:mt-12 grid grid-cols-3 gap-4 lg:gap-8">
+            <div class="hero-stat text-center lg:text-left">
+              <div class="text-2xl lg:text-3xl font-bold text-cyan-400">10-15 yrs</div>
+              <div class="text-xs lg:text-sm text-slate-500">Current Timeline</div>
+            </div>
+            <div class="hero-stat text-center">
+              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">30-50%</div>
+              <div class="text-xs lg:text-sm text-slate-500">Time Saved</div>
+            </div>
+            <div class="hero-stat text-center lg:text-right">
+              <div class="text-2xl lg:text-3xl font-bold text-teal-400">90%→↑</div>
+              <div class="text-xs lg:text-sm text-slate-500">Trial Success</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Hero text -->
-        <h1 class="mb-8 text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
-          <span class="hero-word block">Design</span>
-          <span class="hero-word block">
-            <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">mRNA</span>
-            &
-            <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Protein</span>
-          </span>
-          <span class="hero-word block text-slate-300">Therapeutics</span>
-        </h1>
-
-        <p class="hero-subtext mx-auto mb-12 max-w-3xl text-lg text-slate-400 md:text-xl lg:text-2xl">
-          From natural language specifications to validated therapeutic candidates.
-          <span class="text-white">Evolutionary AI</span> meets
-          <span class="text-cyan-400">molecular biology</span>.
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-4">
-          <button
-            class="hero-btn group relative overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50"
-          >
-            <span class="relative z-10">Start Discovery</span>
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 transition-opacity group-hover:opacity-100"
-            ></div>
-          </button>
-          <button
-            class="hero-btn rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-slate-800/50"
-          >
-            Explore Platform
-          </button>
-        </div>
+        <!-- Right Column - Space for DNA (canvas renders here visually) -->
+        <div class="hidden lg:block flex-1 pointer-events-none"></div>
       </div>
 
       <!-- Scroll Indicator -->
@@ -848,7 +941,7 @@ watch(isHomePage, (newVal) => {
             <div class="mt-1 text-sm text-slate-400">Active Programs</div>
           </div>
           <div class="card-reveal rounded-2xl border border-slate-800 bg-slate-900/80 p-6 text-center backdrop-blur-xl">
-            <div class="stat-number text-3xl font-bold text-pink-400" data-value="12">0</div>
+            <div class="stat-number text-3xl font-bold text-blue-400" data-value="12">0</div>
             <div class="mt-1 text-sm text-slate-400">IND-Enabling</div>
           </div>
           <div class="card-reveal rounded-2xl border border-slate-800 bg-slate-900/80 p-6 text-center backdrop-blur-xl">
@@ -860,83 +953,189 @@ watch(isHomePage, (newVal) => {
     </section>
     -->
 
-    <!-- Platform Section -->
-    <section id="platform" class="px-6 py-32 reveal-section">
+    <!-- Drug Discovery Pipeline Section -->
+    <section id="pipeline" class="relative z-10 px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">
-            Platform
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+            Full Pipeline Coverage
           </span>
           <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Four Integrated <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Layers</span>
+            Every Stage. <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Optimized.</span>
           </h2>
           <p class="mx-auto max-w-2xl text-lg text-slate-400">
-            A unified platform combining language models, evolutionary optimization, and molecular simulation
+            We don't just design molecules. We optimize the entire drug discovery pipeline to dramatically reduce time and improve success rates.
           </p>
         </div>
 
-        <div class="card-group grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <!-- Layer 1 -->
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10">
-            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-cyan-500/10 blur-3xl transition-all group-hover:bg-cyan-500/20"></div>
-            <div class="relative">
-              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30">
-                <svg class="h-7 w-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-              </svg>
+        <!-- Pipeline Timeline - Clean Table Design (Desktop) -->
+        <div class="hidden lg:block relative mb-16 overflow-hidden rounded-2xl border border-slate-800/50 bg-slate-900/80 backdrop-blur-xl">
+          <!-- Header Row -->
+          <div class="grid grid-cols-5 border-b border-slate-800/50 bg-slate-800/30">
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-cyan-500 text-white font-bold text-xs">1</div>
             </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Natural Language Spec</h3>
-              <p class="text-sm leading-relaxed text-slate-400">
-                Describe your therapeutic goal in plain English. Our compiler converts intent to precise molecular constraints.
-              </p>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-teal-500 text-white font-bold text-xs">2</div>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-emerald-500 text-white font-bold text-xs">3</div>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-blue-500 text-white font-bold text-xs">4</div>
+            </div>
+            <div class="p-4 text-center">
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-indigo-500 text-white font-bold text-xs">5</div>
+            </div>
+          </div>
+          
+          <!-- Stage Names -->
+          <div class="grid grid-cols-5 border-b border-slate-800/50">
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <h3 class="text-sm font-bold text-white">Target Discovery</h3>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <h3 class="text-sm font-bold text-white">Lead Optimization</h3>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <h3 class="text-sm font-bold text-white">Preclinical</h3>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <h3 class="text-sm font-bold text-white">Clinical Trials</h3>
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="text-sm font-bold text-white">Regulatory</h3>
             </div>
           </div>
 
-          <!-- Layer 2 -->
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10">
-            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-purple-500/10 blur-3xl transition-all group-hover:bg-purple-500/20"></div>
-            <div class="relative">
-              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-1 ring-purple-500/30">
-                <svg class="h-7 w-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-              </svg>
+          <!-- Traditional Timeline -->
+          <div class="grid grid-cols-5 border-b border-slate-800/50 bg-slate-800/20">
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-slate-500 mb-1">Traditional</div>
+              <div class="text-sm text-slate-400 line-through">2-3 years</div>
             </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Agentic Optimization</h3>
-              <p class="text-sm leading-relaxed text-slate-400">
-                Multi-agent system critiques, refines, and iterates on candidates across binding, stability, and manufacturability.
-              </p>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-slate-500 mb-1">Traditional</div>
+              <div class="text-sm text-slate-400 line-through">2-4 years</div>
             </div>
-          </div>
-
-          <!-- Layer 3 -->
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10">
-            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-pink-500/10 blur-3xl transition-all group-hover:bg-pink-500/20"></div>
-            <div class="relative">
-              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 ring-1 ring-pink-500/30">
-                <svg class="h-7 w-7 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-slate-500 mb-1">Traditional</div>
+              <div class="text-sm text-slate-400 line-through">1-2 years</div>
             </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Evolutionary Search</h3>
-              <p class="text-sm leading-relaxed text-slate-400">
-                Population-based genetic algorithms explore sequence space with Pareto-optimal selection.
-              </p>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-slate-500 mb-1">Traditional</div>
+              <div class="text-sm text-slate-400 line-through">6-8 years</div>
+            </div>
+            <div class="p-4 text-center">
+              <div class="text-xs text-slate-500 mb-1">Traditional</div>
+              <div class="text-sm text-slate-400 line-through">1-2 years</div>
             </div>
           </div>
 
-          <!-- Layer 4 -->
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10">
-            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-green-500/10 blur-3xl transition-all group-hover:bg-green-500/20"></div>
-            <div class="relative">
-              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 ring-1 ring-green-500/30">
-                <svg class="h-7 w-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
+          <!-- Our Timeline -->
+          <div class="grid grid-cols-5">
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
+              <div class="text-lg font-bold text-emerald-400">6-12 mo</div>
             </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Delivery & mRNA</h3>
-              <p class="text-sm leading-relaxed text-slate-400">
-                Co-design mRNA constructs with optimized codons, UTRs, and delivery formulations.
-              </p>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
+              <div class="text-lg font-bold text-emerald-400">8-18 mo</div>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
+              <div class="text-lg font-bold text-emerald-400">6-18 mo</div>
+            </div>
+            <div class="p-4 text-center border-r border-slate-800/30">
+              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
+              <div class="text-lg font-bold text-emerald-400">3-5 years</div>
+            </div>
+            <div class="p-4 text-center">
+              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
+              <div class="text-lg font-bold text-emerald-400">6-12 mo</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile-friendly card version -->
+        <div class="grid grid-cols-1 gap-4 mb-8 lg:hidden">
+          <div class="card-reveal rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-cyan-500 text-white font-bold text-sm">1</div>
+            <div class="flex-1">
+              <h3 class="font-bold text-white">Target Discovery</h3>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500 line-through">2-3 yrs</span>
+                <span class="text-emerald-400">→</span>
+                <span class="text-emerald-400 font-bold">6-12 mo</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-reveal rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-teal-500 text-white font-bold text-sm">2</div>
+            <div class="flex-1">
+              <h3 class="font-bold text-white">Lead Optimization</h3>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500 line-through">2-4 yrs</span>
+                <span class="text-emerald-400">→</span>
+                <span class="text-emerald-400 font-bold">8-18 mo</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-reveal rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white font-bold text-sm">3</div>
+            <div class="flex-1">
+              <h3 class="font-bold text-white">Preclinical</h3>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500 line-through">1-2 yrs</span>
+                <span class="text-emerald-400">→</span>
+                <span class="text-emerald-400 font-bold">6-12 mo</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-reveal rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white font-bold text-sm">4</div>
+            <div class="flex-1">
+              <h3 class="font-bold text-white">Clinical Trials</h3>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500 line-through">6-8 yrs</span>
+                <span class="text-emerald-400">→</span>
+                <span class="text-emerald-400 font-bold">3-5 yrs</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-reveal rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500 text-white font-bold text-sm">5</div>
+            <div class="flex-1">
+              <h3 class="font-bold text-white">Regulatory</h3>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-slate-500 line-through">1-2 yrs</span>
+                <span class="text-emerald-400">→</span>
+                <span class="text-emerald-400 font-bold">6-12 mo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Time Saved Summary -->
+        <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-slate-900/50 to-cyan-500/10 p-8 text-center">
+          <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+            <div>
+              <div class="text-slate-400 text-sm mb-1">Traditional Timeline</div>
+              <div class="text-3xl font-bold text-slate-500 line-through">10-15 years</div>
+            </div>
+            <div class="text-4xl text-emerald-400">→</div>
+            <div>
+              <div class="text-emerald-400 text-sm mb-1">With Helixir AI Platform</div>
+              <div class="text-4xl font-bold text-white">5-8 years</div>
+            </div>
+            <div class="hidden md:block h-16 w-px bg-slate-700"></div>
+            <div>
+              <div class="text-slate-400 text-sm mb-1">Time Saved</div>
+              <div class="text-4xl font-bold text-emerald-400">30-50%</div>
             </div>
           </div>
         </div>
@@ -944,14 +1143,18 @@ watch(isHomePage, (newVal) => {
     </section>
 
     <!-- Science Section - Modalities -->
-    <section id="science" class="bg-gradient-to-b from-[#020617] via-slate-900/30 to-[#020617] px-6 py-32 reveal-section">
+    <section id="science" class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-medium text-cyan-300 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+            </span>
             Therapeutic Modalities
           </span>
           <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Purpose-Built for <span class="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Biologics</span>
+            Purpose-Built for <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Biologics</span>
           </h2>
           <p class="mx-auto max-w-2xl text-lg text-slate-400">
             Specialized pipelines for each therapeutic modality with validated experimental workflows
@@ -1031,17 +1234,17 @@ watch(isHomePage, (newVal) => {
 
           <!-- Peptide Therapeutics -->
           <div class="card-reveal group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-1 h-full">
-            <div class="absolute inset-0 bg-gradient-to-b from-pink-500/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-500/20 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
             <div class="relative h-full rounded-[1.25rem] bg-slate-900 p-8">
               <div class="mb-6 flex items-center gap-4">
-                <div class="pulse flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 shadow-lg shadow-pink-500/30">
+                <div class="pulse flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30">
                   <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
               </div>
               <div>
                   <h3 class="text-2xl font-bold text-white">Peptide</h3>
-                  <p class="text-pink-400">Therapeutics</p>
+                  <p class="text-blue-400">Therapeutics</p>
                 </div>
               </div>
               <p class="mb-6 text-slate-400">
@@ -1049,15 +1252,15 @@ watch(isHomePage, (newVal) => {
               </p>
               <ul class="space-y-3 text-sm">
                 <li class="flex items-center gap-3 text-slate-300">
-                  <span class="h-1.5 w-1.5 rounded-full bg-pink-500"></span>
+                  <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                   GLP-1R, GCGR agonists
                 </li>
                 <li class="flex items-center gap-3 text-slate-300">
-                  <span class="h-1.5 w-1.5 rounded-full bg-pink-500"></span>
+                  <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                   Cytokine mimetics
                 </li>
                 <li class="flex items-center gap-3 text-slate-300">
-                  <span class="h-1.5 w-1.5 rounded-full bg-pink-500"></span>
+                  <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                   Stapled & cyclic peptides
                 </li>
               </ul>
@@ -1068,225 +1271,254 @@ watch(isHomePage, (newVal) => {
     </section>
 
     <!-- Why Partner Section -->
-    <section class="px-6 py-32 reveal-section">
+    <section class="relative z-10 px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-block rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-1 text-sm font-medium text-pink-300">
-            Advantages
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-sm font-medium text-teal-300 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-teal-500"></span>
+            </span>
+            Our Advantage
           </span>
           <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Why <span class="bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">Sequentia</span>
+            Why <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">DeepBio Scientific</span>
           </h2>
         </div>
 
         <div class="card-group grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-cyan-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-              </div>
-            <h3 class="mb-2 text-lg font-bold text-white">10x Faster Cycles</h3>
-            <p class="text-sm text-slate-400">Design to validated candidates in weeks, not months. Rapid iteration at unprecedented scale.</p>
-              </div>
-
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-purple-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 ring-1 ring-purple-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-              </svg>
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <h3 class="mb-2 text-lg font-bold text-white">Multi-Objective</h3>
-            <p class="text-sm text-slate-400">Simultaneous optimization of potency, safety, manufacturability, and clinical viability.</p>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">End-to-End Coverage</h3>
+            <p class="text-sm text-slate-400">We optimize every stage, from target discovery through regulatory approval, not just molecule design.</p>
           </div>
 
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-pink-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-pink-500/10 text-pink-400 ring-1 ring-pink-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-            <h3 class="mb-2 text-lg font-bold text-white">Full IP Clarity</h3>
-            <p class="text-sm text-slate-400">Clear ownership terms. Your molecules, your data, your path to clinic and commercialization.</p>
-              </div>
-
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-green-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-green-500/10 text-green-400 ring-1 ring-green-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-1 ring-teal-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
             </div>
-            <h3 class="mb-2 text-lg font-bold text-white">Regulatory Ready</h3>
-            <p class="text-sm text-slate-400">Integrated compliance design. Pre-clinical documentation and validation packages included.</p>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-teal-400 transition-colors">Higher Success Rates</h3>
+            <p class="text-sm text-slate-400">Calibrated probability models predict and improve clinical success, addressing the 90% failure rate problem.</p>
           </div>
 
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-amber-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                </svg>
-              </div>
-            <h3 class="mb-2 text-lg font-bold text-white">GMP Manufacturing</h3>
-            <p class="text-sm text-slate-400">Integrated manufacturing partners for mRNA and protein. Scale seamlessly from discovery to clinic.</p>
-              </div>
-
-          <div class="card-reveal group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-blue-500/30">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/30 transition-transform group-hover:scale-110">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-1 ring-emerald-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <h3 class="mb-2 text-lg font-bold text-white">Human in the Loop</h3>
-            <p class="text-sm text-slate-400">Expert scientists review every step. Your team maintains insight and control throughout.</p>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">30-50% Time Savings</h3>
+            <p class="text-sm text-slate-400">Cut years off development timelines with AI-driven automation across every pipeline stage.</p>
+          </div>
+
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-1 ring-blue-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-blue-400 transition-colors">AgentFabric™</h3>
+            <p class="text-sm text-slate-400">Specialist agents debate and iterate, with a judge agent forcing explicit tradeoffs and decisions.</p>
+          </div>
+
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 ring-1 ring-indigo-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">Trial Optimization</h3>
+            <p class="text-sm text-slate-400">AI-generated protocols, patient matching, and eligibility criteria that maximize recruitment and success.</p>
+          </div>
+
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-slate-500/30 hover:shadow-lg hover:shadow-slate-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-slate-500/20 to-slate-500/5 ring-1 ring-slate-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-white group-hover:text-slate-300 transition-colors">Full Audit Trail</h3>
+            <p class="text-sm text-slate-400">Every prediction traced to source data. No hallucinations, just grounded, explainable reasoning.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Partnership Models -->
-    <section id="partnerships" class="bg-gradient-to-b from-[#020617] via-slate-900/30 to-[#020617] px-6 py-32 reveal-section">
+    <section id="partnerships" class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1 text-sm font-medium text-green-300">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-5 py-2 text-sm font-medium text-green-300 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+            </span>
             Partnerships
           </span>
           <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-            Flexible <span class="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">Engagement</span>
+            Design & Platform <span class="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Services</span>
           </h2>
           <p class="mx-auto max-w-2xl text-lg text-slate-400">
-            Partnership models tailored to your stage and strategy
+            Flexible services tailored to your stage and strategy
           </p>
         </div>
 
-        <div class="card-group grid gap-8 md:grid-cols-3">
-          <!-- Co-Development -->
-          <div class="card-reveal rounded-3xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-cyan-500/30">
-            <div class="mb-6">
-              <span class="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400 ring-1 ring-cyan-500/30">
-                Joint Discovery
-              </span>
+        <!-- Service Categories Grid -->
+        <div class="card-group grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <!-- Design Services -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </div>
-            <h3 class="mb-3 text-2xl font-bold text-white">Co-Development</h3>
-            <p class="mb-6 text-slate-400">
-              Collaborative programs with shared risk and reward. IP co-ownership with clear licensing terms.
-            </p>
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Dedicated team allocation
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Milestone-based payments
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Revenue sharing
-              </li>
-            </ul>
+            <span class="mb-3 inline-block rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400 ring-1 ring-cyan-500/30">
+              DESIGN SERVICES
+            </span>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Molecular Design</h4>
+            <p class="text-sm text-slate-400">AI-driven molecule design, optimization, and validation per program</p>
           </div>
 
-          <!-- Technology License -->
-          <div class="card-reveal relative rounded-3xl border-2 border-purple-500/50 bg-slate-900/50 p-8 shadow-xl shadow-purple-500/10">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span class="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-1 text-xs font-bold text-white shadow-lg">
-                POPULAR
-              </span>
+          <!-- Preclinical -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-1 ring-teal-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
             </div>
-            <div class="mb-6 pt-2">
-              <span class="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-purple-500/30">
-                Platform Access
-              </span>
-            </div>
-            <h3 class="mb-3 text-2xl font-bold text-white">Technology License</h3>
-            <p class="mb-6 text-slate-400">
-              Full platform access for internal discovery programs with expert support and training.
-            </p>
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Exclusive field license
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Full training & onboarding
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Annual + success royalties
-              </li>
-            </ul>
+            <span class="mb-3 inline-block rounded-full bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-400 ring-1 ring-teal-500/30">
+              PLATFORM SERVICES
+            </span>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-teal-400 transition-colors">Preclinical</h4>
+            <p class="text-sm text-slate-400">ADMET prediction, toxicity screening, and lead optimization per asset</p>
           </div>
 
-          <!-- Design Service -->
-          <div class="card-reveal rounded-3xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:border-pink-500/30">
-            <div class="mb-6">
-              <span class="rounded-full bg-pink-500/10 px-3 py-1 text-xs font-medium text-pink-400 ring-1 ring-pink-500/30">
-                Project-Based
-              </span>
+          <!-- Trial Optimization -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-1 ring-purple-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
             </div>
-            <h3 class="mb-3 text-2xl font-bold text-white">Design Service</h3>
-            <p class="mb-6 text-slate-400">
-              We design, you validate. Pay per project or milestone with no long-term commitment.
-            </p>
-            <ul class="space-y-3 text-sm text-slate-300">
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Custom specifications
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                Flexible scope
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                No upfront commitment
-              </li>
-            </ul>
+            <span class="mb-3 inline-block rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-purple-500/30">
+              PLATFORM SERVICES
+            </span>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Trial Optimization</h4>
+            <p class="text-sm text-slate-400">Protocol design, patient stratification, and endpoint prediction per trial</p>
+          </div>
+
+          <!-- Regulatory Intel -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-1 ring-blue-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <span class="mb-3 inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-blue-500/30">
+              PLATFORM SERVICES
+            </span>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Regulatory Intel</h4>
+            <p class="text-sm text-slate-400">Submission guidance, compliance analysis, and documentation per filing</p>
+          </div>
+        </div>
+
+        <!-- Bottom Row - Enterprise & Milestones -->
+        <div class="card-group grid gap-6 md:grid-cols-2 mt-6">
+          <!-- Enterprise Platform -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-1 ring-emerald-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Enterprise Platform</h4>
+            <p class="text-sm text-slate-400 mb-3">Unlimited queries, full API access, dedicated support team, and custom integrations</p>
+            <div class="flex items-center gap-2 text-xs text-emerald-400">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              </span>
+              Coming soon on AWS, Azure, and Google Cloud Marketplaces
+            </div>
+          </div>
+
+          <!-- Success Milestones -->
+          <div class="card-reveal group rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 ring-1 ring-amber-500/30 transition-transform group-hover:scale-110">
+              <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Success Milestones</h4>
+            <p class="text-sm text-slate-400">Performance bonuses on IND filing, phase advancement, and regulatory approval</p>
+          </div>
+        </div>
+
+        <!-- Customer LTV Banner -->
+        <div class="card-reveal mt-8 rounded-2xl bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-600 p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/20 hover:scale-[1.01]">
+          <div class="flex items-center justify-center gap-3 mb-2">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            <p class="text-xl font-bold text-white">Customer LTV</p>
+          </div>
+          <p class="text-white/90">
+            Single entry point expands over <span class="font-bold">4-year asset lifecycle</span>
+          </p>
+        </div>
+
+        <!-- Partnership Model Footer -->
+        <div class="text-center mt-8 p-6 rounded-xl border border-slate-800/30 bg-slate-900/30">
+          <p class="text-slate-300 mb-3">
+            <span class="font-semibold text-white">Partnership Model:</span> Upfront per program, plus 
+            <span class="font-bold text-teal-400">downstream royalty</span> on successful commercialization
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-400">
+            <span class="font-semibold text-white mr-1">Enterprise Platform:</span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.75 11.35a4.32 4.32 0 0 1-.79-.08 3.9 3.9 0 0 1-.73-.23l-.17-.04h-.12l-.15.14-.08.08a4.6 4.6 0 0 1-3.38 1.38 4.63 4.63 0 0 1-3.38-1.38l-.08-.08-.15-.14h-.12l-.17.04a3.9 3.9 0 0 1-.73.23 4.32 4.32 0 0 1-.79.08 4.4 4.4 0 0 1-4.4-4.4v-.03A4.4 4.4 0 0 1 7.9 2.5h.02a4.35 4.35 0 0 1 .79.08 3.9 3.9 0 0 1 .73.22l.17.05h.12l.15-.14.08-.08a4.6 4.6 0 0 1 3.38-1.38 4.63 4.63 0 0 1 3.38 1.38l.08.08.15.14h.12l.17-.05a3.9 3.9 0 0 1 .73-.22 4.35 4.35 0 0 1 .79-.08h.02a4.4 4.4 0 0 1 4.4 4.42v.03a4.4 4.4 0 0 1-4.4 4.4z"/>
+              </svg>
+              <span>AWS Marketplace</span>
+            </span>
+            <span class="text-slate-600">•</span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5.5 9.3V15l6.5 3.8 6.5-3.8V9.3L12 5.5 5.5 9.3zm6.5 7.2l-4.5-2.6v-4l4.5 2.6v4zm1-5.3L8.5 8.6 12 6.5l3.5 2.1L12 11.2zm5.5 2.7l-4.5 2.6v-4l4.5-2.6v4z"/>
+              </svg>
+              <span>Google Cloud Marketplace</span>
+            </span>
+            <span class="text-slate-600">•</span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <span>Azure Marketplace</span>
+            </span>
+            <span class="ml-2 inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400 ring-1 ring-emerald-500/30">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              </span>
+              Coming Soon
+            </span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="relative overflow-hidden px-6 py-32 reveal-section">
-      <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-pink-600/20"></div>
+    <section class="relative z-10 overflow-hidden px-6 py-32 reveal-section">
+      <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-blue-600/20"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.15),transparent_50%)]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.15),transparent_50%)]"></div>
       
+      <!-- Animated orbs in CTA -->
+      <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute top-1/2 right-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      
       <div class="relative mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-bold text-white md:text-6xl">
-          Ready to Design the
-          <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Future</span>?
+          Join Us in Building a
+          <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">Disease-Free World</span>
         </h2>
         <p class="mx-auto mb-12 max-w-2xl text-xl text-slate-300">
           Partner with us to accelerate your therapeutic program from concept to clinic.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <button class="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-bold text-slate-900 shadow-2xl transition-all hover:shadow-white/20">
+          <RouterLink 
+            to="/contact"
+            class="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-bold text-slate-900 shadow-2xl transition-all hover:shadow-white/30 hover:scale-105"
+          >
             <span class="relative z-10">Schedule Partnership Call</span>
-          </button>
-          <button class="rounded-full border-2 border-white/30 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/5">
-            Download Case Studies
-          </button>
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-100 to-purple-100 opacity-0 transition-opacity group-hover:opacity-100"></div>
+          </RouterLink>
+          <RouterLink 
+            to="/case-studies"
+            class="rounded-full border-2 border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10 hover:scale-105"
+          >
+            View Case Studies
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -1298,13 +1530,19 @@ watch(isHomePage, (newVal) => {
         <div class="mb-12 grid gap-12 md:grid-cols-4">
           <div>
             <RouterLink to="/" class="mb-4 flex items-center gap-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 shadow-lg shadow-cyan-500/30">
-                <span class="text-xl font-bold text-white">Σ</span>
-              </div>
-              <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-xl font-bold text-transparent">Sequentia</span>
+              <img 
+                :src="deepbioLogo" 
+                alt="DeepBio Scientific Logo" 
+                class="h-10 w-auto"
+              />
+              <img 
+                :src="deepbioText" 
+                alt="DeepBio Scientific" 
+                class="h-8 w-auto"
+              />
             </RouterLink>
             <p class="text-sm text-slate-500">
-              AI-powered therapeutic design for mRNA and protein medicines.
+              AI-powered platform for optimizing every stage of the drug discovery pipeline.
             </p>
           </div>
           <div>
@@ -1319,24 +1557,13 @@ watch(isHomePage, (newVal) => {
             <h4 class="mb-4 font-bold text-white">Company</h4>
             <ul class="space-y-2 text-sm text-slate-400">
               <li><RouterLink to="/about" class="transition hover:text-white">About</RouterLink></li>
-              <li><RouterLink to="/blog" class="transition hover:text-white">Blog</RouterLink></li>
-              <li><RouterLink to="/careers" class="transition hover:text-white">Careers</RouterLink></li>
               <li><RouterLink to="/contact" class="transition hover:text-white">Contact</RouterLink></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="mb-4 font-bold text-white">Legal</h4>
-            <ul class="space-y-2 text-sm text-slate-400">
-              <li><a href="#" class="transition hover:text-white">Privacy Policy</a></li>
-              <li><a href="#" class="transition hover:text-white">Terms of Service</a></li>
-              <li><a href="#" class="transition hover:text-white">IP Policy</a></li>
-              <li><a href="#" class="transition hover:text-white">Security</a></li>
             </ul>
           </div>
         </div>
         <div class="border-t border-slate-800 pt-8">
           <p class="text-center text-sm text-slate-600">
-            © 2025 Sequentia. Designing the next generation of therapeutic molecules.
+            © 2025 DeepBio Scientific. Building towards a disease-free world.
           </p>
         </div>
       </div>
@@ -1364,12 +1591,49 @@ html {
   transform: translateY(0);
 }
 
+/* Animated gradient text */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Floating particles animation */
+.floating-particle {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 /* Fallback for when JS doesn't load - ensure visibility */
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  
+  .animate-gradient {
+    animation: none;
+  }
+  
+  .floating-particle {
+    animation: none;
   }
 }
 </style>

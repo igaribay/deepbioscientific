@@ -24,25 +24,32 @@ const router = createRouter({
       name: 'case-studies',
       component: () => import('../views/CaseStudiesPage.vue'),
     },
-    {
-      path: '/blog',
-      name: 'blog',
-      component: () => import('../views/BlogPage.vue'),
-    },
+    // Blog route - disabled for now
+    // {
+    //   path: '/blog',
+    //   name: 'blog',
+    //   component: () => import('../views/BlogPage.vue'),
+    // },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutPage.vue'),
     },
-    {
-      path: '/careers',
-      name: 'careers',
-      component: () => import('../views/CareersPage.vue'),
-    },
+    // Careers route - disabled for now
+    // {
+    //   path: '/careers',
+    //   name: 'careers',
+    //   component: () => import('../views/CareersPage.vue'),
+    // },
     {
       path: '/contact',
       name: 'contact',
       component: () => import('../views/ContactPage.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      redirect: '/',
     },
   ],
   scrollBehavior(to, from, savedPosition) {

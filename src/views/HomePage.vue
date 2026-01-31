@@ -467,9 +467,9 @@ onUnmounted(() => {
         <h1 class="mb-8 text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
           <span class="hero-word block">Design</span>
           <span class="hero-word block">
-            <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">mRNA</span>
+            <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">mRNA</span>
             &
-            <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Protein</span>
+            <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Protein</span>
           </span>
           <span class="hero-word block text-slate-300">Therapeutics</span>
         </h1>
@@ -483,7 +483,7 @@ onUnmounted(() => {
         <div class="flex flex-wrap justify-center gap-4">
           <router-link to="/contact" class="hero-btn group relative overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50">
             <span class="relative z-10">Start Discovery</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
           </router-link>
           <router-link to="/technology" class="hero-btn rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-slate-800/50">
             Explore Platform
@@ -532,15 +532,15 @@ onUnmounted(() => {
                 </svg>
               </div>
               <h3 class="mb-3 text-xl font-bold text-white">Agentic Optimization</h3>
-              <p class="text-sm leading-relaxed text-slate-400">Multi-agent system critiques, refines, and iterates on candidates across binding, stability, and manufacturability.</p>
+              <p class="text-sm leading-relaxed text-slate-400">AgentFabric™ critiques, refines, and iterates on candidates across binding, stability, and manufacturability.</p>
             </div>
           </div>
 
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10">
-            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-pink-500/10 blur-3xl transition-all group-hover:bg-pink-500/20"></div>
+          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10">
+            <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-blue-500/10 blur-3xl transition-all group-hover:bg-blue-500/20"></div>
             <div class="relative">
-              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 ring-1 ring-pink-500/30">
-                <svg class="h-7 w-7 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-1 ring-blue-500/30">
+                <svg class="h-7 w-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
@@ -567,14 +567,14 @@ onUnmounted(() => {
 
     <!-- CTA Section -->
     <section class="reveal-section relative overflow-hidden px-6 py-32">
-      <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-pink-600/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-blue-600/20"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.15),transparent_50%)]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.15),transparent_50%)]"></div>
 
       <div class="relative mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-bold text-white md:text-6xl">
           Ready to Design the
-          <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Future</span>?
+          <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">Future</span>?
         </h2>
         <p class="mx-auto mb-12 max-w-2xl text-xl text-slate-300">Partner with us to accelerate your therapeutic program from concept to clinic.</p>
         <div class="flex flex-wrap justify-center gap-4">
