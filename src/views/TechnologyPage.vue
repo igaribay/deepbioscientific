@@ -499,7 +499,7 @@ onUnmounted(() => {
             <div class="rounded-2xl border border-slate-700/50 bg-slate-900/80 p-6 relative">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-teal-500 rounded-l-2xl"></div>
               <h3 class="text-lg font-bold text-teal-400 mb-2">Validation Partners</h3>
-              <p class="text-slate-400 text-sm">UCF Medical • Pharma Labs • CRO Network</p>
+              <p class="text-slate-400 text-sm">Multiple Universities Research Labs • Pharma Labs • CRO Network</p>
             </div>
 
             <!-- Arrow Up - Experimental Results -->

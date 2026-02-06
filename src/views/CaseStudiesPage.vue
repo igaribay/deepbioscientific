@@ -291,13 +291,13 @@ const caseStudies = [
   {
     id: 1,
     title: 'COVID-19 Drug Discovery: CMP-Neu5Ac',
-    partner: 'UCF Materials Science Lab',
+    partner: 'University Lab',
     category: 'Antiviral Discovery',
     sequence: 'CC(=O)N[C@@H]1[C@@H](O)C[C@@](OC2O[C@H](COP(O)(=O)O)[C@@H](O)[C@H]2O)(C(O)=O)O[C@H]1[C@H](O)[C@H](O)CO',
     moleculeType: 'smallMolecule',
-    description: 'Identified Cytidine-5\'-monophospho-N-acetylneuraminic acid sodium salt (CMP-Neu5Ac) as a SARS-CoV-2 Spike Protein inhibitor through AI-driven molecular docking. Wet lab validated by UCF Materials Science Lab.',
+    description: 'Identified Cytidine-5\'-monophospho-N-acetylneuraminic acid sodium salt (CMP-Neu5Ac) as a SARS-CoV-2 Spike Protein inhibitor through AI-driven molecular docking. Wet lab validated by University Materials Science Lab.',
     results: [
-      { metric: 'Validated', label: 'UCF Wet Lab Confirmation' },
+      { metric: 'Validated', label: 'Wet Lab Confirmation' },
       { metric: 'Spike RBD', label: 'Target Binding Site' },
       { metric: 'In Vitro', label: 'Confirmed Inhibition' },
     ],

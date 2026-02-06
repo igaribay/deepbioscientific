@@ -214,7 +214,7 @@ onMounted(() => {
     </section>
 
     <!-- Team -->
-    <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
+    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
@@ -242,7 +242,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->  
 
     <!-- Timeline -->
     <section class="relative z-10 px-6 py-20">
