@@ -23,6 +23,7 @@ const navLinks = [
   { name: 'Technology', path: '/technology' },
   { name: 'Research', path: '/research' },
   { name: 'Case Studies', path: '/case-studies' },
+  { name: 'Platform', path: 'https://demo.deepbioscientific.com', external: true },
   { name: 'About', path: '/about' },
 ]
 const heroCanvas = ref<HTMLCanvasElement | null>(null)
@@ -728,15 +729,25 @@ watch(isHomePage, (newVal) => {
 
         <!-- Desktop Navigation -->
         <div class="hidden items-center gap-6 lg:flex">
-          <RouterLink
-            v-for="link in navLinks"
-            :key="link.path"
-            :to="link.path"
-            class="text-sm text-[rgb(var(--text-body))] transition-colors hover:text-[rgb(var(--text-heading))]"
-            active-class="text-[rgb(var(--text-heading))]"
-          >
-            {{ link.name }}
-          </RouterLink>
+          <template v-for="link in navLinks" :key="link.path">
+            <a
+              v-if="link.external"
+              :href="link.path"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-[rgb(var(--text-body))] transition-colors hover:text-[rgb(var(--text-heading))]"
+            >
+              {{ link.name }}
+            </a>
+            <RouterLink
+              v-else
+              :to="link.path"
+              class="text-sm text-[rgb(var(--text-body))] transition-colors hover:text-[rgb(var(--text-heading))]"
+              active-class="text-[rgb(var(--text-heading))]"
+            >
+              {{ link.name }}
+            </RouterLink>
+          </template>
         </div>
 
         <!-- CTA Button + Theme Toggle -->
@@ -771,15 +782,26 @@ watch(isHomePage, (newVal) => {
       >
         <div class="px-6 py-4">
           <div class="flex flex-col gap-4">
-            <RouterLink
-              v-for="link in navLinks"
-              :key="link.path"
-              :to="link.path"
-              class="text-lg text-[rgb(var(--text-primary))] transition-colors hover:text-[rgb(var(--text-heading))]"
-              @click="mobileMenuOpen = false"
-            >
-              {{ link.name }}
-            </RouterLink>
+            <template v-for="link in navLinks" :key="link.path">
+              <a
+                v-if="link.external"
+                :href="link.path"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-lg text-[rgb(var(--text-primary))] transition-colors hover:text-[rgb(var(--text-heading))]"
+                @click="mobileMenuOpen = false"
+              >
+                {{ link.name }}
+              </a>
+              <RouterLink
+                v-else
+                :to="link.path"
+                class="text-lg text-[rgb(var(--text-primary))] transition-colors hover:text-[rgb(var(--text-heading))]"
+                @click="mobileMenuOpen = false"
+              >
+                {{ link.name }}
+              </RouterLink>
+            </template>
             <div class="mt-4 flex items-center gap-3">
               <ThemeToggle />
               <RouterLink
