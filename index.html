@@ -12,6 +12,16 @@
       content="DeepBio Scientific - AI-powered drug discovery platform."
     />
     <title>DeepBio Scientific - AI-Powered Drug Discovery Platform</title>
+    <!-- Theme flash prevention: apply dark class before any rendering -->
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+        // Default is light mode — no class needed
+      })();
+    </script>
     <!-- Single Page App redirect script for GitHub Pages -->
     <script>
       (function() {

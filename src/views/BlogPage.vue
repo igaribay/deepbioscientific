@@ -146,10 +146,10 @@ onMounted(() => {
           <span class="text-sm font-medium text-cyan-300">Blog</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Insights & <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Research</span>
         </h1>
-        <p class="hero-title max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Stay updated with the latest advances in <span class="text-cyan-400">AI-driven therapeutic design</span>, 
           protein engineering, and mRNA technology.
         </p>
@@ -159,10 +159,10 @@ onMounted(() => {
     <!-- Featured Post -->
     <section class="relative z-10 px-6 pb-12">
       <div class="mx-auto max-w-6xl">
-        <div class="featured-card group relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10">
+        <div class="featured-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10">
           <div class="relative grid md:grid-cols-2 gap-8 p-8 lg:p-12">
             <!-- Image -->
-            <div class="relative aspect-video md:aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900">
+            <div class="relative aspect-video md:aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-[rgb(var(--bg-card-muted))] to-[rgb(var(--bg-card))]">
               <div class="absolute inset-0 bg-gradient-to-br" :class="featuredPost.gradient" style="opacity: 0.2"></div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-32 h-32 rounded-full blur-3xl" :class="`bg-gradient-to-br ${featuredPost.gradient}`" style="opacity: 0.5"></div>
@@ -188,15 +188,15 @@ onMounted(() => {
                 </span>
               </div>
               
-              <h2 class="mb-4 text-2xl font-bold text-white md:text-3xl group-hover:text-cyan-400 transition-colors">
+              <h2 class="mb-4 text-2xl font-bold text-[rgb(var(--text-heading))] md:text-3xl group-hover:text-cyan-400 transition-colors">
                 {{ featuredPost.title }}
               </h2>
               
-              <p class="mb-6 text-slate-400 leading-relaxed">
+              <p class="mb-6 text-[rgb(var(--text-body))] leading-relaxed">
                 {{ featuredPost.excerpt }}
               </p>
               
-              <div class="flex items-center gap-4 text-sm text-slate-500">
+              <div class="flex items-center gap-4 text-sm text-[rgb(var(--text-muted))]">
                 <span>{{ featuredPost.date }}</span>
                 <span>•</span>
                 <span>{{ featuredPost.readTime }}</span>
@@ -215,13 +215,13 @@ onMounted(() => {
     <section class="relative z-10 px-6 pb-32">
       <div class="mx-auto max-w-6xl">
         <div class="mb-8 flex items-center justify-between">
-          <h2 class="text-2xl font-bold text-white">Latest Articles</h2>
+          <h2 class="text-2xl font-bold text-[rgb(var(--text-heading))]">Latest Articles</h2>
           <div class="flex gap-2">
             <button 
               v-for="cat in ['All', 'Research', 'Technology', 'Industry']" 
               :key="cat"
               class="rounded-full px-4 py-1.5 text-sm font-medium transition-all"
-              :class="cat === 'All' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'"
+              :class="cat === 'All' ? 'bg-[rgb(var(--bg-card-muted))] text-[rgb(var(--text-heading))]' : 'text-[rgb(var(--text-body))] hover:text-[rgb(var(--text-heading))] hover:bg-[rgb(var(--bg-card-muted))/0.5]'"
             >
               {{ cat }}
             </button>
@@ -232,10 +232,10 @@ onMounted(() => {
           <article 
             v-for="post in posts.slice(1)" 
             :key="post.id"
-            class="blog-card group cursor-pointer overflow-hidden rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 backdrop-blur-xl transition-all duration-500 hover:border-slate-700/50 hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1"
+            class="blog-card group cursor-pointer overflow-hidden rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] backdrop-blur-xl transition-all duration-500 hover:border-[rgb(var(--border-muted))/0.5] hover:shadow-xl hover:shadow-cyan-500/5 hover:-translate-y-1"
           >
             <!-- Image placeholder -->
-            <div class="relative h-48 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
+            <div class="relative h-48 overflow-hidden bg-gradient-to-br from-[rgb(var(--bg-card-muted))] to-[rgb(var(--bg-card))]">
               <div class="absolute inset-0 bg-gradient-to-br" :class="post.gradient" style="opacity: 0.15"></div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="h-20 w-20 rounded-full blur-2xl" :class="`bg-gradient-to-br ${post.gradient}`" style="opacity: 0.5"></div>
@@ -254,15 +254,15 @@ onMounted(() => {
             </div>
 
             <div class="p-6">
-              <div class="mb-3 flex items-center gap-3 text-xs text-slate-500">
+              <div class="mb-3 flex items-center gap-3 text-xs text-[rgb(var(--text-muted))]">
                 <span>{{ post.date }}</span>
                 <span>•</span>
                 <span>{{ post.readTime }}</span>
               </div>
-              <h2 class="mb-3 text-xl font-bold text-white transition-colors group-hover:text-cyan-400">
+              <h2 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))] transition-colors group-hover:text-cyan-400">
                 {{ post.title }}
               </h2>
-              <p class="text-sm leading-relaxed text-slate-400">
+              <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">
                 {{ post.excerpt }}
               </p>
               
@@ -278,7 +278,7 @@ onMounted(() => {
 
         <!-- Load More -->
         <div class="mt-12 text-center">
-          <button class="rounded-full border border-slate-700 bg-slate-800/50 px-8 py-3 font-medium text-white backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-slate-800 hover:shadow-lg hover:shadow-cyan-500/10">
+          <button class="rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card-muted))/0.5] px-8 py-3 font-medium text-[rgb(var(--text-heading))] backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-[rgb(var(--bg-card-muted))] hover:shadow-lg hover:shadow-cyan-500/10">
             Load More Articles
           </button>
         </div>
@@ -288,7 +288,7 @@ onMounted(() => {
     <!-- Newsletter -->
     <section class="relative z-10 px-6 pb-20">
       <div class="mx-auto max-w-4xl">
-        <div class="relative rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-900 p-12 text-center overflow-hidden">
+        <div class="relative rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))] via-[rgb(var(--bg-card))/0.95] to-[rgb(var(--bg-card))] p-12 text-center overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-blue-500/5"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-full blur-3xl"></div>
           
@@ -296,15 +296,15 @@ onMounted(() => {
             <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">
               Newsletter
             </span>
-            <h2 class="mb-4 text-3xl font-bold text-white">Stay Updated</h2>
-            <p class="mb-8 text-slate-400 max-w-xl mx-auto">
+            <h2 class="mb-4 text-3xl font-bold text-[rgb(var(--text-heading))]">Stay Updated</h2>
+            <p class="mb-8 text-[rgb(var(--text-body))] max-w-xl mx-auto">
               Get the latest insights on AI-driven therapeutic design delivered to your inbox monthly.
             </p>
             <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input 
                 type="email" 
                 placeholder="your@email.com"
-                class="flex-1 rounded-full border border-slate-700 bg-slate-800/50 px-6 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                class="flex-1 rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card-muted))/0.5] px-6 py-3 text-[rgb(var(--text-heading))] placeholder-[rgb(var(--text-muted))] backdrop-blur-sm transition-colors focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
               />
               <button class="rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 px-8 py-3 font-semibold text-white shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50">
                 Subscribe

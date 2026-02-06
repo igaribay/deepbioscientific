@@ -129,10 +129,10 @@ onMounted(() => {
           <span class="text-sm font-medium text-green-300">We're Hiring!</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Join Our <span class="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Mission</span>
         </h1>
-        <p class="hero-title max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Help us design the <span class="text-green-400">next generation of therapeutic molecules</span>. 
           We're building a team of exceptional scientists, engineers, and operators.
         </p>
@@ -146,14 +146,14 @@ onMounted(() => {
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
             Why DeepBio Scientific
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">Build the Future of Medicine</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Build the Future of Medicine</h2>
         </div>
         
         <div class="grid gap-6 md:grid-cols-3">
           <div 
             v-for="value in values" 
             :key="value.title"
-            class="career-card group relative rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl transition-all duration-500 hover:border-slate-700 hover:shadow-lg hover:-translate-y-1"
+            class="career-card group relative rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl transition-all duration-500 hover:border-[rgb(var(--border-muted))] hover:shadow-lg hover:-translate-y-1"
           >
             <div class="relative">
               <div 
@@ -164,8 +164,8 @@ onMounted(() => {
                 <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 <svg v-else class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               </div>
-              <h3 class="mb-3 text-xl font-bold text-white">{{ value.title }}</h3>
-              <p class="text-slate-400">{{ value.description }}</p>
+              <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">{{ value.title }}</h3>
+              <p class="text-[rgb(var(--text-body))]">{{ value.description }}</p>
             </div>
           </div>
         </div>
@@ -173,20 +173,20 @@ onMounted(() => {
     </section>
 
     <!-- Benefits -->
-    <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
+    <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
           <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">
             Benefits
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">Perks & Benefits</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Perks & Benefits</h2>
         </div>
         
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div 
             v-for="(benefit, index) in benefits" 
             :key="benefit.title"
-            class="career-card group flex items-start gap-4 rounded-xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-slate-700"
+            class="career-card group flex items-start gap-4 rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[rgb(var(--border-muted))]"
           >
             <div 
               class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl ring-1 transition-transform group-hover:scale-110"
@@ -202,8 +202,8 @@ onMounted(() => {
               </svg>
             </div>
             <div>
-              <h3 class="font-bold text-white">{{ benefit.title }}</h3>
-              <p class="text-sm text-slate-400">{{ benefit.description }}</p>
+              <h3 class="font-bold text-[rgb(var(--text-heading))]">{{ benefit.title }}</h3>
+              <p class="text-sm text-[rgb(var(--text-body))]">{{ benefit.description }}</p>
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ onMounted(() => {
             <span class="mb-4 inline-block rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-300">
               Open Roles
             </span>
-            <h2 class="text-3xl font-bold text-white">Open Positions</h2>
+            <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))]">Open Positions</h2>
           </div>
           
           <div class="flex gap-2 flex-wrap">
@@ -227,7 +227,7 @@ onMounted(() => {
               :key="dept"
               @click="selectedDepartment = dept"
               class="rounded-full px-4 py-1.5 text-sm font-medium transition-all"
-              :class="selectedDepartment === dept ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'"
+              :class="selectedDepartment === dept ? 'bg-[rgb(var(--bg-card-muted))] text-[rgb(var(--text-heading))]' : 'text-[rgb(var(--text-body))] hover:text-[rgb(var(--text-heading))] hover:bg-[rgb(var(--bg-card-muted))/0.5]'"
             >
               {{ dept }}
             </button>
@@ -238,7 +238,7 @@ onMounted(() => {
           <div 
             v-for="position in openPositions" 
             :key="position.title"
-            class="career-card group cursor-pointer rounded-xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-6 backdrop-blur-xl transition-all duration-300"
+            class="career-card group cursor-pointer rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-6 backdrop-blur-xl transition-all duration-300"
             :class="[
               position.color === 'cyan' ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10' : '',
               position.color === 'purple' ? 'hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10' : '',
@@ -250,7 +250,7 @@ onMounted(() => {
             <div class="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h3 
-                  class="text-lg font-bold text-white transition-colors"
+                  class="text-lg font-bold text-[rgb(var(--text-heading))] transition-colors"
                   :class="[
                     position.color === 'cyan' ? 'group-hover:text-cyan-400' : '',
                     position.color === 'purple' ? 'group-hover:text-purple-400' : '',
@@ -259,7 +259,7 @@ onMounted(() => {
                     position.color === 'amber' ? 'group-hover:text-amber-400' : '',
                   ]"
                 >{{ position.title }}</h3>
-                <div class="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+                <div class="mt-2 flex flex-wrap items-center gap-3 text-sm text-[rgb(var(--text-body))]">
                   <span 
                     class="rounded-full px-2 py-0.5 text-xs font-medium ring-1"
                     :class="[
@@ -283,11 +283,11 @@ onMounted(() => {
               <button 
                 class="rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-all"
                 :class="[
-                  position.color === 'cyan' ? 'bg-slate-800 group-hover:bg-cyan-500 group-hover:shadow-lg group-hover:shadow-cyan-500/30' : '',
-                  position.color === 'purple' ? 'bg-slate-800 group-hover:bg-purple-500 group-hover:shadow-lg group-hover:shadow-purple-500/30' : '',
-                  position.color === 'pink' ? 'bg-slate-800 group-hover:bg-blue-500 group-hover:shadow-lg group-hover:shadow-blue-500/30' : '',
-                  position.color === 'green' ? 'bg-slate-800 group-hover:bg-green-500 group-hover:shadow-lg group-hover:shadow-green-500/30' : '',
-                  position.color === 'amber' ? 'bg-slate-800 group-hover:bg-amber-500 group-hover:shadow-lg group-hover:shadow-amber-500/30' : '',
+                  position.color === 'cyan' ? 'bg-[rgb(var(--bg-card-muted))] group-hover:bg-cyan-500 group-hover:shadow-lg group-hover:shadow-cyan-500/30' : '',
+                  position.color === 'purple' ? 'bg-[rgb(var(--bg-card-muted))] group-hover:bg-purple-500 group-hover:shadow-lg group-hover:shadow-purple-500/30' : '',
+                  position.color === 'pink' ? 'bg-[rgb(var(--bg-card-muted))] group-hover:bg-blue-500 group-hover:shadow-lg group-hover:shadow-blue-500/30' : '',
+                  position.color === 'green' ? 'bg-[rgb(var(--bg-card-muted))] group-hover:bg-green-500 group-hover:shadow-lg group-hover:shadow-green-500/30' : '',
+                  position.color === 'amber' ? 'bg-[rgb(var(--bg-card-muted))] group-hover:bg-amber-500 group-hover:shadow-lg group-hover:shadow-amber-500/30' : '',
                 ]"
               >
                 Apply Now
@@ -297,11 +297,11 @@ onMounted(() => {
         </div>
 
         <!-- Don't See a Role -->
-        <div class="mt-12 relative rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 text-center backdrop-blur-xl overflow-hidden">
+        <div class="mt-12 relative rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 text-center backdrop-blur-xl overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 via-cyan-500/5 to-purple-500/5"></div>
           <div class="relative">
-            <h3 class="mb-4 text-xl font-bold text-white">Don't see a role that fits?</h3>
-            <p class="mb-6 text-slate-400 max-w-xl mx-auto">We're always looking for exceptional talent. Send us your resume and tell us how you'd contribute.</p>
+            <h3 class="mb-4 text-xl font-bold text-[rgb(var(--text-heading))]">Don't see a role that fits?</h3>
+            <p class="mb-6 text-[rgb(var(--text-body))] max-w-xl mx-auto">We're always looking for exceptional talent. Send us your resume and tell us how you'd contribute.</p>
             <a 
               href="mailto:careers@deepbioscientific.com" 
               class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
@@ -319,22 +319,22 @@ onMounted(() => {
     <!-- Life at DeepBio Scientific -->
     <section class="relative z-10 px-6 pb-20">
       <div class="mx-auto max-w-6xl">
-        <div class="relative rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-900 p-12 text-center overflow-hidden">
+        <div class="relative rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))] via-[rgb(var(--bg-card))/0.95] to-[rgb(var(--bg-card))] p-12 text-center overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 via-cyan-500/5 to-purple-500/5"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-green-500/20 to-transparent rounded-full blur-3xl"></div>
           
           <div class="relative">
-            <h2 class="mb-6 text-3xl font-bold text-white">Life at DeepBio Scientific</h2>
-            <p class="mb-8 text-lg text-slate-400 max-w-2xl mx-auto">
+            <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))]">Life at DeepBio Scientific</h2>
+            <p class="mb-8 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">
               We're a team of passionate scientists and engineers working together to transform therapeutic discovery. 
               Join us and make an impact.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
               <div class="flex -space-x-3">
-                <img src="/team/ivan-garibay.jpg" alt="Dr. Ivan Garibay" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-900" />
-                <img src="/team/edwin-nassiff.jpg" alt="Dr. Edwin Nassiff" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-900" />
-                <img src="/team/sanjay-pahdi.jpg" alt="Dr. Sanjay Pahdi" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-900" />
-                <img src="/team/ozlem-garibay.jpg" alt="Dr. Ozlem Garibay" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-900" />
+                <img src="/team/ivan-garibay.jpg" alt="Dr. Ivan Garibay" class="w-12 h-12 rounded-full object-cover ring-2 ring-[rgb(var(--bg-card))]" />
+                <img src="/team/edwin-nassiff.jpg" alt="Dr. Edwin Nassiff" class="w-12 h-12 rounded-full object-cover ring-2 ring-[rgb(var(--bg-card))]" />
+                <img src="/team/sanjay-pahdi.jpg" alt="Dr. Sanjay Pahdi" class="w-12 h-12 rounded-full object-cover ring-2 ring-[rgb(var(--bg-card))]" />
+                <img src="/team/ozlem-garibay.jpg" alt="Dr. Ozlem Garibay" class="w-12 h-12 rounded-full object-cover ring-2 ring-[rgb(var(--bg-card))]" />
               </div>
             </div>
           </div>

@@ -2,8 +2,11 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTheme } from '@/composables/useTheme'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const { canvasColors } = useTheme()
 
 const heroCanvas = ref<HTMLCanvasElement | null>(null)
 let animationId: number | null = null
@@ -162,13 +165,13 @@ function drawHeroBackground() {
   smoothMouseX += (mouseX - smoothMouseX) * 0.08
   smoothMouseY += (mouseY - smoothMouseY) * 0.08
 
-  ctx.fillStyle = 'rgba(2, 6, 23, 0.15)'
+  ctx.fillStyle = canvasColors.value.trailClear
   ctx.fillRect(0, 0, width, height)
 
   const targetMouseX = (smoothMouseX - centerX) * 0.0003
   const targetMouseY = (smoothMouseY - centerY) * 0.0003
 
-  ctx.strokeStyle = 'rgba(100, 116, 139, 0.3)'
+  ctx.strokeStyle = canvasColors.value.connectionStroke
   ctx.lineWidth = 1
 
   for (let i = 0; i < nucleotides.length; i += 2) {
@@ -194,14 +197,14 @@ function drawHeroBackground() {
     const cos2 = Math.cos(rotX)
     const sin2 = Math.sin(rotX)
 
-    let rx1 = x1 * cos1 - z1 * sin1
+    const rx1 = x1 * cos1 - z1 * sin1
     let rz1 = x1 * sin1 + z1 * cos1
-    let ry1 = y1 * cos2 - rz1 * sin2
+    const ry1 = y1 * cos2 - rz1 * sin2
     rz1 = y1 * sin2 + rz1 * cos2
 
-    let rx2 = x2 * cos1 - z2 * sin1
+    const rx2 = x2 * cos1 - z2 * sin1
     let rz2 = x2 * sin1 + z2 * cos1
-    let ry2 = y2 * cos2 - rz2 * sin2
+    const ry2 = y2 * cos2 - rz2 * sin2
     rz2 = y2 * sin2 + rz2 * cos2
 
     const fov = 500
@@ -265,7 +268,7 @@ function drawHeroBackground() {
 
     if (scale > 0.6) {
       ctx.globalAlpha = 0.9
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+      ctx.fillStyle = canvasColors.value.nucleotideLabel
       ctx.font = `${Math.max(8, 10 * scale)}px monospace`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
@@ -451,7 +454,7 @@ onUnmounted(() => {
   <div>
     <!-- Hero Section -->
     <section class="hero-section relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-32">
-      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#020617] via-transparent to-[#020617]"></div>
+      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[rgb(var(--bg-base))] via-transparent to-[rgb(var(--bg-base))]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08),transparent_60%)]"></div>
       <canvas ref="heroCanvas" class="hero-canvas absolute inset-0 h-full w-full" style="opacity: 0.85"></canvas>
 
@@ -464,19 +467,19 @@ onUnmounted(() => {
           <span class="text-sm font-medium text-cyan-300">AI-Powered Therapeutic Design</span>
         </div>
 
-        <h1 class="mb-8 text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
+        <h1 class="mb-8 text-5xl font-bold leading-tight tracking-tight text-[rgb(var(--text-heading))] md:text-7xl lg:text-8xl">
           <span class="hero-word block">Design</span>
           <span class="hero-word block">
             <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">mRNA</span>
             &
             <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Protein</span>
           </span>
-          <span class="hero-word block text-slate-300">Therapeutics</span>
+          <span class="hero-word block text-[rgb(var(--text-primary))]">Therapeutics</span>
         </h1>
 
-        <p class="hero-subtext mx-auto mb-12 max-w-3xl text-lg text-slate-400 md:text-xl lg:text-2xl">
+        <p class="hero-subtext mx-auto mb-12 max-w-3xl text-lg text-[rgb(var(--text-body))] md:text-xl lg:text-2xl">
           From natural language specifications to validated therapeutic candidates.
-          <span class="text-white">Evolutionary AI</span> meets
+          <span class="text-[rgb(var(--text-heading))]">Evolutionary AI</span> meets
           <span class="text-cyan-400">molecular biology</span>.
         </p>
 
@@ -485,7 +488,7 @@ onUnmounted(() => {
             <span class="relative z-10">Start Discovery</span>
             <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
           </router-link>
-          <router-link to="/technology" class="hero-btn rounded-full border-2 border-slate-700 bg-slate-900/50 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-slate-800/50">
+          <router-link to="/technology" class="hero-btn rounded-full border-2 border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card))/0.5] px-8 py-4 text-lg font-semibold text-[rgb(var(--text-heading))] backdrop-blur-sm transition-all hover:border-cyan-500/50 hover:bg-[rgb(var(--bg-card-muted))/0.5]">
             Explore Platform
           </router-link>
         </div>
@@ -503,14 +506,14 @@ onUnmounted(() => {
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
           <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">Platform</span>
-          <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
+          <h2 class="mb-4 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl">
             Four Integrated <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Layers</span>
           </h2>
-          <p class="mx-auto max-w-2xl text-lg text-slate-400">A unified platform combining language models, evolutionary optimization, and molecular simulation</p>
+          <p class="mx-auto max-w-2xl text-lg text-[rgb(var(--text-body))]">A unified platform combining language models, evolutionary optimization, and molecular simulation</p>
         </div>
 
         <div class="card-group grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10">
+          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-[rgb(var(--border-primary))] bg-gradient-to-b from-[rgb(var(--bg-card))] to-[rgb(var(--bg-card))/0.5] p-8 transition-all hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10">
             <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-cyan-500/10 blur-3xl transition-all group-hover:bg-cyan-500/20"></div>
             <div class="relative">
               <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30">
@@ -518,12 +521,12 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                 </svg>
               </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Natural Language Spec</h3>
-              <p class="text-sm leading-relaxed text-slate-400">Describe your therapeutic goal in plain English. Our compiler converts intent to precise molecular constraints.</p>
+              <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">Natural Language Spec</h3>
+              <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">Describe your therapeutic goal in plain English. Our compiler converts intent to precise molecular constraints.</p>
             </div>
           </div>
 
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10">
+          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-[rgb(var(--border-primary))] bg-gradient-to-b from-[rgb(var(--bg-card))] to-[rgb(var(--bg-card))/0.5] p-8 transition-all hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10">
             <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-purple-500/10 blur-3xl transition-all group-hover:bg-purple-500/20"></div>
             <div class="relative">
               <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-1 ring-purple-500/30">
@@ -531,12 +534,12 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Agentic Optimization</h3>
-              <p class="text-sm leading-relaxed text-slate-400">AgentFabric™ critiques, refines, and iterates on candidates across binding, stability, and manufacturability.</p>
+              <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">Agentic Optimization</h3>
+              <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">AgentFabric™ critiques, refines, and iterates on candidates across binding, stability, and manufacturability.</p>
             </div>
           </div>
 
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10">
+          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-[rgb(var(--border-primary))] bg-gradient-to-b from-[rgb(var(--bg-card))] to-[rgb(var(--bg-card))/0.5] p-8 transition-all hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10">
             <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-blue-500/10 blur-3xl transition-all group-hover:bg-blue-500/20"></div>
             <div class="relative">
               <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-1 ring-blue-500/30">
@@ -544,12 +547,12 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Evolutionary Search</h3>
-              <p class="text-sm leading-relaxed text-slate-400">Population-based genetic algorithms explore sequence space with Pareto-optimal selection.</p>
+              <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">Evolutionary Search</h3>
+              <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">Population-based genetic algorithms explore sequence space with Pareto-optimal selection.</p>
             </div>
           </div>
 
-          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-900/50 p-8 transition-all hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10">
+          <div class="card-reveal group relative overflow-hidden rounded-2xl border border-[rgb(var(--border-primary))] bg-gradient-to-b from-[rgb(var(--bg-card))] to-[rgb(var(--bg-card))/0.5] p-8 transition-all hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10">
             <div class="absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-green-500/10 blur-3xl transition-all group-hover:bg-green-500/20"></div>
             <div class="relative">
               <div class="float mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 ring-1 ring-green-500/30">
@@ -557,8 +560,8 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 class="mb-3 text-xl font-bold text-white">Delivery & mRNA</h3>
-              <p class="text-sm leading-relaxed text-slate-400">Co-design mRNA constructs with optimized codons, UTRs, and delivery formulations.</p>
+              <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">Delivery & mRNA</h3>
+              <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">Co-design mRNA constructs with optimized codons, UTRs, and delivery formulations.</p>
             </div>
           </div>
         </div>
@@ -572,11 +575,11 @@ onUnmounted(() => {
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.15),transparent_50%)]"></div>
 
       <div class="relative mx-auto max-w-4xl text-center">
-        <h2 class="mb-6 text-4xl font-bold text-white md:text-6xl">
+        <h2 class="mb-6 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-6xl">
           Ready to Design the
           <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">Future</span>?
         </h2>
-        <p class="mx-auto mb-12 max-w-2xl text-xl text-slate-300">Partner with us to accelerate your therapeutic program from concept to clinic.</p>
+        <p class="mx-auto mb-12 max-w-2xl text-xl text-[rgb(var(--text-primary))]">Partner with us to accelerate your therapeutic program from concept to clinic.</p>
         <div class="flex flex-wrap justify-center gap-4">
           <router-link to="/contact" class="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-bold text-slate-900 shadow-2xl transition-all hover:shadow-white/20">
             <span class="relative z-10">Schedule Partnership Call</span>

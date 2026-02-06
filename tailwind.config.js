@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -29,17 +30,17 @@ export default {
           900: '#581c87',
         },
         dark: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+          50: 'rgb(var(--bg-base) / <alpha-value>)',
+          100: 'rgb(var(--bg-primary) / <alpha-value>)',
+          200: 'rgb(var(--border-primary) / <alpha-value>)',
+          300: 'rgb(var(--text-primary) / <alpha-value>)',
+          400: 'rgb(var(--text-body) / <alpha-value>)',
+          500: 'rgb(var(--text-muted) / <alpha-value>)',
+          600: 'rgb(var(--border-subtle) / <alpha-value>)',
+          700: 'rgb(var(--border-muted) / <alpha-value>)',
+          800: 'rgb(var(--bg-secondary) / <alpha-value>)',
+          900: 'rgb(var(--bg-primary) / <alpha-value>)',
+          950: 'rgb(var(--bg-base) / <alpha-value>)',
         },
       },
       fontFamily: {

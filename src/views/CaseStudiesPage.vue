@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, nextTick } from 'vue'
+import { onMounted, onUnmounted, ref, nextTick, watch } from 'vue'
 import gsap from 'gsap'
+import { useTheme } from '@/composables/useTheme'
+
+const { isDark } = useTheme()
 
 // 3Dmol viewer references
 const viewerRefs = ref<(HTMLElement | null)[]>([])
@@ -397,9 +400,9 @@ async function initViewers() {
     const container = viewerRefs.value[index]
     if (!container) return
     
-    // Create viewer with dark background
+    // Create viewer with theme-aware background
     const viewer = $3Dmol.createViewer(container, {
-      backgroundColor: 'rgba(15, 23, 42, 0.9)',
+      backgroundColor: isDark.value ? 'rgba(15, 23, 42, 0.9)' : 'rgba(241, 245, 249, 0.9)',
       antialias: true,
     })
     
@@ -470,6 +473,17 @@ async function initViewers() {
     isViewerLoading.value[index] = false
   })
 }
+
+// Update 3Dmol backgrounds when theme changes
+watch(isDark, (dark) => {
+  const bg = dark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(241, 245, 249, 0.9)'
+  viewers.forEach((viewer) => {
+    if (viewer) {
+      viewer.setBackgroundColor(bg)
+      viewer.render()
+    }
+  })
+})
 
 function stopRotation(index: number) {
   if (viewers[index]) {
@@ -593,17 +607,17 @@ onUnmounted(() => {
           <span class="text-sm font-medium text-amber-300">Case Studies</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Proven <span class="bg-gradient-to-r from-amber-400 via-orange-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Results</span>
         </h1>
         
-        <p class="hero-title mx-auto max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title mx-auto max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Explore our <span class="text-cyan-400">AI-designed therapeutics</span> with interactive 3D molecular viewers. 
           Rotate, zoom, and examine the structures that are advancing medicine.
         </p>
         
         <!-- Interactive hint -->
-        <div class="mt-8 flex items-center justify-center gap-2 text-sm text-slate-500">
+        <div class="mt-8 flex items-center justify-center gap-2 text-sm text-[rgb(var(--text-muted))]">
           <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
           </svg>
@@ -622,7 +636,7 @@ onUnmounted(() => {
             class="case-card group"
           >
             <div 
-              class="relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-slate-700/50"
+              class="relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[rgb(var(--border-muted))/0.5]"
               :class="[
                 study.color === 'cyan' ? 'hover:shadow-2xl hover:shadow-cyan-500/20' : '',
                 study.color === 'purple' ? 'hover:shadow-2xl hover:shadow-purple-500/20' : '',
@@ -662,18 +676,18 @@ onUnmounted(() => {
                     </span>
                   </div>
                   
-                  <h2 class="mb-2 text-3xl font-bold text-white lg:text-4xl">{{ study.title }}</h2>
-                  <p class="mb-4 text-slate-500 flex items-center gap-2">
+                  <h2 class="mb-2 text-3xl font-bold text-[rgb(var(--text-heading))] lg:text-4xl">{{ study.title }}</h2>
+                  <p class="mb-4 text-[rgb(var(--text-muted))] flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                     {{ study.partner }}
                   </p>
-                  <p class="mb-6 text-lg text-slate-400 leading-relaxed">{{ study.description }}</p>
+                  <p class="mb-6 text-lg text-[rgb(var(--text-body))] leading-relaxed">{{ study.description }}</p>
                   
                   <!-- Sequence Display (hide for drug table) -->
-                  <div v-if="study.moleculeType !== 'drugTable' && study.moleculeType !== 'mrnaVisualization'" class="mb-8 p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
-                    <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">{{ study.moleculeType === 'smallMolecule' ? 'SMILES Structure' : 'Peptide Sequence' }}</p>
+                  <div v-if="study.moleculeType !== 'drugTable' && study.moleculeType !== 'mrnaVisualization'" class="mb-8 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
+                    <p class="text-xs text-[rgb(var(--text-muted))] uppercase tracking-wider mb-2">{{ study.moleculeType === 'smallMolecule' ? 'SMILES Structure' : 'Peptide Sequence' }}</p>
                     <p class="font-mono text-sm tracking-wider break-all"
                       :class="[
                         study.color === 'cyan' ? 'text-cyan-400' : '',
@@ -692,7 +706,7 @@ onUnmounted(() => {
                     <div 
                       v-for="result in study.results" 
                       :key="result.label" 
-                      class="text-center p-4 rounded-xl bg-slate-800/30 border border-slate-700/30 transition-all duration-300 hover:scale-105"
+                      class="text-center p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.3] border border-[rgb(var(--border-muted))/0.3] transition-all duration-300 hover:scale-105"
                       :class="[
                         study.color === 'cyan' ? 'hover:border-cyan-500/30' : '',
                         study.color === 'purple' ? 'hover:border-purple-500/30' : '',
@@ -713,7 +727,7 @@ onUnmounted(() => {
                       >
                         {{ result.metric }}
                       </div>
-                      <div class="text-xs text-slate-500">{{ result.label }}</div>
+                      <div class="text-xs text-[rgb(var(--text-muted))]">{{ result.label }}</div>
                     </div>
                   </div>
                 </div>
@@ -722,7 +736,7 @@ onUnmounted(() => {
                 <div :class="index % 2 === 1 ? 'lg:order-1' : ''">
                   <div class="relative">
                     <!-- Drug Repurposing Table (for drugTable type) -->
-                    <div v-if="study.moleculeType === 'drugTable'" class="rounded-2xl border border-slate-700/50 bg-slate-900/80 p-4 shadow-lg shadow-emerald-500/10">
+                    <div v-if="study.moleculeType === 'drugTable'" class="rounded-2xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card))/0.8] p-4 shadow-lg shadow-emerald-500/10">
                       <!-- Target Selector Tabs -->
                       <div class="flex flex-wrap gap-2 mb-4">
                         <button 
@@ -732,7 +746,7 @@ onUnmounted(() => {
                           class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
                           :class="selectedTarget === target 
                             ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/50' 
-                            : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'"
+                            : 'bg-[rgb(var(--bg-card-muted))/0.5] text-[rgb(var(--text-body))] hover:bg-[rgb(var(--border-muted))/0.5]'"
                         >
                           {{ target }}
                         </button>
@@ -742,20 +756,20 @@ onUnmounted(() => {
                       <div class="overflow-x-auto">
                         <table class="w-full text-sm">
                           <thead>
-                            <tr class="border-b border-slate-700/50">
-                              <th class="text-left py-2 px-2 text-slate-400 font-medium text-xs">Drug Name</th>
-                              <th class="text-center py-2 px-2 text-slate-400 font-medium text-xs">pIC50</th>
-                              <th class="text-center py-2 px-2 text-slate-400 font-medium text-xs">FDA Rank</th>
-                              <th class="text-center py-2 px-2 text-slate-400 font-medium text-xs">Antiviral Rank</th>
+                            <tr class="border-b border-[rgb(var(--border-muted))/0.5]">
+                              <th class="text-left py-2 px-2 text-[rgb(var(--text-body))] font-medium text-xs">Drug Name</th>
+                              <th class="text-center py-2 px-2 text-[rgb(var(--text-body))] font-medium text-xs">pIC50</th>
+                              <th class="text-center py-2 px-2 text-[rgb(var(--text-body))] font-medium text-xs">FDA Rank</th>
+                              <th class="text-center py-2 px-2 text-[rgb(var(--text-body))] font-medium text-xs">Antiviral Rank</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr 
                               v-for="(drug, idx) in drugRepurposingData[selectedTarget as keyof typeof drugRepurposingData]" 
                               :key="drug.drug"
-                              class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors"
+                              class="border-b border-[rgb(var(--border-subtle))/0.5] hover:bg-[rgb(var(--bg-card-muted))/0.3] transition-colors"
                             >
-                              <td class="py-2 px-2 text-white font-medium text-xs">
+                              <td class="py-2 px-2 text-[rgb(var(--text-heading))] font-medium text-xs">
                                 <span class="inline-flex items-center gap-2">
                                   <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">{{ idx + 1 }}</span>
                                   {{ drug.drug }}
@@ -764,7 +778,7 @@ onUnmounted(() => {
                               <td class="py-2 px-2 text-center">
                                 <span class="text-emerald-400 font-mono font-bold">{{ drug.pIC50.toFixed(2) }}</span>
                               </td>
-                              <td class="py-2 px-2 text-center text-slate-300">#{{ drug.rankFDA }}</td>
+                              <td class="py-2 px-2 text-center text-[rgb(var(--text-primary))]">#{{ drug.rankFDA }}</td>
                               <td class="py-2 px-2 text-center">
                                 <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">#{{ drug.rankAntiviral }}</span>
                               </td>
@@ -774,8 +788,8 @@ onUnmounted(() => {
                       </div>
                       
                       <!-- Table Footer -->
-                      <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-                        <p class="text-xs text-slate-500">Top 5 candidates for {{ selectedTarget }} target</p>
+                      <div class="mt-4 pt-3 border-t border-[rgb(var(--border-muted))/0.5] flex items-center justify-between">
+                        <p class="text-xs text-[rgb(var(--text-muted))]">Top 5 candidates for {{ selectedTarget }} target</p>
                         <div class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/20 text-emerald-300">
                           <span class="inline-block w-2 h-2 rounded-full animate-pulse mr-2 bg-emerald-400"></span>
                           AI Predictions
@@ -786,9 +800,9 @@ onUnmounted(() => {
                     <!-- mRNA Benchmark Results (for mrnaVisualization type) -->
                     <div 
                       v-else-if="study.moleculeType === 'mrnaVisualization'"
-                      class="relative rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-900/80 p-4 shadow-lg shadow-cyan-500/10"
+                      class="relative rounded-2xl overflow-hidden border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card))/0.8] p-4 shadow-lg shadow-cyan-500/10"
                     >
-                      <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                      <h4 class="text-lg font-semibold text-[rgb(var(--text-heading))] mb-4 flex items-center gap-2">
                         <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
@@ -799,79 +813,79 @@ onUnmounted(() => {
                       <div class="overflow-x-auto">
                         <table class="w-full text-xs">
                           <thead>
-                            <tr class="border-b border-slate-700/50">
-                              <th class="text-left py-2 px-1 text-slate-400 font-medium">Model</th>
-                              <th class="text-center py-2 px-1 text-slate-400 font-medium">E.coli</th>
-                              <th class="text-center py-2 px-1 text-slate-400 font-medium">MLOS</th>
-                              <th class="text-center py-2 px-1 text-slate-400 font-medium">iCodon</th>
-                              <th class="text-center py-2 px-1 text-slate-400 font-medium">Tc-Ribo</th>
-                              <th class="text-center py-2 px-1 text-slate-400 font-medium">mRFP</th>
+                            <tr class="border-b border-[rgb(var(--border-muted))/0.5]">
+                              <th class="text-left py-2 px-1 text-[rgb(var(--text-body))] font-medium">Model</th>
+                              <th class="text-center py-2 px-1 text-[rgb(var(--text-body))] font-medium">E.coli</th>
+                              <th class="text-center py-2 px-1 text-[rgb(var(--text-body))] font-medium">MLOS</th>
+                              <th class="text-center py-2 px-1 text-[rgb(var(--text-body))] font-medium">iCodon</th>
+                              <th class="text-center py-2 px-1 text-[rgb(var(--text-body))] font-medium">Tc-Ribo</th>
+                              <th class="text-center py-2 px-1 text-[rgb(var(--text-body))] font-medium">mRFP</th>
                             </tr>
                           </thead>
                           <tbody>
                             <!-- Nucleotide-Based -->
-                            <tr class="border-b border-slate-800/30">
-                              <td colspan="6" class="py-1.5 px-1 text-slate-500 text-xs italic">Nucleotide-Based</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3]">
+                              <td colspan="6" class="py-1.5 px-1 text-[rgb(var(--text-muted))] text-xs italic">Nucleotide-Based</td>
                             </tr>
-                            <tr class="border-b border-slate-800/30 hover:bg-slate-800/20">
-                              <td class="py-1.5 px-1 text-slate-300">RNA-FM</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.43</td>
-                              <td class="py-1.5 px-1 text-center text-slate-500">-</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.34</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.58</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.80</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3] hover:bg-[rgb(var(--bg-card-muted))/0.2]">
+                              <td class="py-1.5 px-1 text-[rgb(var(--text-primary))]">RNA-FM</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.43</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-muted))]">-</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.34</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.58</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.80</td>
                             </tr>
-                            <tr class="border-b border-slate-800/30 hover:bg-slate-800/20">
-                              <td class="py-1.5 px-1 text-slate-300">Aido mRNA</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.576</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.504</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.472</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.492</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.683</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3] hover:bg-[rgb(var(--bg-card-muted))/0.2]">
+                              <td class="py-1.5 px-1 text-[rgb(var(--text-primary))]">Aido mRNA</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.576</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.504</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.472</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.492</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.683</td>
                             </tr>
-                            <tr class="border-b border-slate-800/30 hover:bg-slate-800/20">
-                              <td class="py-1.5 px-1 text-slate-300">mRNA-FM</td>
-                              <td class="py-1.5 px-1 text-center text-slate-500">-</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.509</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.458</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.690</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.564</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3] hover:bg-[rgb(var(--bg-card-muted))/0.2]">
+                              <td class="py-1.5 px-1 text-[rgb(var(--text-primary))]">mRNA-FM</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-muted))]">-</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.509</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.458</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.690</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.564</td>
                             </tr>
                             <!-- Codon-Based -->
-                            <tr class="border-b border-slate-800/30">
-                              <td colspan="6" class="py-1.5 px-1 text-slate-500 text-xs italic">Codon-Based</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3]">
+                              <td colspan="6" class="py-1.5 px-1 text-[rgb(var(--text-muted))] text-xs italic">Codon-Based</td>
                             </tr>
-                            <tr class="border-b border-slate-800/30 hover:bg-slate-800/20">
-                              <td class="py-1.5 px-1 text-slate-300">CodonBert</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.57</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.543</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.350</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.502</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.832</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3] hover:bg-[rgb(var(--bg-card-muted))/0.2]">
+                              <td class="py-1.5 px-1 text-[rgb(var(--text-primary))]">CodonBert</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.57</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.543</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.350</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.502</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.832</td>
                             </tr>
-                            <tr class="border-b border-slate-800/30 hover:bg-slate-800/20">
-                              <td class="py-1.5 px-1 text-slate-300">HELM (MLM)</td>
-                              <td class="py-1.5 px-1 text-center text-slate-500">-</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.701</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.525</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.626</td>
-                              <td class="py-1.5 px-1 text-center text-slate-400">0.822</td>
+                            <tr class="border-b border-[rgb(var(--border-subtle))/0.3] hover:bg-[rgb(var(--bg-card-muted))/0.2]">
+                              <td class="py-1.5 px-1 text-[rgb(var(--text-primary))]">HELM (MLM)</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-muted))]">-</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.701</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.525</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.626</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.822</td>
                             </tr>
                             <!-- Equi-mRNA (Ours) -->
                             <tr class="border-b border-cyan-500/30 bg-cyan-500/5">
                               <td class="py-1.5 px-1 text-cyan-300 font-semibold">Equi-mRNA (5M)</td>
-                              <td class="py-1.5 px-1 text-center text-slate-300">0.581</td>
-                              <td class="py-1.5 px-1 text-center text-slate-300">0.705</td>
-                              <td class="py-1.5 px-1 text-center text-slate-300">0.519</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.581</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.705</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.519</td>
                               <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.764</td>
-                              <td class="py-1.5 px-1 text-center text-slate-300">0.853</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.853</td>
                             </tr>
                             <tr class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10">
                               <td class="py-1.5 px-1 text-cyan-300 font-bold">Equi-mRNA (15M)</td>
                               <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.613</td>
                               <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.710</td>
                               <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.537</td>
-                              <td class="py-1.5 px-1 text-center text-slate-300">0.737</td>
+                              <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.737</td>
                               <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.855</td>
                             </tr>
                           </tbody>
@@ -879,8 +893,8 @@ onUnmounted(() => {
                       </div>
                       
                       <!-- Table Footer -->
-                      <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-                        <p class="text-xs text-slate-500">Bold = Best performance on dataset</p>
+                      <div class="mt-4 pt-3 border-t border-[rgb(var(--border-muted))/0.5] flex items-center justify-between">
+                        <p class="text-xs text-[rgb(var(--text-muted))]">Bold = Best performance on dataset</p>
                         <a 
                           href="https://arxiv.org/abs/2508.15103" 
                           target="_blank"
@@ -898,7 +912,7 @@ onUnmounted(() => {
                     <!-- Viewer Container (for non-drugTable and non-mrnaVisualization types) -->
                     <div 
                       v-else
-                      class="relative aspect-square rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-900/80"
+                      class="relative aspect-square rounded-2xl overflow-hidden border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card))/0.8]"
                       :class="[
                         study.color === 'cyan' ? 'shadow-lg shadow-cyan-500/10' : '',
                         study.color === 'purple' ? 'shadow-lg shadow-purple-500/10' : '',
@@ -909,11 +923,11 @@ onUnmounted(() => {
                       <!-- Loading State -->
                       <div 
                         v-if="isViewerLoading[index]"
-                        class="absolute inset-0 flex items-center justify-center bg-slate-900"
+                        class="absolute inset-0 flex items-center justify-center bg-[rgb(var(--bg-card))]"
                       >
                         <div class="text-center">
                           <div 
-                            class="w-12 h-12 mx-auto mb-4 border-4 border-slate-700 rounded-full animate-spin"
+                            class="w-12 h-12 mx-auto mb-4 border-4 border-[rgb(var(--border-muted))] rounded-full animate-spin"
                             :class="[
                               study.color === 'cyan' ? 'border-t-cyan-500' : '',
                               study.color === 'purple' ? 'border-t-purple-500' : '',
@@ -921,7 +935,7 @@ onUnmounted(() => {
                               study.color === 'amber' ? 'border-t-amber-500' : '',
                             ]"
                           ></div>
-                          <p class="text-sm text-slate-500">Loading 3D structure...</p>
+                          <p class="text-sm text-[rgb(var(--text-muted))]">Loading 3D structure...</p>
                         </div>
                       </div>
                       
@@ -941,7 +955,7 @@ onUnmounted(() => {
                             @click="resetView(index)"
                             @mousedown.stop.prevent
                             type="button"
-                            class="relative px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 active:bg-slate-600 transition-colors backdrop-blur-sm cursor-pointer select-none"
+                            class="relative px-3 py-1.5 rounded-lg text-xs font-medium bg-[rgb(var(--bg-card-muted))] text-[rgb(var(--text-primary))] hover:bg-[rgb(var(--border-muted))] active:bg-[rgb(var(--border-muted))] transition-colors backdrop-blur-sm cursor-pointer select-none"
                             style="z-index: 9999; pointer-events: auto !important; position: relative;"
                           >
                             <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1005,7 +1019,7 @@ onUnmounted(() => {
 
     <!-- Testimonials - Commented out for now -->
     <!--
-    <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-32">
+    <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-32">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-16">
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
@@ -1018,7 +1032,7 @@ onUnmounted(() => {
           <div 
             v-for="testimonial in testimonials" 
             :key="testimonial.author"
-            class="case-card group relative rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-8 backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:shadow-xl hover:shadow-cyan-500/5"
+            class="case-card group relative rounded-2xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-8 backdrop-blur-sm transition-all duration-300 hover:border-[rgb(var(--border-muted))] hover:shadow-xl hover:shadow-cyan-500/5"
           >
             <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center shadow-lg shadow-cyan-500/30">
               <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -1026,7 +1040,7 @@ onUnmounted(() => {
               </svg>
             </div>
             
-            <p class="mb-6 text-lg text-slate-300 leading-relaxed italic pl-6">
+            <p class="mb-6 text-lg text-[rgb(var(--text-primary))] leading-relaxed italic pl-6">
               "{{ testimonial.quote }}"
             </p>
             
@@ -1038,7 +1052,7 @@ onUnmounted(() => {
               />
               <div>
                 <p class="font-bold text-white">{{ testimonial.author }}</p>
-                <p class="text-sm text-slate-500">{{ testimonial.company }}</p>
+                <p class="text-sm text-[rgb(var(--text-muted))]">{{ testimonial.company }}</p>
               </div>
             </div>
           </div>
@@ -1050,16 +1064,16 @@ onUnmounted(() => {
     <!-- CTA Section -->
     <section class="relative z-10 px-6 py-32">
       <div class="mx-auto max-w-4xl">
-        <div class="relative rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-900 p-12 text-center overflow-hidden">
+        <div class="relative rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))] via-[rgb(var(--bg-card))/0.95] to-[rgb(var(--bg-card))] p-12 text-center overflow-hidden">
           <!-- Background decoration -->
           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-blue-500/5"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-full blur-3xl"></div>
           
           <div class="relative">
-            <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
+            <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">
               Ready to Start Your <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">Success Story</span>?
             </h2>
-            <p class="mb-8 text-lg text-slate-400 max-w-2xl mx-auto">
+            <p class="mb-8 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">
               Join leading pharmaceutical and biotech companies using DeepBio Scientific to accelerate therapeutic discovery with AI-powered molecular design.
             </p>
             <div class="flex flex-wrap justify-center gap-4">

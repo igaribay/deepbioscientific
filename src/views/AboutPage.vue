@@ -132,10 +132,10 @@ onMounted(() => {
           <span class="text-sm font-medium text-purple-300">About Us</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Our <span class="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">Mission</span>
         </h1>
-        <p class="hero-title max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           We're building towards a <span class="text-cyan-400 font-semibold">disease-free world</span>. 
           Every patient deserves access to <span class="text-purple-400">precisely designed therapeutics</span>, and 
           we're creating the AI platform to make that possible.
@@ -147,33 +147,33 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-16">
       <div class="mx-auto max-w-6xl">
         <div class="grid gap-8 md:grid-cols-2">
-          <div class="about-card group relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/10">
+          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/10">
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             <div class="relative">
               <div class="mb-4 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30">
                 <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </div>
-              <h2 class="mb-4 text-2xl font-bold text-white">The Challenge</h2>
-              <p class="mb-4 text-slate-400 leading-relaxed">
+              <h2 class="mb-4 text-2xl font-bold text-[rgb(var(--text-heading))]">The Challenge</h2>
+              <p class="mb-4 text-[rgb(var(--text-body))] leading-relaxed">
                 Traditional therapeutic design is slow, expensive, and limited by human intuition. It takes years and billions of dollars to bring a single drug to market.
               </p>
-              <p class="text-slate-400 leading-relaxed">
+              <p class="text-[rgb(var(--text-body))] leading-relaxed">
                 Most potential therapeutics never make it past early development due to unforeseen issues with efficacy, safety, or manufacturing.
               </p>
             </div>
           </div>
           
-          <div class="about-card group relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10">
+          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             <div class="relative">
               <div class="mb-4 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-1 ring-teal-500/30">
                 <svg class="w-7 h-7 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
               </div>
-              <h2 class="mb-4 text-2xl font-bold text-white">Our Approach</h2>
-              <p class="mb-4 text-slate-400 leading-relaxed">
+              <h2 class="mb-4 text-2xl font-bold text-[rgb(var(--text-heading))]">Our Approach</h2>
+              <p class="mb-4 text-[rgb(var(--text-body))] leading-relaxed">
                 We combine evolutionary algorithms, protein language models, and AgentFabric™ to explore therapeutic sequence space at unprecedented scale.
               </p>
-              <p class="text-slate-400 leading-relaxed">
+              <p class="text-[rgb(var(--text-body))] leading-relaxed">
                 Our platform optimizes for multiple objectives simultaneously: potency, safety, stability, and manufacturability, to deliver better candidates faster.
               </p>
             </div>
@@ -189,14 +189,14 @@ onMounted(() => {
           <span class="mb-4 inline-block rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-300">
             Our Values
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">What Drives Us</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">What Drives Us</h2>
         </div>
         
         <div class="grid gap-6 md:grid-cols-3">
           <div 
             v-for="value in values" 
             :key="value.title"
-            class="about-card group relative rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 text-center backdrop-blur-xl transition-all duration-500 hover:border-slate-700 hover:shadow-lg hover:-translate-y-1"
+            class="about-card group relative rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 text-center backdrop-blur-xl transition-all duration-500 hover:border-[rgb(var(--border-muted))] hover:shadow-lg hover:-translate-y-1"
           >
             <div 
               class="mx-auto mb-4 h-16 w-16 rounded-2xl flex items-center justify-center ring-1"
@@ -206,28 +206,28 @@ onMounted(() => {
               <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
               <svg v-else class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <h3 class="mb-3 text-xl font-bold text-white">{{ value.title }}</h3>
-            <p class="text-slate-400">{{ value.description }}</p>
+            <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">{{ value.title }}</h3>
+            <p class="text-[rgb(var(--text-body))]">{{ value.description }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Team -->
-    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
+    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
             Team
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">Leadership Team</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Leadership Team</h2>
         </div>
         
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
           <div 
             v-for="member in team" 
             :key="member.name"
-            class="about-card group relative rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-6 text-center backdrop-blur-xl transition-all duration-500 hover:border-slate-700 hover:shadow-lg hover:-translate-y-2"
+            class="about-card group relative rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-6 text-center backdrop-blur-xl transition-all duration-500 hover:border-[rgb(var(--border-muted))] hover:shadow-lg hover:-translate-y-2"
           >
             <div class="mx-auto mb-4 h-24 w-24 rounded-full overflow-hidden ring-2 ring-slate-700/50 group-hover:ring-slate-500 transition-all">
               <img 
@@ -236,9 +236,9 @@ onMounted(() => {
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            <h3 class="text-lg font-bold text-white">{{ member.name }}</h3>
+            <h3 class="text-lg font-bold text-[rgb(var(--text-heading))]">{{ member.name }}</h3>
             <p class="mb-3 text-sm font-medium" :class="'text-' + member.color + '-400'">{{ member.role }}</p>
-            <p class="text-sm text-slate-400">{{ member.bio }}</p>
+            <p class="text-sm text-[rgb(var(--text-body))]">{{ member.bio }}</p>
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@ onMounted(() => {
           <span class="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1 text-sm font-medium text-green-300">
             Milestones
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">Our Journey</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Our Journey</h2>
         </div>
         
         <div class="space-y-6">
@@ -275,7 +275,7 @@ onMounted(() => {
               <div v-if="index < milestones.length - 1" class="mt-2 h-full w-0.5 bg-gradient-to-b from-slate-600 to-transparent"></div>
             </div>
             <div class="flex-1 pt-3">
-              <p class="text-lg text-slate-300">{{ milestone.event }}</p>
+              <p class="text-lg text-[rgb(var(--text-primary))]">{{ milestone.event }}</p>
             </div>
           </div>
         </div>
@@ -283,18 +283,18 @@ onMounted(() => {
     </section>
 
     <!-- Investors -->
-    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
+    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl text-center">
         <span class="mb-4 inline-block rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1 text-sm font-medium text-amber-300">
           Backed By
         </span>
-        <h2 class="mb-6 text-3xl font-bold text-white">Leading Investors</h2>
-        <p class="mb-12 text-lg text-slate-400 max-w-2xl mx-auto">We're supported by top-tier biotech and technology investors who share our vision.</p>
+        <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))]">Leading Investors</h2>
+        <p class="mb-12 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">We're supported by top-tier biotech and technology investors who share our vision.</p>
         <div class="flex flex-wrap justify-center gap-6">
           <div 
             v-for="i in 4" 
             :key="i"
-            class="about-card group flex h-24 w-44 items-center justify-center rounded-2xl border border-slate-800/50 bg-slate-900/50 text-slate-500 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/10 hover:text-amber-400"
+            class="about-card group flex h-24 w-44 items-center justify-center rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] text-[rgb(var(--text-muted))] backdrop-blur-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/10 hover:text-amber-400"
           >
             <span class="font-medium">Investor {{ i }}</span>
           </div>
@@ -305,13 +305,13 @@ onMounted(() => {
     <!-- CTA -->
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-4xl">
-        <div class="relative rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-900 p-12 text-center overflow-hidden">
+        <div class="relative rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))] via-[rgb(var(--bg-card))/0.95] to-[rgb(var(--bg-card))] p-12 text-center overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-cyan-500/5 to-blue-500/5"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-purple-500/20 to-transparent rounded-full blur-3xl"></div>
           
           <div class="relative">
-            <h2 class="mb-6 text-3xl font-bold text-white">Partner With Us</h2>
-            <p class="mb-8 text-lg text-slate-400 max-w-2xl mx-auto">
+            <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))]">Partner With Us</h2>
+            <p class="mb-8 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">
               Ready to accelerate your drug discovery pipeline with AI-powered molecular design? Let's discuss how we can help.
             </p>
             <router-link 

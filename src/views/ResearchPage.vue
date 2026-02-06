@@ -280,8 +280,8 @@ const colorClasses: Record<string, { badge: string; icon: string }> = {
     icon: 'bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-teal-500/30 text-teal-400',
   },
   slate: {
-    badge: 'bg-slate-500/10 text-slate-400 ring-slate-500/30',
-    icon: 'bg-gradient-to-br from-slate-500/20 to-slate-500/5 ring-slate-500/30 text-slate-400',
+    badge: 'bg-slate-500/10 text-[rgb(var(--text-body))] ring-slate-500/30',
+    icon: 'bg-gradient-to-br from-slate-500/20 to-slate-500/5 ring-slate-500/30 text-[rgb(var(--text-body))]',
   },
 }
 
@@ -332,10 +332,10 @@ onMounted(() => {
           <span class="text-sm font-medium text-cyan-300">Research & Publications</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Scientific <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Foundation</span>
         </h1>
-        <p class="hero-title max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Our platform is built on peer-reviewed research in <span class="text-cyan-400">drug discovery</span>, 
           <span class="text-emerald-400">fair machine learning</span>, and <span class="text-blue-400">large language models</span>.
         </p>
@@ -344,11 +344,11 @@ onMounted(() => {
         <div class="hero-title mt-12 flex flex-wrap items-center gap-8">
           <div class="text-center">
             <div class="text-4xl font-bold text-cyan-400">{{ totalPublications }}+</div>
-            <div class="text-sm text-slate-500">Publications</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Publications</div>
           </div>
           <div class="text-center">
             <div class="text-4xl font-bold text-teal-400">{{ totalCitations.toLocaleString() }}+</div>
-            <div class="text-sm text-slate-500">Citations</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Citations</div>
           </div>
         </div>
       </div>
@@ -361,14 +361,14 @@ onMounted(() => {
           <span class="mb-4 inline-block rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-300">
             Research Areas
           </span>
-          <h2 class="text-3xl font-bold text-white md:text-4xl">Core Focus Areas</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Core Focus Areas</h2>
         </div>
         
         <div class="grid gap-6 md:grid-cols-2">
           <div 
             v-for="area in focusAreas" 
             :key="area.title"
-            class="research-card group relative rounded-2xl border border-slate-800/50 bg-slate-900/80 p-8 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-slate-700"
+            class="research-card group relative rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.8] p-8 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-[rgb(var(--border-muted))]"
           >
             <div class="flex items-start mb-6">
               <div 
@@ -386,21 +386,21 @@ onMounted(() => {
               </div>
             </div>
             
-            <h3 class="mb-3 text-xl font-bold text-white">{{ area.title }}</h3>
-            <p class="text-slate-400 text-sm">{{ area.description }}</p>
+            <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">{{ area.title }}</h3>
+            <p class="text-[rgb(var(--text-body))] text-sm">{{ area.description }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Publications -->
-    <section class="relative z-10 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent px-6 py-20">
+    <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="mb-8">
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
             Publications
           </span>
-          <h2 class="text-3xl font-bold text-white">Recent Publications</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))]">Recent Publications</h2>
         </div>
         
         <div class="space-y-3">
@@ -410,7 +410,7 @@ onMounted(() => {
             :href="pub.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="research-card group relative block rounded-xl border border-slate-800/50 bg-slate-900/80 p-5 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-900/90 cursor-pointer"
+            class="research-card group relative block rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.8] p-5 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-cyan-500/50 hover:bg-[rgb(var(--bg-card))/0.9] cursor-pointer"
           >
             <div class="flex flex-wrap items-start justify-between gap-4">
               <div class="flex-1 min-w-0">
@@ -421,19 +421,19 @@ onMounted(() => {
                   >
                     {{ pub.journal }}
                   </span>
-                  <span class="text-xs text-slate-500">{{ pub.year }}</span>
+                  <span class="text-xs text-[rgb(var(--text-muted))]">{{ pub.year }}</span>
                 </div>
                 
-                <h3 class="mb-1 font-semibold text-white group-hover:text-cyan-400 transition-colors text-sm md:text-base flex items-center gap-2">
+                <h3 class="mb-1 font-semibold text-[rgb(var(--text-heading))] group-hover:text-cyan-400 transition-colors text-sm md:text-base flex items-center gap-2">
                   {{ pub.title }}
                   <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
                 </h3>
-                <p class="text-xs text-slate-500">{{ pub.authors }}</p>
+                <p class="text-xs text-[rgb(var(--text-muted))]">{{ pub.authors }}</p>
               </div>
               
-              <div class="flex items-center gap-1 text-slate-400 text-sm whitespace-nowrap">
+              <div class="flex items-center gap-1 text-[rgb(var(--text-body))] text-sm whitespace-nowrap">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
@@ -447,14 +447,14 @@ onMounted(() => {
         <div v-if="hasMore" class="mt-8 text-center">
           <button 
             @click="showMore"
-            class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-6 py-3 text-sm font-medium text-slate-300 transition-all hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-slate-800"
+            class="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card-muted))/0.5] px-6 py-3 text-sm font-medium text-[rgb(var(--text-primary))] transition-all hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-[rgb(var(--bg-card-muted))]"
           >
             See More Publications
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <p class="mt-2 text-xs text-slate-600">
+          <p class="mt-2 text-xs text-[rgb(var(--text-muted))]">
             Showing {{ displayedPublications.length }} of {{ totalPublications }} publications
           </p>
         </div>
@@ -464,13 +464,13 @@ onMounted(() => {
     <!-- CTA -->
     <section class="relative z-10 px-6 pb-20">
       <div class="mx-auto max-w-4xl">
-        <div class="relative rounded-3xl border border-slate-800 bg-slate-900/80 p-12 text-center overflow-hidden">
+        <div class="relative rounded-3xl border border-[rgb(var(--border-primary))] bg-[rgb(var(--bg-card))/0.8] p-12 text-center overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-teal-500/5 to-emerald-500/5"></div>
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-full blur-3xl"></div>
           
           <div class="relative">
-            <h2 class="mb-6 text-3xl font-bold text-white">Interested in Collaborating?</h2>
-            <p class="mb-8 text-lg text-slate-400 max-w-2xl mx-auto">
+            <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))]">Interested in Collaborating?</h2>
+            <p class="mb-8 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">
               We partner with academic institutions and industry leaders to advance therapeutic discovery.
             </p>
             <router-link 

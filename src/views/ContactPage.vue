@@ -161,10 +161,10 @@ const handleSubmit = async () => {
           <span class="text-sm font-medium text-cyan-300">Contact Us</span>
         </div>
         
-        <h1 class="hero-title mb-6 text-5xl font-bold text-white md:text-7xl">
+        <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
           Let's <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Connect</span>
         </h1>
-        <p class="hero-title max-w-3xl text-xl text-slate-400 leading-relaxed">
+        <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Interested in partnering with DeepBio Scientific? We'd love to hear about your 
           <span class="text-cyan-400">therapeutic programs</span> and how we can help.
         </p>
@@ -176,14 +176,14 @@ const handleSubmit = async () => {
       <div class="mx-auto max-w-6xl">
         <div class="grid gap-12 lg:grid-cols-2">
           <!-- Form -->
-          <div class="contact-element relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden">
+          <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent"></div>
             
             <!-- Success Message -->
             <Transition name="fade">
               <div 
                 v-if="showSuccess"
-                class="absolute inset-0 flex items-center justify-center bg-slate-900/95 backdrop-blur-sm z-10 rounded-3xl"
+                class="absolute inset-0 flex items-center justify-center bg-[rgb(var(--bg-card))/0.95] backdrop-blur-sm z-10 rounded-3xl"
               >
                 <div class="text-center">
                   <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
@@ -191,8 +191,8 @@ const handleSubmit = async () => {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-white mb-2">Message Sent!</h3>
-                  <p class="text-slate-400">We'll get back to you soon.</p>
+                  <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-2">Message Sent!</h3>
+                  <p class="text-[rgb(var(--text-body))]">We'll get back to you soon.</p>
                 </div>
               </div>
             </Transition>
@@ -201,7 +201,7 @@ const handleSubmit = async () => {
             <Transition name="fade">
               <div 
                 v-if="showError"
-                class="absolute inset-0 flex items-center justify-center bg-slate-900/95 backdrop-blur-sm z-10 rounded-3xl"
+                class="absolute inset-0 flex items-center justify-center bg-[rgb(var(--bg-card))/0.95] backdrop-blur-sm z-10 rounded-3xl"
               >
                 <div class="text-center">
                   <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
@@ -209,80 +209,80 @@ const handleSubmit = async () => {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-white mb-2">Oops!</h3>
-                  <p class="text-slate-400">{{ errorMessage }}</p>
+                  <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-2">Oops!</h3>
+                  <p class="text-[rgb(var(--text-body))]">{{ errorMessage }}</p>
                 </div>
               </div>
             </Transition>
             
             <div class="relative">
-              <h2 class="mb-6 text-2xl font-bold text-white">Send Us a Message</h2>
+              <h2 class="mb-6 text-2xl font-bold text-[rgb(var(--text-heading))]">Send Us a Message</h2>
               <form @submit.prevent="handleSubmit" class="space-y-6">
                 <div class="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label for="name" class="mb-2 block text-sm font-medium text-slate-300">Name *</label>
+                    <label for="name" class="mb-2 block text-sm font-medium text-[rgb(var(--text-primary))]">Name *</label>
                     <input
                       id="name"
                       v-model="formData.name"
                       type="text"
                       required
                       autocomplete="name"
-                      class="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-slate-600"
+                      class="w-full rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-4 py-3 text-[rgb(var(--text-heading))] placeholder-[rgb(var(--text-muted))] backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-[rgb(var(--border-subtle))]"
                       placeholder="Your name"
                     />
                   </div>
                   
                   <div>
-                    <label for="email" class="mb-2 block text-sm font-medium text-slate-300">Email *</label>
+                    <label for="email" class="mb-2 block text-sm font-medium text-[rgb(var(--text-primary))]">Email *</label>
                     <input
                       id="email"
                       v-model="formData.email"
                       type="email"
                       required
                       autocomplete="email"
-                      class="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-slate-600"
+                      class="w-full rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-4 py-3 text-[rgb(var(--text-heading))] placeholder-[rgb(var(--text-muted))] backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-[rgb(var(--border-subtle))]"
                       placeholder="you@company.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label for="company" class="mb-2 block text-sm font-medium text-slate-300">Company</label>
+                  <label for="company" class="mb-2 block text-sm font-medium text-[rgb(var(--text-primary))]">Company</label>
                   <input
                     id="company"
                     v-model="formData.company"
                     type="text"
                     autocomplete="organization"
-                    class="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-slate-600"
+                    class="w-full rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-4 py-3 text-[rgb(var(--text-heading))] placeholder-[rgb(var(--text-muted))] backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-[rgb(var(--border-subtle))]"
                     placeholder="Your company"
                   />
                 </div>
 
                 <div>
-                  <label for="interest" class="mb-2 block text-sm font-medium text-slate-300">Interest *</label>
+                  <label for="interest" class="mb-2 block text-sm font-medium text-[rgb(var(--text-primary))]">Interest *</label>
                   <select
                     id="interest"
                     v-model="formData.interest"
                     required
                     autocomplete="off"
-                    class="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-3 text-white backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-slate-600"
+                    class="w-full rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-4 py-3 text-[rgb(var(--text-heading))] backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-[rgb(var(--border-subtle))]"
                   >
-                    <option value="" disabled class="bg-slate-800">Select your interest</option>
-                    <option v-for="interest in interests" :key="interest" :value="interest" class="bg-slate-800">
+                    <option value="" disabled class="bg-[rgb(var(--bg-secondary))]">Select your interest</option>
+                    <option v-for="interest in interests" :key="interest" :value="interest" class="bg-[rgb(var(--bg-secondary))]">
                       {{ interest }}
                     </option>
                   </select>
                 </div>
 
                 <div>
-                  <label for="message" class="mb-2 block text-sm font-medium text-slate-300">Message *</label>
+                  <label for="message" class="mb-2 block text-sm font-medium text-[rgb(var(--text-primary))]">Message *</label>
                   <textarea
                     id="message"
                     v-model="formData.message"
                     required
                     rows="5"
                     autocomplete="off"
-                    class="w-full resize-none rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-slate-600"
+                    class="w-full resize-none rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-4 py-3 text-[rgb(var(--text-heading))] placeholder-[rgb(var(--text-muted))] backdrop-blur-sm transition-all focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 hover:border-[rgb(var(--border-subtle))]"
                     placeholder="Tell us about your project or inquiry..."
                   ></textarea>
                 </div>
@@ -308,7 +308,7 @@ const handleSubmit = async () => {
           <!-- Contact Info -->
           <div class="space-y-8">
             <!-- Logo Section -->
-            <div class="contact-element relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden">
+            <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-transparent"></div>
               <div class="relative flex flex-col items-center text-center">
                 <img 
@@ -321,16 +321,16 @@ const handleSubmit = async () => {
                   alt="DeepBio Scientific" 
                   class="h-10 w-auto mb-4"
                 />
-                <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                <p class="text-[rgb(var(--text-body))] text-sm leading-relaxed max-w-sm">
                   AI-powered drug discovery platform accelerating therapeutic development from molecule to market.
                 </p>
               </div>
             </div>
 
-            <div class="contact-element relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden">
+            <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent"></div>
               <div class="relative">
-                <h2 class="mb-6 text-2xl font-bold text-white">Contact Information</h2>
+                <h2 class="mb-6 text-2xl font-bold text-[rgb(var(--text-heading))]">Contact Information</h2>
                 <div class="space-y-6">
                   <div 
                     v-for="info in contactInfo" 
@@ -353,23 +353,23 @@ const handleSubmit = async () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 class="font-bold text-white">{{ info.title }}</h3>
+                      <h3 class="font-bold text-[rgb(var(--text-heading))]">{{ info.title }}</h3>
                       <a 
                         v-if="info.href" 
                         :href="info.href" 
                         class="transition-colors"
-                        :class="info.color === 'cyan' ? 'text-cyan-400 hover:text-cyan-300' : 'text-slate-400'"
+                        :class="info.color === 'cyan' ? 'text-cyan-400 hover:text-cyan-300' : 'text-[rgb(var(--text-body))]'"
                       >
                         {{ info.value }}
                       </a>
-                      <p v-else class="text-slate-400">{{ info.value }}</p>
+                      <p v-else class="text-[rgb(var(--text-body))]">{{ info.value }}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="contact-element relative rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-900/50 p-8 backdrop-blur-xl overflow-hidden group hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+            <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden group hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div class="relative">
                 <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 ring-1 ring-green-500/30">
@@ -377,11 +377,11 @@ const handleSubmit = async () => {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h2 class="mb-4 text-xl font-bold text-white">Schedule a Call</h2>
-                <p class="mb-6 text-slate-400">
+                <h2 class="mb-4 text-xl font-bold text-[rgb(var(--text-heading))]">Schedule a Call</h2>
+                <p class="mb-6 text-[rgb(var(--text-body))]">
                   Prefer to talk directly? Book a 30-minute call with our partnerships team.
                 </p>
-                <button class="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-6 py-3 font-medium text-white backdrop-blur-sm transition-all hover:border-green-500/50 hover:bg-slate-700/50 hover:shadow-lg hover:shadow-green-500/10">
+                <button class="w-full rounded-xl border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card-muted))/0.5] px-6 py-3 font-medium text-[rgb(var(--text-heading))] backdrop-blur-sm transition-all hover:border-green-500/50 hover:bg-[rgb(var(--border-muted))/0.5] hover:shadow-lg hover:shadow-green-500/10">
                   Book a Meeting
                 </button>
               </div>
