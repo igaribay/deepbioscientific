@@ -2,16 +2,89 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>DeepBio Scientific - AI-Powered Drug Discovery Platform</title>
+    <meta name="description" content="DeepBio Scientific accelerates drug discovery with AI-powered mRNA and protein therapeutic design. From natural language specifications to validated candidates using evolutionary AI and molecular biology." />
+    <meta name="keywords" content="AI drug discovery, mRNA therapeutics, protein design, computational biology, deep learning, therapeutic design, biotech AI, Helixir platform, AgentFabric, evolutionary AI, molecular biology" />
+    <meta name="author" content="DeepBio Scientific" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://deepbioscientific.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://deepbioscientific.com/" />
+    <meta property="og:title" content="DeepBio Scientific - AI-Powered Drug Discovery Platform" />
+    <meta property="og:description" content="Accelerate drug discovery with AI-powered mRNA and protein therapeutic design. Evolutionary AI meets molecular biology." />
+    <meta property="og:image" content="https://deepbioscientific.com/deepbio-logo.png" />
+    <meta property="og:site_name" content="DeepBio Scientific" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://deepbioscientific.com/" />
+    <meta name="twitter:title" content="DeepBio Scientific - AI-Powered Drug Discovery Platform" />
+    <meta name="twitter:description" content="Accelerate drug discovery with AI-powered mRNA and protein therapeutic design. Evolutionary AI meets molecular biology." />
+    <meta name="twitter:image" content="https://deepbioscientific.com/deepbio-logo.png" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/deepbio-logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/deepbio-logo.png" />
     <link rel="shortcut icon" href="/deepbio-logo.png" />
     <link rel="apple-touch-icon" href="/deepbio-logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="DeepBio Scientific - AI-powered drug discovery platform."
-    />
-    <title>DeepBio Scientific - AI-Powered Drug Discovery Platform</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    <!-- Google Analytics 4 is loaded dynamically from main.ts using VITE_GA_MEASUREMENT_ID env var -->
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DeepBio Scientific",
+      "url": "https://deepbioscientific.com",
+      "logo": "https://deepbioscientific.com/deepbio-logo.png",
+      "description": "AI-powered drug discovery platform accelerating therapeutic development from molecule to market.",
+      "foundingDate": "2026",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "partnerships@deepbioscientific.com",
+        "contactType": "partnerships"
+      }
+    }
+    </script>
+
+    <!-- Structured Data - WebSite (enables sitelinks search) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "DeepBio Scientific",
+      "url": "https://deepbioscientific.com",
+      "description": "AI-powered drug discovery platform for mRNA and protein therapeutic design.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://deepbioscientific.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Theme flash prevention: apply dark class before any rendering -->
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+        // Default is light mode — no class needed
+      })();
+    </script>
     <!-- Single Page App redirect script for GitHub Pages -->
     <script>
       (function() {
@@ -20,29 +93,29 @@
         if (redirect && redirect !== location.href) {
           history.replaceState(null, null, redirect);
         }
-        
+
         // Handle the 404.html redirect query params
         var l = window.location;
         if (l.search[1] === 'p') {
           var decoded = l.search.slice(1).split('&').map(function(s) {
             return s.replace(/~and~/g, '&');
           }).join('?');
-          
+
           var path = decoded.split('p=/')[1];
           if (path) {
             path = '/' + path.split('&q=')[0];
             var query = decoded.split('&q=')[1] || '';
             var hash = l.hash || '';
-            
-            history.replaceState(null, null, 
+
+            history.replaceState(null, null,
               l.pathname.slice(0, -1) + path + (query ? '?' + query : '') + hash
             );
           }
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BjnA0yPt.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-A51Op2_q.css">
+    <script type="module" crossorigin src="/assets/index-Bt9bvZBE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BtvxEi0B.css">
   </head>
   <body>
     <div id="app"></div>
