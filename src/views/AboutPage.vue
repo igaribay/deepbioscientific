@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import gsap from 'gsap'
+import { usePageSeo } from '@/composables/usePageSeo'
+
+usePageSeo({
+  title: 'About Us',
+  description: 'Learn about DeepBio Scientific\'s mission to build a disease-free world through AI-powered therapeutic design. Meet our leadership team of scientists and industry leaders.',
+  path: '/about',
+})
 
 const team = [
   { 
@@ -24,13 +31,13 @@ const team = [
     image: '/team/sanjay-pahdi.jpg',
     color: 'emerald' 
   },
-  { 
-    name: 'Dr. Ozlem Garibay', 
-    role: 'Co-Founder & Founding CSO', 
-    bio: 'Former CIO, UCF Research. Director of the Molecular ML Laboratory, UCF', 
-    image: '/team/ozlem-garibay.jpg',
-    color: 'blue' 
-  },
+  // { 
+  //   name: 'Dr. Ozlem Garibay', 
+  //   role: 'Co-Founder & Founding CSO', 
+  //   bio: 'Former CIO, UCF Research. Director of the Molecular ML Laboratory, UCF', 
+  //   image: '/team/ozlem-garibay.jpg',
+  //   color: 'blue' 
+  // },
   { 
     name: 'Mark Pitman', 
     role: 'Head of Commercialization', 
@@ -214,7 +221,7 @@ onMounted(() => {
     </section>
 
     <!-- Team -->
-    <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
+    <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
@@ -242,7 +249,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </section> -->  
+    </section>
 
     <!-- Timeline -->
     <section class="relative z-10 px-6 py-20">

@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
+import { usePageSeo } from '@/composables/usePageSeo'
+
+usePageSeo({
+  title: 'Technology',
+  description: 'Explore the Helixir platform and AgentFabric technology. AI that tackles the entire drug discovery pipeline, cutting timelines by 30-50% with coordinated AI agents and human oversight.',
+  path: '/technology',
+})
 
 // Helixir Pipeline Stages
 const helixirStages = [
@@ -375,7 +382,7 @@ onUnmounted(() => {
               Proprietary Technology
             </span>
             <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl mb-6">
-              Equi-mRNA: <span class="text-purple-400">Next-Gen mRNA Design</span>
+              mRNA Foundation Model: <span class="text-purple-400">Next-Gen mRNA Design</span>
             </h2>
             <p class="text-[rgb(var(--text-body))] leading-relaxed mb-6">
               The first codon-level equivariant mRNA language model that explicitly encodes <span class="text-[rgb(var(--text-heading))]">synonymous codon symmetries</span> as cyclic subgroups of the 2D Special Orthogonal matrix (SO(2)).

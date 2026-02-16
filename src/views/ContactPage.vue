@@ -3,6 +3,13 @@ import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import deepbioLogo from '@/assets/deepbio-logo.png'
 import deepbioText from '@/assets/deepbio-text.png'
+import { usePageSeo } from '@/composables/usePageSeo'
+
+usePageSeo({
+  title: 'Contact Us',
+  description: 'Partner with DeepBio Scientific to accelerate your drug discovery pipeline. Schedule a demo, discuss research collaborations, or explore partnership opportunities.',
+  path: '/contact',
+})
 
 const formData = ref({
   name: '',

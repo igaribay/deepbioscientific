@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import gsap from 'gsap'
+import { usePageSeo } from '@/composables/usePageSeo'
+
+usePageSeo({
+  title: 'Research & Publications',
+  description: 'Peer-reviewed research in drug-target interaction, mRNA language models, fair machine learning, and large language models. Explore our scientific foundation and publications.',
+  path: '/research',
+})
 
 // Publications from Google Scholar (https://scholar.google.com/citations?user=0RKzNtIAAAAJ&hl=en)
 const publications = [

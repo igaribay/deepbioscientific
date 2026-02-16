@@ -706,6 +706,7 @@ watch(isHomePage, (newVal) => {
   <div class="min-h-screen overflow-hidden bg-[rgb(var(--bg-base))]">
     <!-- Navigation -->
     <nav
+      aria-label="Main navigation"
       class="fixed top-0 z-50 w-full transition-all duration-500"
       :class="
         scrolled

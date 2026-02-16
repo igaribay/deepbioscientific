@@ -61,5 +61,15 @@ const router = createRouter({
   },
 })
 
+// Track page views with Google Analytics 4
+router.afterEach((to) => {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'page_view', {
+      page_path: to.fullPath,
+      page_title: document.title,
+    })
+  }
+})
+
 export default router
 

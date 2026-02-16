@@ -3,8 +3,15 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '@/composables/useTheme'
+import { usePageSeo } from '@/composables/usePageSeo'
 
 gsap.registerPlugin(ScrollTrigger)
+
+usePageSeo({
+  title: 'DeepBio Scientific - AI-Powered Drug Discovery Platform',
+  description: 'Design mRNA and protein therapeutics with AI. From natural language specifications to validated therapeutic candidates using evolutionary AI and molecular biology.',
+  path: '/',
+})
 
 const { canvasColors } = useTheme()
 
