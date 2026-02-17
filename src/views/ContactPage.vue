@@ -37,12 +37,26 @@ const interests = [
 ]
 
 const contactInfo = [
-  { 
+  {
+    title: 'Phone',
+    value: '+1 407 437 4651',
+    href: 'tel:+14074374651',
+    icon: 'phone',
+    color: 'cyan'
+  },
+  {
     title: 'Email',
     value: 'partnerships@deepbioscientific.com',
     href: 'mailto:partnerships@deepbioscientific.com',
     icon: 'email',
-    color: 'cyan'
+    color: 'purple'
+  },
+  {
+    title: 'Address',
+    value: '1590 Hibiscus Avenue, Winter Park, FL 32789',
+    href: null,
+    icon: 'location',
+    color: 'blue'
   },
 ]
 
@@ -183,7 +197,7 @@ const handleSubmit = async () => {
       <div class="mx-auto max-w-6xl">
         <div class="grid gap-12 lg:grid-cols-2">
           <!-- Form -->
-          <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
+          <div class="contact-element lg:self-start relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent"></div>
             
             <!-- Success Message -->
@@ -313,7 +327,7 @@ const handleSubmit = async () => {
           </div>
 
           <!-- Contact Info -->
-          <div class="space-y-8">
+          <div class="flex flex-col gap-8">
             <!-- Logo Section -->
             <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-transparent"></div>
@@ -334,38 +348,61 @@ const handleSubmit = async () => {
               </div>
             </div>
 
-            <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
+            <div class="contact-element flex-1 relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent"></div>
               <div class="relative">
-                <h2 class="mb-6 text-2xl font-bold text-[rgb(var(--text-heading))]">Contact Information</h2>
+                <h2 class="mb-3 text-2xl font-bold text-[rgb(var(--text-heading))]">Contact Information</h2>
+                <p class="mb-8 text-[rgb(var(--text-body))] leading-relaxed">
+                  Have questions about our product, demo, pricing, or anything else? Please contact us! We would love to hear from you!
+                </p>
                 <div class="space-y-6">
-                  <div 
-                    v-for="info in contactInfo" 
+                  <div
+                    v-for="info in contactInfo"
                     :key="info.title"
                     class="group flex items-start gap-4"
                   >
-                    <div 
+                    <div
                       class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ring-1 transition-transform group-hover:scale-110"
                       :class="[
                         info.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30' : '',
                         info.color === 'purple' ? 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-purple-500/30' : '',
-                        info.color === 'pink' ? 'bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-blue-500/30' : '',
+                        info.color === 'blue' ? 'bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-blue-500/30' : '',
                       ]"
                     >
-                      <!-- Email Icon -->
-                      <svg 
+                      <!-- Phone Icon -->
+                      <svg
+                        v-if="info.icon === 'phone'"
                         class="h-6 w-6 text-cyan-400"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <!-- Email Icon -->
+                      <svg
+                        v-else-if="info.icon === 'email'"
+                        class="h-6 w-6 text-purple-400"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <!-- Location Icon -->
+                      <svg
+                        v-else-if="info.icon === 'location'"
+                        class="h-6 w-6 text-blue-400"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>
                       <h3 class="font-bold text-[rgb(var(--text-heading))]">{{ info.title }}</h3>
-                      <a 
-                        v-if="info.href" 
-                        :href="info.href" 
+                      <a
+                        v-if="info.href"
+                        :href="info.href"
                         class="transition-colors"
-                        :class="info.color === 'cyan' ? 'text-cyan-400 hover:text-cyan-300' : 'text-[rgb(var(--text-body))]'"
+                        :class="[
+                          info.color === 'cyan' ? 'text-cyan-400 hover:text-cyan-300' : '',
+                          info.color === 'purple' ? 'text-purple-400 hover:text-purple-300' : '',
+                          info.color === 'blue' ? 'text-blue-400 hover:text-blue-300' : '',
+                        ]"
                       >
                         {{ info.value }}
                       </a>
