@@ -5,8 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '@/composables/useTheme'
 import { usePageSeo } from '@/composables/usePageSeo'
 
-gsap.registerPlugin(ScrollTrigger)
-
 usePageSeo({
   title: 'DeepBio Scientific - AI-Powered Drug Discovery Platform',
   description: 'Design mRNA and protein therapeutics with AI. From natural language specifications to validated therapeutic candidates using evolutionary AI and molecular biology.',
@@ -373,6 +371,8 @@ function handleResize() {
 }
 
 onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
   // Initialize mouse at center of window for smooth start
   smoothMouseX = window.innerWidth / 2
   smoothMouseY = window.innerHeight / 2

@@ -1,57 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../views/HomePage.vue'
+import { routes } from './routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomePage,
-    },
-    {
-      path: '/technology',
-      name: 'technology',
-      component: () => import('../views/TechnologyPage.vue'),
-    },
-    {
-      path: '/research',
-      name: 'research',
-      component: () => import('../views/ResearchPage.vue'),
-    },
-    {
-      path: '/case-studies',
-      name: 'case-studies',
-      component: () => import('../views/CaseStudiesPage.vue'),
-    },
-    // Blog route - disabled for now
-    // {
-    //   path: '/blog',
-    //   name: 'blog',
-    //   component: () => import('../views/BlogPage.vue'),
-    // },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutPage.vue'),
-    },
-    // Careers route - disabled for now
-    // {
-    //   path: '/careers',
-    //   name: 'careers',
-    //   component: () => import('../views/CareersPage.vue'),
-    // },
-    {
-      path: '/contact',
-      name: 'contact',
-      component: () => import('../views/ContactPage.vue'),
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'not-found',
-      redirect: '/',
-    },
-  ],
+  routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
@@ -63,7 +15,7 @@ const router = createRouter({
 
 // Track page views with Google Analytics 4
 router.afterEach((to) => {
-  if (typeof window.gtag === 'function') {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', 'page_view', {
       page_path: to.fullPath,
       page_title: document.title,
@@ -72,4 +24,3 @@ router.afterEach((to) => {
 })
 
 export default router
-

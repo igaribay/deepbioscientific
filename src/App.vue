@@ -8,10 +8,7 @@ import deepbioText from '@/assets/deepbio-text.png'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import { useTheme } from '@/composables/useTheme'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const { init: initTheme, canvasColors } = useTheme()
-initTheme()
 
 const scrolled = ref(false)
 const mobileMenuOpen = ref(false)
@@ -32,11 +29,6 @@ let time = 0
 let mouseX = 0
 let mouseY = 0
 
-if (typeof window !== 'undefined') {
-  window.addEventListener('scroll', () => {
-    scrolled.value = window.scrollY > 10
-  })
-}
 
 // mRNA nucleotide bases for visualization
 interface Nucleotide {
@@ -224,14 +216,14 @@ function drawHeroBackground() {
     const sin2 = Math.sin(rotX)
 
     // Apply rotation
-    let rx1 = x1 * cos1 - z1 * sin1
+    const rx1 = x1 * cos1 - z1 * sin1
     let rz1 = x1 * sin1 + z1 * cos1
-    let ry1 = y1 * cos2 - rz1 * sin2
+    const ry1 = y1 * cos2 - rz1 * sin2
     rz1 = y1 * sin2 + rz1 * cos2
 
-    let rx2 = x2 * cos1 - z2 * sin1
+    const rx2 = x2 * cos1 - z2 * sin1
     let rz2 = x2 * sin1 + z2 * cos1
-    let ry2 = y2 * cos2 - rz2 * sin2
+    const ry2 = y2 * cos2 - rz2 * sin2
     rz2 = y2 * sin2 + rz2 * cos2
 
     // Perspective projection with safety check
@@ -417,6 +409,13 @@ function handleResize() {
 }
 
 onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger)
+  initTheme()
+
+  window.addEventListener('scroll', () => {
+    scrolled.value = window.scrollY > 10
+  })
+
   // Initialize visualization
   initVisualization()
 
@@ -908,15 +907,15 @@ watch(isHomePage, (newVal) => {
 
           <!-- Hero text -->
           <h1 class="mb-6 lg:mb-8 text-4xl font-bold leading-tight tracking-tight text-[rgb(var(--text-heading))] md:text-5xl lg:text-6xl xl:text-7xl">
-            <span class="hero-word block">Reinventing</span>
+            <span class="hero-word block">AI Co-Scientist for</span>
             <span class="hero-word block">
               <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Drug Discovery</span>
             </span>
           </h1>
 
           <p class="hero-subtext mb-8 lg:mb-10 max-w-xl text-base text-[rgb(var(--text-body))] md:text-lg lg:text-xl mx-auto lg:mx-0">
-            <span class="text-[rgb(var(--text-heading))] font-medium">90% of clinical trials fail.</span> We're changing that with 
-            <span class="text-cyan-400">AgentFabric™</span> that optimizes every stage, from target discovery to regulatory approval.
+            Starting with mRNA therapeutics. Specialized AI agents that design, predict, and explain — powered by a
+            <span class="text-cyan-400">provenance-grounded world model</span>.
           </p>
 
           <div class="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -935,16 +934,16 @@ watch(isHomePage, (newVal) => {
           <!-- Key Stats Row -->
           <div class="mt-10 lg:mt-12 grid grid-cols-3 gap-4 lg:gap-8">
             <div class="hero-stat text-center lg:text-left">
-              <div class="text-2xl lg:text-3xl font-bold text-cyan-400">10-15 yrs</div>
-              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Current Timeline</div>
+              <div class="text-2xl lg:text-3xl font-bold text-cyan-400">50%</div>
+              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Faster Discovery</div>
             </div>
             <div class="hero-stat text-center">
-              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">30-50%</div>
-              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Time Saved</div>
+              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">Up to 90%</div>
+              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Trial Success</div>
             </div>
             <div class="hero-stat text-center lg:text-right">
-              <div class="text-2xl lg:text-3xl font-bold text-teal-400">90%→↑</div>
-              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Trial Success</div>
+              <div class="text-2xl lg:text-3xl font-bold text-teal-400">100%</div>
+              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Traceable Results</div>
             </div>
           </div>
         </div>
@@ -957,6 +956,51 @@ watch(isHomePage, (newVal) => {
       <div class="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 animate-bounce">
         <div class="flex h-10 w-6 items-start justify-center rounded-full border-2 border-[rgb(var(--border-subtle))] p-1">
           <div class="h-2 w-1 animate-pulse rounded-full bg-cyan-400"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Ticker Section -->
+    <section class="logo-ticker-section relative z-10 overflow-hidden border-y border-[rgb(var(--border-primary))/0.3] bg-[rgb(var(--bg-base))/0.9] py-10 backdrop-blur-sm">
+      <div class="mb-6 text-center">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[rgb(var(--text-muted))]">Recognized &amp; Supported By</span>
+      </div>
+
+      <div class="logo-ticker-wrapper">
+        <!-- Fade edges -->
+        <div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[rgb(var(--bg-base))] to-transparent"></div>
+        <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[rgb(var(--bg-base))] to-transparent"></div>
+
+        <div class="logo-ticker-track">
+          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item">
+            <img src="/logos/nvidia-inception.png" alt="NVIDIA Inception Program" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
+            <img src="/logos/nvidia-inception-dark.png" alt="NVIDIA Inception Program" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
+          </a>
+          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item">
+            <img src="/logos/nsf-icorps.png" alt="NSF I-Corps" class="logo-ticker-img" />
+          </a>
+          <!-- Duplicate sets for seamless loop -->
+          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
+            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
+          </a>
+          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
+          </a>
+          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
+            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
+          </a>
+          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
+          </a>
+          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
+            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
+          </a>
+          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
+            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
+          </a>
         </div>
       </div>
     </section>
@@ -999,17 +1043,17 @@ watch(isHomePage, (newVal) => {
             Full Pipeline Coverage
           </span>
           <h2 class="mb-4 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl">
-            Every Stage. <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Optimized.</span>
+            Start Anywhere. <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Go Faster.</span>
           </h2>
           <p class="mx-auto max-w-2xl text-lg text-[rgb(var(--text-body))]">
-            We don't just design molecules. We optimize the entire drug discovery pipeline to dramatically reduce time and improve success rates.
+            AI assistance at the stages that matter most to your pipeline.
           </p>
         </div>
 
         <!-- Pipeline Timeline - Clean Table Design (Desktop) -->
         <div class="hidden lg:block relative mb-16 overflow-hidden rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.8] backdrop-blur-xl">
           <!-- Header Row -->
-          <div class="grid grid-cols-5 border-b border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card-muted))/0.3]">
+          <div class="grid grid-cols-4 border-b border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card-muted))/0.3]">
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-cyan-500 text-white font-bold text-xs">1</div>
             </div>
@@ -1019,16 +1063,13 @@ watch(isHomePage, (newVal) => {
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-emerald-500 text-white font-bold text-xs">3</div>
             </div>
-            <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
-              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-blue-500 text-white font-bold text-xs">4</div>
-            </div>
             <div class="p-4 text-center">
-              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-indigo-500 text-white font-bold text-xs">5</div>
+              <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-blue-500 text-white font-bold text-xs">4</div>
             </div>
           </div>
           
           <!-- Stage Names -->
-          <div class="grid grid-cols-5 border-b border-[rgb(var(--border-subtle))/0.5]">
+          <div class="grid grid-cols-4 border-b border-[rgb(var(--border-subtle))/0.5]">
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <h3 class="text-sm font-bold text-[rgb(var(--text-heading))]">Target Discovery</h3>
             </div>
@@ -1038,16 +1079,13 @@ watch(isHomePage, (newVal) => {
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <h3 class="text-sm font-bold text-[rgb(var(--text-heading))]">Preclinical</h3>
             </div>
-            <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
-              <h3 class="text-sm font-bold text-[rgb(var(--text-heading))]">Clinical Trials</h3>
-            </div>
             <div class="p-4 text-center">
-              <h3 class="text-sm font-bold text-[rgb(var(--text-heading))]">Regulatory</h3>
+              <h3 class="text-sm font-bold text-[rgb(var(--text-heading))]">Clinical Trials</h3>
             </div>
           </div>
 
           <!-- Traditional Timeline -->
-          <div class="grid grid-cols-5 border-b border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card-muted))/0.2]">
+          <div class="grid grid-cols-4 border-b border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card-muted))/0.2]">
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <div class="text-xs text-[rgb(var(--text-muted))] mb-1">Traditional</div>
               <div class="text-sm text-[rgb(var(--text-body))] line-through">2-3 years</div>
@@ -1060,18 +1098,14 @@ watch(isHomePage, (newVal) => {
               <div class="text-xs text-[rgb(var(--text-muted))] mb-1">Traditional</div>
               <div class="text-sm text-[rgb(var(--text-body))] line-through">1-2 years</div>
             </div>
-            <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
-              <div class="text-xs text-[rgb(var(--text-muted))] mb-1">Traditional</div>
-              <div class="text-sm text-[rgb(var(--text-body))] line-through">6-8 years</div>
-            </div>
             <div class="p-4 text-center">
               <div class="text-xs text-[rgb(var(--text-muted))] mb-1">Traditional</div>
-              <div class="text-sm text-[rgb(var(--text-body))] line-through">1-2 years</div>
+              <div class="text-sm text-[rgb(var(--text-body))] line-through">6-8 years</div>
             </div>
           </div>
 
           <!-- Our Timeline -->
-          <div class="grid grid-cols-5">
+          <div class="grid grid-cols-4">
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
               <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
               <div class="text-lg font-bold text-emerald-400">6-12 mo</div>
@@ -1084,13 +1118,9 @@ watch(isHomePage, (newVal) => {
               <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
               <div class="text-lg font-bold text-emerald-400">6-18 mo</div>
             </div>
-            <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
-              <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
-              <div class="text-lg font-bold text-emerald-400">3-5 years</div>
-            </div>
             <div class="p-4 text-center">
               <div class="text-xs text-emerald-400 mb-1">With Helixir AI</div>
-              <div class="text-lg font-bold text-emerald-400">6-12 mo</div>
+              <div class="text-lg font-bold text-emerald-400">3-5 years</div>
             </div>
           </div>
         </div>
@@ -1138,17 +1168,6 @@ watch(isHomePage, (newVal) => {
                 <span class="text-[rgb(var(--text-muted))] line-through">6-8 yrs</span>
                 <span class="text-emerald-400">→</span>
                 <span class="text-emerald-400 font-bold">3-5 yrs</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-reveal rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.8] p-5 flex items-center gap-4">
-            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500 text-white font-bold text-sm">5</div>
-            <div class="flex-1">
-              <h3 class="font-bold text-[rgb(var(--text-heading))]">Regulatory</h3>
-              <div class="flex items-center gap-2 text-sm">
-                <span class="text-[rgb(var(--text-muted))] line-through">1-2 yrs</span>
-                <span class="text-emerald-400">→</span>
-                <span class="text-emerald-400 font-bold">6-12 mo</span>
               </div>
             </div>
           </div>
@@ -1325,8 +1344,8 @@ watch(isHomePage, (newVal) => {
             <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30 transition-transform group-hover:scale-110">
               <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <h3 class="mb-2 text-lg font-bold text-[rgb(var(--text-heading))] group-hover:text-cyan-400 transition-colors">End-to-End Coverage</h3>
-            <p class="text-sm text-[rgb(var(--text-body))]">We optimize every stage, from target discovery through regulatory approval, not just molecule design.</p>
+            <h3 class="mb-2 text-lg font-bold text-[rgb(var(--text-heading))] group-hover:text-cyan-400 transition-colors">World Model Architecture</h3>
+            <p class="text-sm text-[rgb(var(--text-body))]">A provenance-grounded world model that reasons across biological systems, not just pattern-matching on molecules.</p>
           </div>
 
           <div class="card-reveal group rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl transition-all duration-300 hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/10 hover:-translate-y-1">
@@ -1597,7 +1616,7 @@ watch(isHomePage, (newVal) => {
         </div>
         <div class="border-t border-[rgb(var(--border-primary))] pt-8">
           <p class="text-center text-sm text-[rgb(var(--text-muted))]">
-            © 2025 DeepBio Scientific. Building towards a disease-free world.
+            © {{ new Date().getFullYear() }} DeepBio Scientific. Building towards a disease-free world.
           </p>
         </div>
       </div>
@@ -1654,6 +1673,70 @@ html {
   }
 }
 
+/* Logo Ticker */
+.logo-ticker-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: ticker-scroll 20s linear infinite;
+}
+
+.logo-ticker-wrapper:hover .logo-ticker-track {
+  animation-play-state: paused;
+}
+
+.logo-ticker-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 3rem;
+}
+
+.logo-ticker-img {
+  height: 52px;
+  width: auto;
+  filter: grayscale(1) opacity(0.4);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.logo-ticker-img--nvidia {
+  height: 85px;
+}
+
+.logo-ticker-img--nvidia-dark {
+  padding: 10px 0;
+}
+
+:deep(.dark) .logo-ticker-img,
+:global(.dark) .logo-ticker-img {
+  filter: grayscale(1) opacity(0.35) brightness(1.8);
+}
+
+.logo-ticker-item:hover .logo-ticker-img {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.08);
+}
+
+:deep(.dark) .logo-ticker-item:hover .logo-ticker-img,
+:global(.dark) .logo-ticker-item:hover .logo-ticker-img {
+  filter: grayscale(0) opacity(1) brightness(1.2);
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Fallback for when JS doesn't load - ensure visibility */
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready {
@@ -1661,13 +1744,18 @@ html {
     transform: none;
     transition: none;
   }
-  
+
   .animate-gradient {
     animation: none;
   }
-  
+
   .floating-particle {
     animation: none;
+  }
+
+  .logo-ticker-track {
+    animation: none;
+    justify-content: center;
   }
 }
 </style>

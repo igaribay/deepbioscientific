@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 const isDark = ref(false)
 
 function init() {
+  if (typeof window === 'undefined') return
   const stored = localStorage.getItem('theme')
   if (stored === 'dark') {
     isDark.value = true
@@ -14,6 +15,7 @@ function init() {
 }
 
 function toggle() {
+  if (typeof window === 'undefined') return
   isDark.value = !isDark.value
   if (isDark.value) {
     document.documentElement.classList.add('dark')
