@@ -251,11 +251,11 @@ const focusAreas = [
     description: 'Interpretable AI models for drug discovery, including attention-based DTI prediction, binding site analysis, and molecular generation.',
     color: 'cyan',
   },
-  {
-    title: 'Fairness in Machine Learning',
-    description: 'Novel approaches to algorithmic fairness using GANs, game theory, contrastive learning, and quantum computing.',
-    color: 'emerald',
-  },
+  // {
+  //   title: 'Fairness in Machine Learning',
+  //   description: 'Novel approaches to algorithmic fairness using GANs, game theory, contrastive learning, and quantum computing.',
+  //   color: 'emerald',
+  // },
   {
     title: 'Large Language Models',
     description: 'Parameter-efficient fine-tuning, time series forecasting, and architectural innovations in transformers.',
@@ -371,7 +371,7 @@ onMounted(() => {
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Core Focus Areas</h2>
         </div>
         
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid gap-6 md:grid-cols-3">
           <div 
             v-for="area in focusAreas" 
             :key="area.title"

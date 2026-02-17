@@ -34,7 +34,7 @@ const helixirStages = [
   },
   { 
     number: 4, 
-    name: 'Regulatory', 
+    name: 'Regulatory (Coming Soon)', 
     aiMode: 'Submission Agents',
     description: 'Dossier assembly, compliance checking, gap analysis. Reg affairs signs off.',
     color: 'blue' 
@@ -62,7 +62,7 @@ const agentTypes = [
     color: 'teal'
   },
   {
-    title: 'Regulatory Agents',
+    title: 'Regulatory Agents (Coming Soon)',
     capabilities: 'Dossier, CMC, Compliance, Gap Analysis, Response, Format',
     color: 'emerald'
   },
@@ -154,10 +154,7 @@ onUnmounted(() => {
         </h1>
         
         <p class="hero-title mx-auto max-w-3xl text-lg text-[rgb(var(--text-body))] leading-relaxed md:text-xl mb-8">
-          Drug discovery has a <span class="text-[rgb(var(--text-heading))] font-medium">90% failure rate</span> and takes
-          <span class="text-[rgb(var(--text-heading))] font-medium">10-15 years</span>. Our Helixir™ platform 
-          optimizes every stage to cut timelines by <span class="text-emerald-400 font-semibold">30-50%</span> 
-          and dramatically improve success rates.
+          Starting with <span class="text-[rgb(var(--text-heading))] font-medium">mRNA therapeutics</span>. Specialized AI agents that <span class="text-[rgb(var(--text-heading))] font-medium">design, predict, and explain</span> — powered by a <span class="text-emerald-400 font-semibold">provenance-grounded world model</span>.
         </p>
 
         <!-- Key Stats -->

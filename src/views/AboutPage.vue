@@ -230,7 +230,7 @@ onMounted(() => {
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Leadership Team</h2>
         </div>
         
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto">
           <div 
             v-for="member in team" 
             :key="member.name"
