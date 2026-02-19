@@ -39,8 +39,8 @@ const interests = [
 const contactInfo = [
   {
     title: 'Phone',
-    value: '+1 407 437 4651',
-    href: 'tel:+14074374651',
+    value: '+1 408-381-9921',
+    href: 'tel:+14083819921',
     icon: 'phone',
     color: 'cyan'
   },
@@ -131,7 +131,7 @@ const handleSubmit = async () => {
         showError.value = false
       }, 5000)
     }
-  } catch (error) {
+  } catch {
     showError.value = true
     errorMessage.value = 'Network error. Please check your connection and try again.'
     setTimeout(() => {
@@ -413,7 +413,7 @@ const handleSubmit = async () => {
               </div>
             </div>
 
-            <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden group hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+            <!-- <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden group hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div class="relative">
                 <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 ring-1 ring-green-500/30">
@@ -429,7 +429,7 @@ const handleSubmit = async () => {
                   Book a Meeting
                 </button>
               </div>
-            </div>
+            </div> -->
             
           </div>
         </div>

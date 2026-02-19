@@ -15,21 +15,24 @@ const team = [
     role: 'Co-Founder & Founding CEO', 
     bio: 'Director, Complex Adaptive Systems Laboratory at UCF. Pioneer in evolutionary computation and multi-agent systems.', 
     image: '/team/ivan-garibay.jpg',
-    color: 'cyan' 
+    linkedin: 'https://www.linkedin.com/in/garibay-ivan/',
+    color: 'cyan'
   },
   { 
     name: 'Dr. Edwin Nassiff', 
     role: 'Co-Founder & Founding COO', 
     bio: 'Former CTO of Enterprise Information Systems at Lockheed Martin Corporation. Former CIO in the US Government.', 
     image: '/team/edwin-nassiff.jpg',
-    color: 'teal' 
+    linkedin: 'https://www.linkedin.com/in/edwin-nassiff-ph-d-a9961131/',
+    color: 'teal'
   },
   { 
     name: 'Dr. Sanjay Padhi', 
     role: 'Co-Founder & Founding CTO', 
     bio: 'Former Head of AWS Research. CTO of Tag.bio. 20+ years AI and cloud. 2025 Breakthrough Prize in Physics (CERN Collaboration).', 
     image: '/team/sanjay-pahdi.jpg',
-    color: 'emerald' 
+    linkedin: 'https://www.linkedin.com/in/sanjaypadhi/',
+    color: 'emerald'
   },
   // { 
   //   name: 'Dr. Ozlem Garibay', 
@@ -43,16 +46,105 @@ const team = [
     role: 'Head of Commercialization', 
     bio: '20+ years of experience building and scaling biotech companies', 
     image: '/team/mark-pitman.jpg',
-    color: 'purple' 
+    linkedin: 'https://www.linkedin.com/in/markpitman/',
+    color: 'purple'
   },
 ]
 
-const milestones = [
-  { year: '2026', event: 'Founded by scientists and industry leaders', color: 'cyan' },
-  // { year: '2024', event: 'Raised $50M Series A led by top biotech investors', color: 'teal' },
-  // { year: '2024', event: 'First partnership with major pharmaceutical company', color: 'emerald' },
-  // { year: '2025', event: 'Platform validated with 3 programs entering preclinical', color: 'blue' },
+const timelineEntries = [
+  {
+    year: '2026',
+    category: 'Industry Recognition',
+    date: 'January 19, 2026',
+    title: 'Accepted into NVIDIA Inception Program',
+    description: "Just one week after founding, DeepBio Scientific joins NVIDIA's global startup community defining the future of AI and accelerated computing — unlocking access to cutting-edge GPU infrastructure, technical expertise, and go-to-market support.",
+    link: { text: 'About NVIDIA Inception', url: 'https://www.nvidia.com/en-us/startups/' },
+    color: 'amber',
+    icon: 'star',
+  },
+  {
+    year: '2026',
+    category: 'Company Founded',
+    date: 'January 12, 2026',
+    title: 'DeepBio Scientific Founded',
+    description: 'Founded by scientists and industry leaders with deep expertise in evolutionary computation, enterprise systems, cloud infrastructure, and biotech commercialization.',
+    color: 'orange',
+    icon: 'zap',
+  },
+  {
+    year: '2025',
+    category: 'NeurIPS Presentation',
+    date: 'December 2025',
+    title: 'Foundation Model Publication',
+    description: "Foundation model research presented at NeurIPS 2025 — one of the world's premier machine learning conferences — establishing DeepBio's scientific credibility in AI-driven therapeutics.",
+    link: { text: 'NeurIPS 2025', url: 'https://openreview.net/pdf?id=xs5aoDH3HX' },
+    color: 'emerald',
+    icon: 'document',
+  },
+  {
+    year: '2025',
+    category: 'NSF Funded',
+    date: 'October 2025',
+    title: 'Funded by NSF I-Corps',
+    description: "Awarded NSF I-Corps Regional Team funding — validating the commercial potential of DeepBio's AI-driven drug discovery platform through rigorous customer discovery and market validation.",
+    link: { text: 'About NSF I-Corps', url: 'https://www.nsf.gov/news/special_reports/i-corps/' },
+    color: 'purple',
+    icon: 'award',
+  },
+  {
+    year: '2023',
+    category: 'Media Coverage',
+    date: 'August 2, 2023',
+    title: 'UCF AI Drug Discovery Feature',
+    description: 'UCF researchers featured in the press for advancing AI-assisted drug discovery — highlighting the potential to dramatically cut the billions of dollars and decades of time traditional drug development demands.',
+    link: { text: 'Read the article', url: 'https://www.ucf.edu/news/ucf-researchers-are-advancing-ai-assisted-drug-discovery/' },
+    color: 'teal',
+    icon: 'news',
+  },
 ]
+
+const colorClasses: Record<string, Record<string, string>> = {
+  amber: {
+    dot: 'bg-amber-400',
+    category: 'text-amber-700 dark:text-amber-400',
+    iconBg: 'bg-amber-100 dark:bg-amber-500/15 ring-1 ring-amber-300/50 dark:ring-amber-500/30',
+    iconText: 'text-amber-600 dark:text-amber-400',
+    link: 'text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300',
+    hoverCard: 'hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5',
+  },
+  orange: {
+    dot: 'bg-orange-400',
+    category: 'text-orange-700 dark:text-orange-400',
+    iconBg: 'bg-orange-100 dark:bg-orange-500/15 ring-1 ring-orange-300/50 dark:ring-orange-500/30',
+    iconText: 'text-orange-600 dark:text-orange-400',
+    link: 'text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300',
+    hoverCard: 'hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5',
+  },
+  emerald: {
+    dot: 'bg-emerald-400',
+    category: 'text-emerald-700 dark:text-emerald-400',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-500/15 ring-1 ring-emerald-300/50 dark:ring-emerald-500/30',
+    iconText: 'text-emerald-600 dark:text-emerald-400',
+    link: 'text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300',
+    hoverCard: 'hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5',
+  },
+  purple: {
+    dot: 'bg-purple-400',
+    category: 'text-purple-700 dark:text-purple-400',
+    iconBg: 'bg-purple-100 dark:bg-purple-500/15 ring-1 ring-purple-300/50 dark:ring-purple-500/30',
+    iconText: 'text-purple-600 dark:text-purple-400',
+    link: 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300',
+    hoverCard: 'hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5',
+  },
+  teal: {
+    dot: 'bg-teal-400',
+    category: 'text-teal-700 dark:text-teal-400',
+    iconBg: 'bg-teal-100 dark:bg-teal-500/15 ring-1 ring-teal-300/50 dark:ring-teal-500/30',
+    iconText: 'text-teal-600 dark:text-teal-400',
+    link: 'text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300',
+    hoverCard: 'hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/5',
+  },
+}
 
 const values = [
   { title: 'Scientific Rigor', description: 'We pursue the truth with intellectual honesty and reproducible methods.', color: 'cyan' },
@@ -93,10 +185,12 @@ onMounted(() => {
   
   // Timeline animation
   const timelineItems = document.querySelectorAll('.timeline-item')
-  gsap.fromTo(timelineItems,
-    { opacity: 0, x: -30 },
-    { opacity: 1, x: 0, stagger: 0.2, duration: 0.8, ease: 'power3.out', delay: 0.5 }
-  )
+  if (timelineItems.length > 0) {
+    gsap.fromTo(timelineItems,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out', delay: 0.5 }
+    )
+  }
 })
 </script>
 
@@ -243,7 +337,16 @@ onMounted(() => {
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            <h3 class="text-lg font-bold text-[rgb(var(--text-heading))]">{{ member.name }}</h3>
+            <h3 class="text-lg font-bold">
+              <a
+                v-if="member.linkedin"
+                :href="member.linkedin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[rgb(var(--text-heading))] hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >{{ member.name }}</a>
+              <span v-else class="text-[rgb(var(--text-heading))]">{{ member.name }}</span>
+            </h3>
             <p class="mb-3 text-sm font-medium" :class="'text-' + member.color + '-400'">{{ member.role }}</p>
             <p class="text-sm text-[rgb(var(--text-body))]">{{ member.bio }}</p>
           </div>
@@ -251,40 +354,118 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Timeline -->
+    <!-- Timeline / Our Journey -->
     <section class="relative z-10 px-6 py-20">
-      <div class="mx-auto max-w-4xl">
-        <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1 text-sm font-medium text-green-300">
+      <div class="mx-auto max-w-5xl">
+        <div class="text-center mb-16">
+          <span class="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1 text-sm font-medium text-green-700 dark:text-green-300">
             Milestones
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Our Journey</h2>
+          <p class="mt-4 text-[rgb(var(--text-body))] max-w-2xl mx-auto">
+            From foundational research to NeurIPS — the milestones that shaped DeepBio Scientific.
+          </p>
         </div>
-        
-        <div class="space-y-6">
-          <div 
-            v-for="(milestone, index) in milestones" 
-            :key="index"
-            class="timeline-item about-card flex gap-6"
-          >
-            <div class="flex flex-col items-center">
-              <div 
-                class="flex h-14 w-14 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-lg transition-transform hover:scale-110"
-                :class="[
-                  milestone.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500 to-cyan-600 shadow-cyan-500/30' : '',
-                  milestone.color === 'teal' ? 'bg-gradient-to-br from-teal-500 to-teal-600 shadow-teal-500/30' : '',
-                  milestone.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-emerald-500/30' : '',
-                  milestone.color === 'blue' ? 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/30' : '',
-                ]"
-              >
-                {{ milestone.year }}
+
+        <!-- Timeline -->
+        <div class="relative">
+          <!-- Vertical line -->
+          <div class="timeline-line absolute left-5 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px"></div>
+
+          <template v-for="(entry, i) in timelineEntries" :key="i">
+            <!-- Year divider (shown when year changes) -->
+            <div
+              v-if="i === 0 || entry.year !== timelineEntries[i - 1].year"
+              class="relative pb-8 md:pb-10"
+            >
+              <div class="ml-12 md:ml-0 md:flex md:justify-center">
+                <span class="relative z-10 inline-block rounded-full border px-4 py-1.5 text-xs font-mono font-bold tracking-widest
+                  border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-primary))] text-[rgb(var(--text-muted))]">
+                  {{ entry.year }}
+                </span>
               </div>
-              <div v-if="index < milestones.length - 1" class="mt-2 h-full w-0.5 bg-gradient-to-b from-slate-600 to-transparent"></div>
             </div>
-            <div class="flex-1 pt-3">
-              <p class="text-lg text-[rgb(var(--text-primary))]">{{ milestone.event }}</p>
+
+            <!-- Timeline entry -->
+            <div class="timeline-item relative pb-12 md:pb-16">
+              <!-- Dot on the line -->
+              <div
+                class="absolute left-5 md:left-1/2 -translate-x-1/2 top-8 z-10 w-3 h-3 rounded-full ring-4 ring-[rgb(var(--bg-base))]"
+                :class="colorClasses[entry.color].dot"
+              ></div>
+
+              <!-- Card container -->
+              <div
+                class="ml-12 md:ml-0 md:flex"
+                :class="i % 2 === 0 ? 'md:justify-start' : 'md:justify-end'"
+              >
+                <div class="md:w-[calc(50%-2rem)]">
+                  <!-- Card -->
+                  <div
+                    class="group rounded-2xl border p-6 backdrop-blur-sm transition-all duration-300
+                      border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-card))]"
+                    :class="colorClasses[entry.color].hoverCard"
+                  >
+                    <!-- Header: Icon + Category + Date -->
+                    <div class="flex items-center gap-3 mb-3">
+                      <div
+                        class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                        :class="colorClasses[entry.color].iconBg"
+                      >
+                        <!-- Star -->
+                        <svg v-if="entry.icon === 'star'" class="w-5 h-5" :class="colorClasses[entry.color].iconText" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <!-- Zap / Lightning -->
+                        <svg v-else-if="entry.icon === 'zap'" class="w-5 h-5" :class="colorClasses[entry.color].iconText" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <!-- Document -->
+                        <svg v-else-if="entry.icon === 'document'" class="w-5 h-5" :class="colorClasses[entry.color].iconText" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <!-- Award -->
+                        <svg v-else-if="entry.icon === 'award'" class="w-5 h-5" :class="colorClasses[entry.color].iconText" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                        <!-- News -->
+                        <svg v-else-if="entry.icon === 'news'" class="w-5 h-5" :class="colorClasses[entry.color].iconText" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <div
+                          class="text-[10px] font-bold tracking-[0.15em] uppercase"
+                          :class="colorClasses[entry.color].category"
+                        >
+                          {{ entry.category }}
+                        </div>
+                        <div class="text-xs font-mono text-[rgb(var(--text-muted))]">{{ entry.date }}</div>
+                      </div>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-lg font-bold mb-2 text-[rgb(var(--text-heading))]">{{ entry.title }}</h3>
+
+                    <!-- Description -->
+                    <p class="text-sm leading-relaxed text-[rgb(var(--text-body))]">{{ entry.description }}</p>
+
+                    <!-- Link -->
+                    <a
+                      v-if="entry.link"
+                      :href="entry.link.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 mt-4 text-sm font-medium transition-colors"
+                      :class="colorClasses[entry.color].link"
+                    >
+                      {{ entry.link.text }} <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </template>
         </div>
       </div>
     </section>
@@ -351,5 +532,15 @@ onMounted(() => {
   50% {
     background-position: 100% 50%;
   }
+}
+
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--border-subtle)) 5%,
+    rgb(var(--border-subtle)) 95%,
+    transparent
+  );
 }
 </style>

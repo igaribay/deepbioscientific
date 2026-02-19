@@ -963,7 +963,7 @@ watch(isHomePage, (newVal) => {
     <!-- Logo Ticker Section -->
     <section class="logo-ticker-section relative z-10 overflow-hidden border-y border-[rgb(var(--border-primary))/0.3] bg-[rgb(var(--bg-base))/0.9] py-10 backdrop-blur-sm">
       <div class="mb-6 text-center">
-        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[rgb(var(--text-muted))]">Recognized &amp; Supported By</span>
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[rgb(var(--text-muted))]">Supported By</span>
       </div>
 
       <div class="logo-ticker-wrapper">
@@ -972,35 +972,18 @@ watch(isHomePage, (newVal) => {
         <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[rgb(var(--bg-base))] to-transparent"></div>
 
         <div class="logo-ticker-track">
-          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item">
-            <img src="/logos/nvidia-inception.png" alt="NVIDIA Inception Program" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
-            <img src="/logos/nvidia-inception-dark.png" alt="NVIDIA Inception Program" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
-          </a>
-          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item">
-            <img src="/logos/nsf-icorps.png" alt="NSF I-Corps" class="logo-ticker-img" />
-          </a>
-          <!-- Duplicate sets for seamless loop -->
-          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
-            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
-          </a>
-          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
-          </a>
-          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
-            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
-          </a>
-          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
-          </a>
-          <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nvidia-inception.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
-            <img src="/logos/nvidia-inception-dark.png" alt="" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
-          </a>
-          <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" aria-hidden="true">
-            <img src="/logos/nsf-icorps.png" alt="" class="logo-ticker-img" />
-          </a>
+          <!-- Two identical groups — animation scrolls exactly one group (-50%) then resets seamlessly -->
+          <template v-for="group in 2" :key="'g' + group">
+            <template v-for="copy in 6" :key="'g' + group + 'c' + copy">
+              <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" :aria-hidden="group > 1 || copy > 1 ? true : undefined">
+                <img src="/logos/nvidia-inception.png" :alt="group === 1 && copy === 1 ? 'NVIDIA Inception Program' : ''" class="logo-ticker-img logo-ticker-img--nvidia dark:hidden" />
+                <img src="/logos/nvidia-inception-dark.png" :alt="group === 1 && copy === 1 ? 'NVIDIA Inception Program' : ''" class="logo-ticker-img logo-ticker-img--nvidia logo-ticker-img--nvidia-dark hidden dark:block" />
+              </a>
+              <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" :aria-hidden="group > 1 || copy > 1 ? true : undefined">
+                <img src="/logos/nsf-icorps.png" :alt="group === 1 && copy === 1 ? 'NSF I-Corps' : ''" class="logo-ticker-img" />
+              </a>
+            </template>
+          </template>
         </div>
       </div>
     </section>
@@ -1683,7 +1666,8 @@ html {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: ticker-scroll 20s linear infinite;
+  animation: ticker-scroll 30s linear infinite;
+  will-change: transform;
 }
 
 .logo-ticker-wrapper:hover .logo-ticker-track {
