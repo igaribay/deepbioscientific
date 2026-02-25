@@ -982,6 +982,9 @@ watch(isHomePage, (newVal) => {
               <a href="https://www.nsf.gov/news/special_reports/i-corps/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" :aria-hidden="group > 1 || copy > 1 ? true : undefined">
                 <img src="/logos/nsf-icorps.png" :alt="group === 1 && copy === 1 ? 'NSF I-Corps' : ''" class="logo-ticker-img" />
               </a>
+              <a href="https://startup.google.com/" target="_blank" rel="noopener noreferrer" class="logo-ticker-item" :aria-hidden="group > 1 || copy > 1 ? true : undefined">
+                <img src="/logos/google-for-startups.png" :alt="group === 1 && copy === 1 ? 'Google for Startups' : ''" class="logo-ticker-img logo-ticker-img--google" />
+              </a>
             </template>
           </template>
         </div>
@@ -1711,6 +1714,10 @@ html {
   padding: 10px 0;
 }
 
+.logo-ticker-img--google {
+  height: 100px;
+}
+
 :deep(.dark) .logo-ticker-img,
 :global(.dark) .logo-ticker-img {
   filter: grayscale(1) opacity(0.35) brightness(1.8);
@@ -1718,7 +1725,6 @@ html {
 
 .logo-ticker-item:hover .logo-ticker-img {
   filter: grayscale(0) opacity(1);
-  transform: scale(1.08);
 }
 
 :deep(.dark) .logo-ticker-item:hover .logo-ticker-img,
