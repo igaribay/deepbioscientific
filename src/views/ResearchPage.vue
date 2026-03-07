@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Research & Publications',
+  title: 'Research & Publications — AI Drug Discovery Science',
   description: 'Peer-reviewed research in drug-target interaction, mRNA language models, fair machine learning, and large language models. Explore our scientific foundation and publications.',
   path: '/research',
 })
@@ -350,6 +350,10 @@ onMounted(() => {
         <!-- Research Stats -->
         <div class="hero-title mt-12 flex flex-wrap items-center gap-8">
           <div class="text-center">
+            <div class="text-4xl font-bold text-purple-400">1</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">NeurIPS 2025 Publication</div>
+          </div>
+          <div class="text-center">
             <div class="text-4xl font-bold text-cyan-400">{{ totalPublications }}+</div>
             <div class="text-sm text-[rgb(var(--text-muted))]">Publications</div>
           </div>
@@ -410,6 +414,35 @@ onMounted(() => {
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))]">Recent Publications</h2>
         </div>
         
+        <!-- Featured: Equi-mRNA -->
+        <div class="mb-8">
+          <a
+            href="https://arxiv.org/abs/2508.15103"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block rounded-2xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-500/10 via-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl transition-all duration-300 hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/10 group"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-400 ring-1 ring-purple-500/30">
+                <span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                Featured
+              </span>
+              <span class="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400 ring-1 ring-cyan-500/30">NeurIPS 2025</span>
+            </div>
+            <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-2 group-hover:text-purple-400 transition-colors">
+              Equi-mRNA: Protein Translation Equivariant Encoding for mRNA Language Models
+            </h3>
+            <p class="text-sm text-[rgb(var(--text-muted))] mb-3">Yazdani-Jahromi M., Khodabandeh Yalabadi A., Garibay O.O.</p>
+            <p class="text-sm text-[rgb(var(--text-body))] leading-relaxed mb-4">
+              The first codon-level equivariant mRNA language model that encodes synonymous codon symmetries as SO(2) cyclic subgroups — achieving ~10% better accuracy, ~4x more realistic constructs, and ~28% better functional property preservation.
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-purple-400 group-hover:text-purple-300 transition-colors">
+              Read the full paper
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </span>
+          </a>
+        </div>
+
         <div class="space-y-3">
           <a 
             v-for="pub in displayedPublications" 

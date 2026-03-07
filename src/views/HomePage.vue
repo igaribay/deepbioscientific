@@ -6,7 +6,7 @@ import { useTheme } from '@/composables/useTheme'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'DeepBio Scientific - AI-Powered Drug Discovery Platform',
+  title: 'DeepBio Scientific — AI Co-Scientist for Drug Discovery',
   description: 'Design mRNA and protein therapeutics with AI. From natural language specifications to validated therapeutic candidates using evolutionary AI and molecular biology.',
   path: '/',
 })

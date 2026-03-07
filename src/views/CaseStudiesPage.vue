@@ -5,7 +5,7 @@ import { useTheme } from '@/composables/useTheme'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Case Studies',
+  title: 'Case Studies — AI-Designed Therapeutics',
   description: 'Explore AI-designed therapeutics with interactive 3D molecular viewers. See proven results including COVID-19 drug discovery, GPR-139 agonist design, and Equi-mRNA benchmarks.',
   path: '/case-studies',
 })

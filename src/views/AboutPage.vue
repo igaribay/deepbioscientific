@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'About Us',
+  title: 'About DeepBio Scientific — AI Co-Scientist Team',
   description: 'Learn about DeepBio Scientific\'s mission to build a disease-free world through AI-powered therapeutic design. Meet our leadership team of scientists and industry leaders.',
   path: '/about',
 })
@@ -29,7 +29,7 @@ const team = [
   { 
     name: 'Dr. Sanjay Padhi', 
     role: 'Co-Founder & Founding CTO', 
-    bio: 'Former Head of AWS Research. CTO of Tag.bio. 20+ years AI and cloud. 2025 Breakthrough Prize in Physics (CERN Collaboration).', 
+    bio: 'Co-architect of the Helixir AI. Former Head of AWS Research. CTO of Tag.bio. 20+ years AI and cloud. 2025 Breakthrough Prize in Physics (CERN Collaboration).', 
     image: '/team/sanjay-pahdi.jpg',
     linkedin: 'https://www.linkedin.com/in/sanjaypadhi/',
     color: 'emerald'
@@ -73,10 +73,10 @@ const timelineEntries = [
   },
   {
     year: '2025',
-    category: 'NeurIPS Presentation',
+    category: 'NeurIPS 2025',
     date: 'December 2025',
-    title: 'Foundation Model Publication',
-    description: "Foundation model research presented at NeurIPS 2025 — one of the world's premier machine learning conferences — establishing DeepBio's scientific credibility in AI-driven therapeutics.",
+    title: 'Equi-mRNA Accepted at NeurIPS 2025',
+    description: "Our protein-translation equivariant mRNA language model was accepted at NeurIPS 2025 — achieving ~10% better accuracy and ~4x more realistic mRNA constructs than existing approaches.",
     link: { text: 'NeurIPS 2025', url: 'https://openreview.net/pdf?id=xs5aoDH3HX' },
     color: 'emerald',
     icon: 'document',
@@ -237,9 +237,8 @@ onMounted(() => {
           Our <span class="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">Mission</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          We're building towards a <span class="text-cyan-400 font-semibold">disease-free world</span>. 
-          Every patient deserves access to <span class="text-purple-400">precisely designed therapeutics</span>, and 
-          we're creating the AI platform to make that possible.
+          Building the <span class="text-cyan-400 font-semibold">AI Co-Scientist</span> for drug discovery
+          — starting with <span class="text-purple-400">mRNA therapeutics</span>.
         </p>
       </div>
     </section>

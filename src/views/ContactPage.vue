@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import deepbioLogo from '@/assets/deepbio-logo.png'
 import deepbioText from '@/assets/deepbio-text.png'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Contact Us',
+  title: 'Contact & Partnerships — DeepBio Scientific',
   description: 'Partner with DeepBio Scientific to accelerate your drug discovery pipeline. Schedule a demo, discuss research collaborations, or explore partnership opportunities.',
   path: '/contact',
 })
@@ -30,11 +30,20 @@ const WEB3FORMS_ACCESS_KEY = '15fdca5b-cf53-4188-b3e2-9be3d64c5477'
 const interests = [
   'Schedule a Demo',
   'Partnership Inquiries',
+  'Pricing / Plans',
   'Research Collaborations',
   'Investment',
   'Press & Media',
   'Other',
 ]
+
+function selectPersona(interest: string) {
+  formData.value.interest = interest
+  nextTick(() => {
+    const form = document.getElementById('contact-form')
+    if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  })
+}
 
 const contactInfo = [
   {
@@ -192,8 +201,59 @@ const handleSubmit = async () => {
       </div>
     </section>
 
+    <!-- Persona CTAs -->
+    <section class="relative z-10 px-6 pb-16">
+      <div class="mx-auto max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Researcher / Startup -->
+          <button
+            @click="selectPersona('Schedule a Demo')"
+            class="persona-cta group rounded-2xl border-2 border-cyan-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <div class="h-10 w-10 rounded-xl bg-cyan-500/15 flex items-center justify-center">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-cyan-400">I'm a researcher or startup</h3>
+            </div>
+            <p class="text-sm text-[rgb(var(--text-body))] mb-5 leading-relaxed">
+              Access Helixir AI platform, free trial, self-service tools
+            </p>
+            <span class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-teal-500 px-6 py-2.5 font-semibold text-white text-sm transition-all duration-200 group-hover:from-cyan-600 group-hover:to-teal-600 shadow-md shadow-cyan-500/20">
+              Try Helixir AI
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+
+          <!-- Pharma / Biotech -->
+          <button
+            @click="selectPersona('Partnership Inquiries')"
+            class="persona-cta group rounded-2xl border-2 border-purple-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <div class="h-10 w-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
+                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-purple-400">I'm from pharma or biotech</h3>
+            </div>
+            <p class="text-sm text-[rgb(var(--text-body))] mb-5 leading-relaxed">
+              Partnership programs, custom engagements, enterprise licensing
+            </p>
+            <span class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-500 px-6 py-2.5 font-semibold text-white text-sm transition-all duration-200 group-hover:from-purple-600 group-hover:to-violet-600 shadow-md shadow-purple-500/20">
+              Discuss Partnership
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact Form & Info -->
-    <section class="relative z-10 px-6 pb-32">
+    <section id="contact-form" class="relative z-10 px-6 pb-32">
       <div class="mx-auto max-w-6xl">
         <div class="grid gap-12 lg:grid-cols-2">
           <!-- Form -->

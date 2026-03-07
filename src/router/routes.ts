@@ -40,6 +40,16 @@ export const routes: RouteRecordRaw[] = [
   //   component: () => import('../views/CareersPage.vue'),
   // },
   {
+    path: '/platform',
+    name: 'platform',
+    component: () => import('../views/PlatformPage.vue'),
+  },
+  {
+    path: '/pricing',
+    name: 'pricing',
+    component: () => import('../views/PricingPage.vue'),
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactPage.vue'),

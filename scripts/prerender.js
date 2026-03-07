@@ -13,6 +13,8 @@ const routes = [
   '/research',
   '/case-studies',
   '/about',
+  '/platform',
+  '/pricing',
   '/contact',
 ]
 

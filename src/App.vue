@@ -20,7 +20,8 @@ const navLinks = [
   { name: 'Technology', path: '/technology' },
   { name: 'Research', path: '/research' },
   { name: 'Case Studies', path: '/case-studies' },
-  { name: 'Platform', path: 'https://demo.deepbioscientific.com', external: true },
+  { name: 'Platform', path: '/platform' },
+  { name: 'Pricing', path: '/pricing' },
   { name: 'About', path: '/about' },
 ]
 const heroCanvas = ref<HTMLCanvasElement | null>(null)
@@ -938,8 +939,8 @@ watch(isHomePage, (newVal) => {
               <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Faster Discovery</div>
             </div>
             <div class="hero-stat text-center">
-              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">Up to 90%</div>
-              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Trial Success</div>
+              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">4X</div>
+              <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Sequence Fidelity</div>
             </div>
             <div class="hero-stat text-center lg:text-right">
               <div class="text-2xl lg:text-3xl font-bold text-teal-400">100%</div>
@@ -1389,11 +1390,15 @@ watch(isHomePage, (newVal) => {
             Partnerships
           </span>
           <h2 class="mb-4 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl">
-            Design & Platform <span class="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Services</span>
+            Two Ways to <span class="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Work With Us</span>
           </h2>
-          <p class="mx-auto max-w-2xl text-lg text-[rgb(var(--text-body))]">
-            Flexible services tailored to your stage and strategy
+          <p class="mx-auto max-w-2xl text-lg text-[rgb(var(--text-body))] mb-4">
+            Self-service platform for researchers, or custom partnerships for pharma programs.
           </p>
+          <RouterLink to="/pricing" class="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors">
+            View plans & pricing
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </RouterLink>
         </div>
 
         <!-- Service Categories Grid -->
@@ -1456,13 +1461,10 @@ watch(isHomePage, (newVal) => {
             </div>
             <h4 class="text-lg font-bold text-[rgb(var(--text-heading))] mb-2 group-hover:text-emerald-400 transition-colors">Enterprise Platform</h4>
             <p class="text-sm text-[rgb(var(--text-body))] mb-3">Unlimited queries, full API access, dedicated support team, and custom integrations</p>
-            <div class="flex items-center gap-2 text-xs text-emerald-400">
-              <span class="relative flex h-2 w-2">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-              </span>
-              Coming soon on AWS, Azure, and Google Cloud Marketplaces
-            </div>
+            <RouterLink to="/contact" class="inline-flex items-center gap-2 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
+              Request Early Access
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </RouterLink>
           </div>
 
           <!-- Success Milestones -->
@@ -1488,40 +1490,11 @@ watch(isHomePage, (newVal) => {
 
         <!-- Partnership Model Footer -->
         <div class="text-center mt-8 p-6 rounded-xl border border-[rgb(var(--border-subtle))/0.3] bg-[rgb(var(--bg-card))/0.3]">
-          <p class="text-[rgb(var(--text-primary))] mb-3">
+          <p class="text-[rgb(var(--text-primary))]">
             <span class="font-semibold text-[rgb(var(--text-heading))]">Partnership Model:</span> Upfront per program, plus 
             <span class="font-bold text-teal-400">downstream royalty</span> on successful commercialization
           </p>
-          <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-[rgb(var(--text-body))]">
-            <span class="font-semibold text-[rgb(var(--text-heading))] mr-1">Enterprise Platform:</span>
-            <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.75 11.35a4.32 4.32 0 0 1-.79-.08 3.9 3.9 0 0 1-.73-.23l-.17-.04h-.12l-.15.14-.08.08a4.6 4.6 0 0 1-3.38 1.38 4.63 4.63 0 0 1-3.38-1.38l-.08-.08-.15-.14h-.12l-.17.04a3.9 3.9 0 0 1-.73.23 4.32 4.32 0 0 1-.79.08 4.4 4.4 0 0 1-4.4-4.4v-.03A4.4 4.4 0 0 1 7.9 2.5h.02a4.35 4.35 0 0 1 .79.08 3.9 3.9 0 0 1 .73.22l.17.05h.12l.15-.14.08-.08a4.6 4.6 0 0 1 3.38-1.38 4.63 4.63 0 0 1 3.38 1.38l.08.08.15.14h.12l.17-.05a3.9 3.9 0 0 1 .73-.22 4.35 4.35 0 0 1 .79-.08h.02a4.4 4.4 0 0 1 4.4 4.42v.03a4.4 4.4 0 0 1-4.4 4.4z"/>
-              </svg>
-              <span>AWS Marketplace</span>
-            </span>
-            <span class="text-[rgb(var(--text-muted))]">•</span>
-            <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5.5 9.3V15l6.5 3.8 6.5-3.8V9.3L12 5.5 5.5 9.3zm6.5 7.2l-4.5-2.6v-4l4.5 2.6v4zm1-5.3L8.5 8.6 12 6.5l3.5 2.1L12 11.2zm5.5 2.7l-4.5 2.6v-4l4.5-2.6v4z"/>
-              </svg>
-              <span>Google Cloud Marketplace</span>
-            </span>
-            <span class="text-[rgb(var(--text-muted))]">•</span>
-            <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
-              <span>Azure Marketplace</span>
-            </span>
-            <span class="ml-2 inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400 ring-1 ring-emerald-500/30">
-              <span class="relative flex h-1.5 w-1.5">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-              </span>
-              Coming Soon
-            </span>
-          </div>
+
         </div>
       </div>
     </section>

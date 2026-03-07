@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Technology',
+  title: 'Helixir AI Technology — Drug Discovery Pipeline Acceleration',
   description: 'Explore the Helixir platform and AgentFabric technology. AI that tackles the entire drug discovery pipeline, cutting timelines by 30-50% with coordinated AI agents and human oversight.',
   path: '/technology',
 })
@@ -154,7 +154,7 @@ onUnmounted(() => {
         </h1>
         
         <p class="hero-title mx-auto max-w-3xl text-lg text-[rgb(var(--text-body))] leading-relaxed md:text-xl mb-8">
-          Starting with <span class="text-[rgb(var(--text-heading))] font-medium">mRNA therapeutics</span>. Specialized AI agents that <span class="text-[rgb(var(--text-heading))] font-medium">design, predict, and explain</span> — powered by a <span class="text-emerald-400 font-semibold">provenance-grounded world model</span>.
+          Proving it with <span class="text-[rgb(var(--text-heading))] font-medium">mRNA first</span>, expanding across the <span class="text-[rgb(var(--text-heading))] font-medium">full pipeline</span>.
         </p>
 
         <!-- Key Stats -->
@@ -224,6 +224,117 @@ onUnmounted(() => {
         </div>
       </div>
     </section>
+
+    <!-- Equi-mRNA Technology Section -->
+    <section class="relative z-10 px-6 py-20 border-t border-[rgb(var(--border-subtle))/0.5]">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium text-purple-300">
+              Proprietary Technology
+            </span>
+            <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl mb-6">
+              mRNA Foundation Model: <span class="text-purple-400">Next-Gen mRNA Design</span>
+            </h2>
+            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-6">
+              The first codon-level equivariant mRNA language model that explicitly encodes <span class="text-[rgb(var(--text-heading))]">synonymous codon symmetries</span> as cyclic subgroups of the 2D Special Orthogonal matrix (SO(2)).
+            </p>
+            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-8">
+              By integrating group-theoretic priors with an auxiliary equivariance loss and symmetry-aware pooling, Equi-mRNA learns <span class="text-purple-400">biologically grounded representations</span> that outperform traditional models.
+            </p>
+
+            <!-- Key Results -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
+                <div class="text-3xl font-bold text-purple-400 mb-1">~10%</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">Accuracy improvement on expression & stability prediction</div>
+              </div>
+              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
+                <div class="text-3xl font-bold text-cyan-400 mb-1">~4x</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">More realistic mRNA constructs (Fréchet BioDistance)</div>
+              </div>
+              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
+                <div class="text-3xl font-bold text-emerald-400 mb-1">~28%</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">Better at preserving functional properties</div>
+              </div>
+              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
+                <div class="text-3xl font-bold text-teal-400 mb-1">SO(2)</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">Symmetry-aware codon encoding</div>
+              </div>
+            </div>
+
+            <a 
+              href="https://arxiv.org/abs/2508.15103" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 rounded-lg bg-gradient-to-r from-purple-600 to-purple-500 px-7 py-3.5 font-semibold text-white transition-all duration-200 hover:from-purple-700 hover:to-purple-600 active:scale-95 shadow-lg shadow-purple-500/25"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              NeurIPS 2025 Paper
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Visual/Diagram Area -->
+          <div class="relative">
+            <div class="rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl">
+              <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-6 text-center">How Equi-mRNA Works</h3>
+              
+              <!-- Visual Steps -->
+              <div class="space-y-4">
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
+                  <div class="h-10 w-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">1</div>
+                  <div>
+                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Codon-Level Tokenization</div>
+                    <div class="text-xs text-[rgb(var(--text-body))]">Encodes mRNA at codon level (3-nucleotide units)</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
+                  <div class="h-10 w-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">2</div>
+                  <div>
+                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Synonymous Symmetry Encoding</div>
+                    <div class="text-xs text-[rgb(var(--text-body))]">Maps codon degeneracy to SO(2) cyclic subgroups</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
+                  <div class="h-10 w-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 font-bold">3</div>
+                  <div>
+                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Equivariance Loss</div>
+                    <div class="text-xs text-[rgb(var(--text-body))]">Auxiliary loss ensures symmetry preservation</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
+                  <div class="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">4</div>
+                  <div>
+                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Symmetry-Aware Pooling</div>
+                    <div class="text-xs text-[rgb(var(--text-body))]">Aggregates representations respecting biological structure</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Application Areas -->
+              <div class="mt-6 pt-6 border-t border-[rgb(var(--border-muted))/0.5]">
+                <div class="text-xs text-[rgb(var(--text-muted))] uppercase tracking-wider mb-3">Applications</div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">Expression Prediction</span>
+                  <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs">Stability Assessment</span>
+                  <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs">mRNA Generation</span>
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs">Therapeutics Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Pipeline Overview - Every Stage Accelerated -->
     <section class="relative z-10 px-6 py-20 border-t border-b border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.3]">
@@ -365,113 +476,6 @@ onUnmounted(() => {
             <p class="text-[rgb(var(--text-primary))]">
               Not replacing scientists — multiplying their capacity. AI handles volume. Humans own judgment.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Equi-mRNA Technology Section -->
-    <section class="relative z-10 px-6 py-20 border-t border-[rgb(var(--border-subtle))/0.5]">
-      <div class="mx-auto max-w-6xl">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium text-purple-300">
-              Proprietary Technology
-            </span>
-            <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl mb-6">
-              mRNA Foundation Model: <span class="text-purple-400">Next-Gen mRNA Design</span>
-            </h2>
-            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-6">
-              The first codon-level equivariant mRNA language model that explicitly encodes <span class="text-[rgb(var(--text-heading))]">synonymous codon symmetries</span> as cyclic subgroups of the 2D Special Orthogonal matrix (SO(2)).
-            </p>
-            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-8">
-              By integrating group-theoretic priors with an auxiliary equivariance loss and symmetry-aware pooling, Equi-mRNA learns <span class="text-purple-400">biologically grounded representations</span> that outperform traditional models.
-            </p>
-
-            <!-- Key Results -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-purple-400 mb-1">~10%</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Accuracy improvement on expression & stability prediction</div>
-              </div>
-              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-cyan-400 mb-1">~4x</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">More realistic mRNA constructs (Fréchet BioDistance)</div>
-              </div>
-              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-emerald-400 mb-1">~28%</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Better at preserving functional properties</div>
-              </div>
-              <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-teal-400 mb-1">SO(2)</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Symmetry-aware codon encoding</div>
-              </div>
-            </div>
-
-            <a 
-              href="https://arxiv.org/abs/2508.15103" 
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full border border-purple-500/50 bg-purple-500/10 px-6 py-3 font-medium text-purple-300 transition-all hover:bg-purple-500/20 hover:border-purple-400"
-            >
-              Read the Paper
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Visual/Diagram Area -->
-          <div class="relative">
-            <div class="rounded-3xl border border-[rgb(var(--border-primary))] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl">
-              <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-6 text-center">How Equi-mRNA Works</h3>
-              
-              <!-- Visual Steps -->
-              <div class="space-y-4">
-                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
-                  <div class="h-10 w-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">1</div>
-                  <div>
-                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Codon-Level Tokenization</div>
-                    <div class="text-xs text-[rgb(var(--text-body))]">Encodes mRNA at codon level (3-nucleotide units)</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
-                  <div class="h-10 w-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">2</div>
-                  <div>
-                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Synonymous Symmetry Encoding</div>
-                    <div class="text-xs text-[rgb(var(--text-body))]">Maps codon degeneracy to SO(2) cyclic subgroups</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
-                  <div class="h-10 w-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 font-bold">3</div>
-                  <div>
-                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Equivariance Loss</div>
-                    <div class="text-xs text-[rgb(var(--text-body))]">Auxiliary loss ensures symmetry preservation</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center gap-4 p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.5] border border-[rgb(var(--border-muted))/0.5]">
-                  <div class="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">4</div>
-                  <div>
-                    <div class="font-semibold text-[rgb(var(--text-heading))] text-sm">Symmetry-Aware Pooling</div>
-                    <div class="text-xs text-[rgb(var(--text-body))]">Aggregates representations respecting biological structure</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Application Areas -->
-              <div class="mt-6 pt-6 border-t border-[rgb(var(--border-muted))/0.5]">
-                <div class="text-xs text-[rgb(var(--text-muted))] uppercase tracking-wider mb-3">Applications</div>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">Expression Prediction</span>
-                  <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs">Stability Assessment</span>
-                  <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs">mRNA Generation</span>
-                  <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs">Therapeutics Design</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
