@@ -903,7 +903,7 @@ watch(isHomePage, (newVal) => {
 
           <!-- Slogan -->
           <p class="hero-word text-lg lg:text-xl font-medium text-emerald-400 mb-4 tracking-wide">
-            From Molecule to Market, Faster ---.
+            From Molecule to Market, Faster.
           </p>
 
           <!-- Hero text -->
