@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepBio Scientific — Developer Guide</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --accent: #0891b2;
+      --accent-light: #ecfeff;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --text: #e2e8f0;
+        --text-muted: #94a3b8;
+        --accent: #22d3ee;
+        --accent-light: #164e63;
+        --border: #334155;
+        --code-bg: #0f172a;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+    }
+    p, li { margin-bottom: 0.5rem; }
+    ul, ol { padding-left: 1.5rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .flow-box {
+      background: var(--accent-light);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--code-bg);
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2em 0.6em;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .badge-prod { background: #dcfce7; color: #166534; }
+    .badge-staging { background: #fef9c3; color: #854d0e; }
+    .badge-feature { background: #dbeafe; color: #1e40af; }
+    @media (prefers-color-scheme: dark) {
+      .badge-prod { background: #166534; color: #bbf7d0; }
+      .badge-staging { background: #854d0e; color: #fef08a; }
+      .badge-feature { background: #1e40af; color: #bfdbfe; }
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .step-content { flex: 1; }
+    .toc {
+      columns: 2;
+      column-gap: 2rem;
+    }
+    .toc li { break-inside: avoid; }
+    @media (max-width: 600px) {
+      .toc { columns: 1; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1><span>DeepBio Scientific</span> — Developer Guide</h1>
+      <p>Everything you need to set up, develop, preview, and deploy the website.</p>
+    </header>
+
+    <!-- TABLE OF CONTENTS -->
+    <h2>Contents</h2>
+    <ul class="toc">
+      <li><a href="#tech-stack">Tech Stack</a></li>
+      <li><a href="#ide-setup">IDE Setup</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#commands">Development Commands</a></li>
+      <li><a href="#branches">Branching Strategy</a></li>
+      <li><a href="#workflow">Development Workflow</a></li>
+      <li><a href="#netlify">Netlify Preview Setup</a></li>
+      <li><a href="#deployment">Production Deployment</a></li>
+      <li><a href="#code-style">Code Style</a></li>
+      <li><a href="#architecture">Architecture Overview</a></li>
+    </ul>
+
+    <!-- TECH STACK -->
+    <h2 id="tech-stack">Tech Stack</h2>
+    <table>
+      <tr><th>Category</th><th>Technology</th></tr>
+      <tr><td>Framework</td><td>Vue 3.5 (Composition API, <code>&lt;script setup&gt;</code>)</td></tr>
+      <tr><td>Language</td><td>TypeScript 5</td></tr>
+      <tr><td>Build Tool</td><td>Vite 7</td></tr>
+      <tr><td>Styling</td><td>TailwindCSS 3 + PostCSS + Autoprefixer</td></tr>
+      <tr><td>Routing</td><td>Vue Router 4 (history mode)</td></tr>
+      <tr><td>Animations</td><td>GSAP 3</td></tr>
+      <tr><td>SEO</td><td>@unhead/vue (SSR prerendering)</td></tr>
+      <tr><td>Testing</td><td>Vitest + Vue Test Utils</td></tr>
+      <tr><td>Linting</td><td>ESLint 9 + Prettier</td></tr>
+      <tr><td>Node</td><td>22</td></tr>
+    </table>
+
+    <!-- IDE SETUP -->
+    <h2 id="ide-setup">IDE Setup (VS Code)</h2>
+    <div class="card">
+      <h3>Required Extensions</h3>
+      <ul>
+        <li><strong>Volar</strong> — Vue 3 language support, TypeScript integration, template intellisense</li>
+        <li><strong>Tailwind CSS IntelliSense</strong> — class autocomplete, hover previews, linting</li>
+        <li><strong>ESLint</strong> — inline linting with auto-fix on save</li>
+        <li><strong>Prettier</strong> — code formatting (matches project <code>.prettierrc.json</code>)</li>
+      </ul>
+      <h3>Recommended Extensions</h3>
+      <ul>
+        <li><strong>Vue DevTools</strong> (browser) — component inspector and state debugging</li>
+        <li><strong>EditorConfig</strong> — reads the project <code>.editorconfig</code> automatically</li>
+      </ul>
+      <h3>Recommended Settings</h3>
+      <pre><code>// .vscode/settings.json (already gitignored)
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}</code></pre>
+    </div>
+
+    <!-- GETTING STARTED -->
+    <h2 id="getting-started">Getting Started</h2>
+    <pre><code>git clone https://github.com/igaribay/deepbioscientific.git
+cd deepbioscientific
+git checkout dev
+npm install
+npm run dev</code></pre>
+    <p>The dev server starts at <code>http://localhost:5173</code> with hot module replacement.</p>
+
+    <!-- COMMANDS -->
+    <h2 id="commands">Development Commands</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td><code>npm run dev</code></td><td>Start dev server with hot reload</td></tr>
+      <tr><td><code>npm run build</code></td><td>Full production build (client + SSR + prerender)</td></tr>
+      <tr><td><code>npm run preview</code></td><td>Preview production build locally</td></tr>
+      <tr><td><code>npm run test:unit</code></td><td>Run unit tests (Vitest)</td></tr>
+      <tr><td><code>npm run type-check</code></td><td>TypeScript validation</td></tr>
+      <tr><td><code>npm run lint</code></td><td>Lint and auto-fix with ESLint</td></tr>
+      <tr><td><code>npm run format</code></td><td>Format code with Prettier</td></tr>
+    </table>
+
+    <!-- BRANCHING STRATEGY -->
+    <h2 id="branches">Branching Strategy</h2>
+    <table>
+      <tr>
+        <th>Branch</th><th>Purpose</th><th>Deploys To</th>
+      </tr>
+      <tr>
+        <td><code>main</code> <span class="badge badge-prod">production</span></td>
+        <td>Production-ready code only</td>
+        <td><code>deepbioscientific.com</code> (GitHub Pages)</td>
+      </tr>
+      <tr>
+        <td><code>dev</code> <span class="badge badge-staging">staging</span></td>
+        <td>Integration and preview branch</td>
+        <td>Netlify preview URL</td>
+      </tr>
+      <tr>
+        <td><code>feature/*</code> <span class="badge badge-feature">feature</span></td>
+        <td>Individual changes, branched from <code>dev</code></td>
+        <td>Netlify deploy preview per PR</td>
+      </tr>
+    </table>
+
+    <div class="flow-diagram">
+      <div class="flow-box">feature/xyz</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box">PR to dev</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box">Preview on Netlify</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box">PR to main</div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box">Live on production</div>
+    </div>
+
+    <div class="card">
+      <h3>Branch Protection (set up in GitHub)</h3>
+      <ul>
+        <li>Go to <strong>Settings &gt; Branches &gt; Add rule</strong> for <code>main</code></li>
+        <li>Enable <strong>Require pull request reviews</strong> before merging</li>
+        <li>Enable <strong>Require status checks to pass</strong> before merging</li>
+        <li>Never push directly to <code>main</code> — always go through a PR</li>
+      </ul>
+    </div>
+
+    <!-- DEVELOPMENT WORKFLOW -->
+    <h2 id="workflow">Development Workflow</h2>
+
+    <div class="step">
+      <span class="step-number">1</span>
+      <div class="step-content">
+        <strong>Create a feature branch from dev</strong>
+        <pre><code>git checkout dev
+git pull origin dev
+git checkout -b feature/update-hero</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-number">2</span>
+      <div class="step-content">
+        <strong>Make your changes and test locally</strong>
+        <pre><code>npm run dev          # develop with hot reload
+npm run lint         # check for lint errors
+npm run type-check   # verify TypeScript
+npm run test:unit    # run tests</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-number">3</span>
+      <div class="step-content">
+        <strong>Push and open a PR into <code>dev</code></strong>
+        <pre><code>git add -A
+git commit -m "Update hero section copy and animation"
+git push -u origin feature/update-hero</code></pre>
+        <p>Open a Pull Request on GitHub targeting the <code>dev</code> branch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-number">4</span>
+      <div class="step-content">
+        <strong>Preview on Netlify</strong>
+        <p>Netlify automatically generates a unique preview URL for every PR (e.g., <code>deploy-preview-7--your-site.netlify.app</code>). Share this URL with reviewers to preview changes before merging.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-number">5</span>
+      <div class="step-content">
+        <strong>Merge into dev, then into main</strong>
+        <p>Once approved, merge the PR into <code>dev</code>. When ready to go live, open a PR from <code>dev</code> to <code>main</code> and merge it. Production deploys automatically.</p>
+      </div>
+    </div>
+
+    <!-- NETLIFY SETUP -->
+    <h2 id="netlify">Netlify Preview Setup (One-Time)</h2>
+
+    <div class="card">
+      <div class="step">
+        <span class="step-number">1</span>
+        <div class="step-content">Go to <a href="https://app.netlify.com">app.netlify.com</a> and sign in with your GitHub account.</div>
+      </div>
+      <div class="step">
+        <span class="step-number">2</span>
+        <div class="step-content">Click <strong>"Add new site" &rarr; "Import an existing project"</strong>.</div>
+      </div>
+      <div class="step">
+        <span class="step-number">3</span>
+        <div class="step-content">Select the <code>deepbioscientific</code> repository from GitHub.</div>
+      </div>
+      <div class="step">
+        <span class="step-number">4</span>
+        <div class="step-content">Set the <strong>production branch</strong> to <code>dev</code>. Build settings are auto-detected from <code>netlify.toml</code> (build command: <code>npm run build</code>, publish directory: <code>dist</code>).</div>
+      </div>
+      <div class="step">
+        <span class="step-number">5</span>
+        <div class="step-content">Click <strong>Deploy</strong>. Netlify will build and give you a preview URL.</div>
+      </div>
+      <div class="step">
+        <span class="step-number">6</span>
+        <div class="step-content">In <strong>Site Settings &rarr; Build &amp; Deploy &rarr; Continuous Deployment</strong>, ensure <strong>Deploy Previews</strong> is enabled. This generates a unique URL for every pull request.</div>
+      </div>
+    </div>
+
+    <p>The repo includes a <code>netlify.toml</code> that configures the build and SPA routing automatically — no additional Netlify configuration needed.</p>
+
+    <!-- DEPLOYMENT -->
+    <h2 id="deployment">Production Deployment</h2>
+    <div class="card">
+      <p>Production deploys are <strong>fully automatic</strong>. When code is merged into <code>main</code>:</p>
+      <ol>
+        <li>GitHub Actions runs <code>.github/workflows/deploy.yml</code></li>
+        <li>Builds the project with Node 22 (<code>npm ci &amp;&amp; npm run build</code>)</li>
+        <li>Prerenders all routes to static HTML for SEO</li>
+        <li>Deploys the <code>dist/</code> folder to the <code>gh-pages</code> branch</li>
+        <li>Site is live at <code>deepbioscientific.com</code></li>
+      </ol>
+      <p><strong>Do not</strong> manually edit the <code>gh-pages</code> branch — it is auto-generated.</p>
+    </div>
+
+    <!-- CODE STYLE -->
+    <h2 id="code-style">Code Style</h2>
+    <table>
+      <tr><th>Rule</th><th>Setting</th></tr>
+      <tr><td>Semicolons</td><td>None</td></tr>
+      <tr><td>Quotes</td><td>Single quotes</td></tr>
+      <tr><td>Line width</td><td>100 characters</td></tr>
+      <tr><td>Indentation</td><td>2 spaces</td></tr>
+      <tr><td>Path alias</td><td><code>@/</code> maps to <code>src/</code></td></tr>
+      <tr><td>Styling</td><td>TailwindCSS utility classes (no custom CSS unless necessary)</td></tr>
+      <tr><td>Components</td><td>Vue 3 <code>&lt;script setup lang="ts"&gt;</code></td></tr>
+    </table>
+
+    <!-- ARCHITECTURE -->
+    <h2 id="architecture">Architecture Overview</h2>
+    <h3>Build Pipeline</h3>
+    <p>The production build (<code>npm run build</code>) runs three stages:</p>
+    <ol>
+      <li><strong>Client build</strong> — Vite bundles Vue components, CSS, and assets into <code>dist/</code></li>
+      <li><strong>SSR build</strong> — Separate server-side build into <code>dist-ssr/</code></li>
+      <li><strong>Prerender</strong> — <code>scripts/prerender.js</code> renders each route to static HTML with page-specific meta tags, then removes <code>dist-ssr/</code></li>
+    </ol>
+    <p>The result is fully static HTML that hydrates into a Vue SPA on page load — best of both worlds for SEO and interactivity.</p>
+
+    <h3>Key Files</h3>
+    <table>
+      <tr><th>File</th><th>Purpose</th></tr>
+      <tr><td><code>src/App.vue</code></td><td>Root layout: nav, footer, mRNA canvas visualization</td></tr>
+      <tr><td><code>src/router/routes.ts</code></td><td>Route definitions for all pages</td></tr>
+      <tr><td><code>src/composables/usePageSeo.ts</code></td><td>Per-page meta/OG tags via @unhead/vue</td></tr>
+      <tr><td><code>src/composables/useTheme.ts</code></td><td>Dark/light mode toggle with localStorage</td></tr>
+      <tr><td><code>scripts/prerender.js</code></td><td>SSR prerender script for static HTML generation</td></tr>
+      <tr><td><code>netlify.toml</code></td><td>Netlify build config and SPA redirects</td></tr>
+      <tr><td><code>.github/workflows/deploy.yml</code></td><td>GitHub Actions CI/CD for production deploy</td></tr>
+    </table>
+
+    <footer>
+      <p>DeepBio Scientific &mdash; Developer Guide<br>
+      Repository: <a href="https://github.com/igaribay/deepbioscientific">github.com/igaribay/deepbioscientific</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>
