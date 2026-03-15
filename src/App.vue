@@ -449,7 +449,7 @@ onMounted(() => {
   })
 
   // Hero buttons
-  gsap.fromTo('.hero-btn', 
+  gsap.fromTo('.hero-btn',
     { opacity: 0, y: 20, scale: 0.9 },
     { duration: 0.8, opacity: 1, y: 0, scale: 1, stagger: 0.15, delay: 1.1, ease: 'back.out(1.7)' }
   )
@@ -512,7 +512,7 @@ onMounted(() => {
     const htmlEl = el as HTMLElement
     htmlEl.style.transitionDelay = `${delay}ms`
     el.classList.add('reveal-ready')
-    
+
     // Check if already in viewport on page load
     const rect = el.getBoundingClientRect()
     if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -614,13 +614,13 @@ watch(isHomePage, (newVal) => {
         initVisualization()
         animate()
       }
-      
+
       // Re-run reveal animations
       document.querySelectorAll('.reveal-section').forEach((section) => {
         section.classList.remove('revealed')
         section.classList.add('reveal-ready')
       })
-      
+
       // Setup reveal observer again
       const revealObserver = new IntersectionObserver(
         (entries) => {
@@ -632,23 +632,23 @@ watch(isHomePage, (newVal) => {
         },
         { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
       )
-      
+
       document.querySelectorAll('.reveal-section').forEach((section) => {
         revealObserver.observe(section)
       })
-      
+
       // Immediately animate all card-reveal elements that are in viewport
       document.querySelectorAll('.card-reveal').forEach((card) => {
         gsap.set(card, { opacity: 1, y: 0, scale: 1 })
       })
-      
+
       // Setup card group observer for staggered reveal (for elements not yet in viewport)
       const cardObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const cards = entry.target.querySelectorAll('.card-reveal')
-              gsap.fromTo(cards, 
+              gsap.fromTo(cards,
                 { opacity: 0, y: 40, scale: 0.95 },
                 { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.6, ease: 'power3.out' }
               )
@@ -658,16 +658,16 @@ watch(isHomePage, (newVal) => {
         },
         { threshold: 0.1 }
       )
-      
+
       document.querySelectorAll('.card-group').forEach((group) => {
         // Reset cards first for animation
         const cards = group.querySelectorAll('.card-reveal')
         gsap.set(cards, { opacity: 0, y: 40, scale: 0.95 })
         cardObserver.observe(group)
       })
-      
+
       // Re-run hero animations
-      gsap.fromTo('.hero-word', 
+      gsap.fromTo('.hero-word',
         { opacity: 0, y: 50 },
         { duration: 1, opacity: 1, y: 0, stagger: 0.15, ease: 'power3.out', delay: 0.3 }
       )
@@ -683,13 +683,13 @@ watch(isHomePage, (newVal) => {
         { opacity: 0, scale: 0.8 },
         { duration: 1, opacity: 1, scale: 1, delay: 0.2, ease: 'elastic.out(1, 0.5)' }
       )
-      
+
       // Animate hero stats
       gsap.fromTo('.hero-stat',
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, stagger: 0.1, duration: 0.6, ease: 'power3.out', delay: 0.5 }
       )
-      
+
       setTimeout(() => ScrollTrigger.refresh(), 100)
     })
   } else {
@@ -716,14 +716,14 @@ watch(isHomePage, (newVal) => {
     >
       <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <RouterLink to="/" class="flex items-center gap-3">
-          <img 
-            :src="deepbioLogo" 
-            alt="DeepBio Scientific Logo" 
+          <img
+            :src="deepbioLogo"
+            alt="DeepBio Scientific Logo"
             class="h-10 w-auto"
           />
-          <img 
-            :src="deepbioText" 
-            alt="DeepBio Scientific" 
+          <img
+            :src="deepbioText"
+            alt="DeepBio Scientific"
             class="h-8 w-auto"
           />
         </RouterLink>
@@ -825,7 +825,7 @@ watch(isHomePage, (newVal) => {
 
     <!-- Home Page Content (only shown on home route) -->
     <template v-if="isHomePage">
-    
+
     <!-- Global Fancy Background for Homepage -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
@@ -833,19 +833,19 @@ watch(isHomePage, (newVal) => {
       <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
       <div class="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       <div class="absolute bottom-1/3 left-1/3 w-[350px] h-[350px] bg-green-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s"></div>
-      
+
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.02)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-      
+
       <!-- Floating particles -->
-      <div 
-        v-for="i in 25" 
-        :key="'particle-' + i" 
+      <div
+        v-for="i in 25"
+        :key="'particle-' + i"
         class="floating-particle absolute rounded-full"
         :class="[
-          i % 4 === 0 ? 'bg-cyan-400 w-1.5 h-1.5' : 
-          i % 4 === 1 ? 'bg-purple-400 w-1 h-1' : 
-          i % 4 === 2 ? 'bg-blue-400 w-1.5 h-1.5' : 
+          i % 4 === 0 ? 'bg-cyan-400 w-1.5 h-1.5' :
+          i % 4 === 1 ? 'bg-purple-400 w-1 h-1' :
+          i % 4 === 2 ? 'bg-blue-400 w-1.5 h-1.5' :
           'bg-green-400 w-1 h-1'
         ]"
         :style="{
@@ -855,7 +855,7 @@ watch(isHomePage, (newVal) => {
         }"
       ></div>
     </div>
-    
+
     <!-- Hero Section -->
     <section
       class="hero-section relative min-h-screen overflow-hidden"
@@ -889,7 +889,7 @@ watch(isHomePage, (newVal) => {
 
       <!-- Content Layer -->
       <div class="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col lg:flex-row lg:items-center px-6 pt-24 lg:pt-0">
-        
+
         <!-- Left Column - Hero Content -->
         <div class="hero-content relative flex-1 flex flex-col justify-center py-12 lg:py-0 text-center lg:text-left lg:pr-8">
           <!-- Badge -->
@@ -903,7 +903,7 @@ watch(isHomePage, (newVal) => {
 
           <!-- Slogan -->
           <p class="hero-word text-lg lg:text-xl font-medium text-emerald-400 mb-4 tracking-wide">
-            From Molecule to Market, Faster.
+            From Molecule to Market, Faster ---.
           </p>
 
           <!-- Hero text -->
@@ -1054,7 +1054,7 @@ watch(isHomePage, (newVal) => {
               <div class="flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-blue-500 text-white font-bold text-xs">4</div>
             </div>
           </div>
-          
+
           <!-- Stage Names -->
           <div class="grid grid-cols-4 border-b border-[rgb(var(--border-subtle))/0.5]">
             <div class="p-4 text-center border-r border-[rgb(var(--border-subtle))/0.3]">
@@ -1491,7 +1491,7 @@ watch(isHomePage, (newVal) => {
         <!-- Partnership Model Footer -->
         <div class="text-center mt-8 p-6 rounded-xl border border-[rgb(var(--border-subtle))/0.3] bg-[rgb(var(--bg-card))/0.3]">
           <p class="text-[rgb(var(--text-primary))]">
-            <span class="font-semibold text-[rgb(var(--text-heading))]">Partnership Model:</span> Upfront per program, plus 
+            <span class="font-semibold text-[rgb(var(--text-heading))]">Partnership Model:</span> Upfront per program, plus
             <span class="font-bold text-teal-400">downstream royalty</span> on successful commercialization
           </p>
 
@@ -1504,11 +1504,11 @@ watch(isHomePage, (newVal) => {
       <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-blue-600/20"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.15),transparent_50%)]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.15),transparent_50%)]"></div>
-      
+
       <!-- Animated orbs in CTA -->
       <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
       <div class="absolute top-1/2 right-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      
+
       <div class="relative mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-6xl">
           Join Us in Building a
@@ -1518,14 +1518,14 @@ watch(isHomePage, (newVal) => {
           Partner with us to accelerate your therapeutic program from concept to clinic.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <RouterLink 
+          <RouterLink
             to="/contact"
             class="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-bold text-slate-900 shadow-2xl transition-all hover:shadow-white/30 hover:scale-105"
           >
             <span class="relative z-10">Schedule Partnership Call</span>
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-100 to-purple-100 opacity-0 transition-opacity group-hover:opacity-100"></div>
           </RouterLink>
-          <RouterLink 
+          <RouterLink
             to="/case-studies"
             class="rounded-full border-2 border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10 hover:scale-105"
           >
@@ -1542,14 +1542,14 @@ watch(isHomePage, (newVal) => {
         <div class="mb-12 grid gap-12 md:grid-cols-4">
           <div>
             <RouterLink to="/" class="mb-4 flex items-center gap-3">
-              <img 
-                :src="deepbioLogo" 
-                alt="DeepBio Scientific Logo" 
+              <img
+                :src="deepbioLogo"
+                alt="DeepBio Scientific Logo"
                 class="h-10 w-auto"
               />
-              <img 
-                :src="deepbioText" 
-                alt="DeepBio Scientific" 
+              <img
+                :src="deepbioText"
+                alt="DeepBio Scientific"
                 class="h-8 w-auto"
               />
             </RouterLink>
