@@ -116,6 +116,43 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Why Now -->
+    <section class="relative z-10 px-6 py-16 border-t border-[rgb(var(--border-subtle))/0.5]">
+      <div class="mx-auto max-w-5xl">
+        <div class="rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-8 lg:p-10">
+          <div class="text-center mb-8">
+            <span class="mb-3 inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
+              Why Now
+            </span>
+            <h2 class="text-2xl font-bold text-[rgb(var(--text-heading))] md:text-3xl">The Timing Is Right</h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="mb-3 flex h-12 w-12 mx-auto items-center justify-center rounded-xl bg-emerald-500/15">
+                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="font-bold text-[rgb(var(--text-heading))] mb-2">AI Co-Scientist Validated</h3>
+              <p class="text-sm text-[rgb(var(--text-body))]">Google proved the model works — but went horizontal. We go vertical on mRNA where depth matters most.</p>
+            </div>
+            <div class="text-center">
+              <div class="mb-3 flex h-12 w-12 mx-auto items-center justify-center rounded-xl bg-cyan-500/15">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+              </div>
+              <h3 class="font-bold text-[rgb(var(--text-heading))] mb-2">mRNA Beyond Vaccines</h3>
+              <p class="text-sm text-[rgb(var(--text-body))]">The pipeline is exploding into protein replacement, gene editing, and personalized cancer medicine — each needing better optimization.</p>
+            </div>
+            <div class="text-center">
+              <div class="mb-3 flex h-12 w-12 mx-auto items-center justify-center rounded-xl bg-purple-500/15">
+                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+              </div>
+              <h3 class="font-bold text-[rgb(var(--text-heading))] mb-2">Foundation Models at Scale</h3>
+              <p class="text-sm text-[rgb(var(--text-body))]">For the first time, language models can learn biological language at scale. Equi-mRNA adds the missing physics — codon symmetry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- How Equi-mRNA Works -->
     <section class="relative z-10 px-6 py-20 border-t border-[rgb(var(--border-subtle))/0.5]">
       <div class="mx-auto max-w-6xl">

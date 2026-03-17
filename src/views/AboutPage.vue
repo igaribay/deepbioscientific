@@ -320,7 +320,14 @@ onMounted(() => {
           <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
             Team
           </span>
-          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Leadership Team</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl mb-4">Leadership Team</h2>
+          <p class="mx-auto max-w-2xl text-[rgb(var(--text-body))]">
+            The only team building an equivariant foundation model for mRNA.
+            <span class="text-[rgb(var(--text-heading))] font-medium">Computational biology research</span> +
+            <span class="text-[rgb(var(--text-heading))] font-medium">enterprise systems</span> +
+            <span class="text-[rgb(var(--text-heading))] font-medium">pharma commercialization</span>.
+            Vertical depth in mRNA where others go horizontal.
+          </p>
         </div>
         
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto">

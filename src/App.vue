@@ -910,8 +910,8 @@ watch(isHomePage, (newVal) => {
           </h1>
 
           <p class="hero-subtext mb-8 lg:mb-10 max-w-xl text-base text-[rgb(var(--text-body))] md:text-lg lg:text-xl mx-auto lg:mx-0">
-            Powered by <span class="text-cyan-400 font-semibold">Equi-mRNA</span>, the first equivariant foundation model for mRNA sequence design.
-            <span class="text-emerald-400 font-medium">NeurIPS 2025.</span>
+            The first equivariant foundation model for mRNA design (<span class="text-emerald-400 font-medium">NeurIPS 2025</span>), powering an AI co-scientist platform for the
+            <span class="text-cyan-400 font-semibold">$50B+ mRNA therapeutics market</span>.
           </p>
 
           <div class="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -1052,20 +1052,20 @@ watch(isHomePage, (newVal) => {
                 </div>
               </div>
               <p class="mb-6 text-lg text-[rgb(var(--text-body))]">
-                Self-serve mRNA design platform for researchers and biotech teams.
+                Self-serve mRNA design for researchers and biotech teams. Immediate access, immediate value.
               </p>
               <ul class="space-y-3 text-sm mb-8">
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-cyan-500"></span>
-                  Self-serve access
+                  Self-serve, start free
                 </li>
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-cyan-500"></span>
-                  Pay-as-you-go
+                  Pay-as-you-go pricing
                 </li>
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-cyan-500"></span>
-                  Start free
+                  Scales with your research
                 </li>
               </ul>
               <RouterLink to="/platform" class="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors">
@@ -1090,20 +1090,20 @@ watch(isHomePage, (newVal) => {
                 </div>
               </div>
               <p class="mb-6 text-lg text-[rgb(var(--text-body))]">
-                Custom mRNA design programs for pharma and biotech companies.
+                Custom mRNA design programs for pharma and biotech. Higher-value engagements with milestone-based upside.
               </p>
               <ul class="space-y-3 text-sm mb-8">
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-purple-500"></span>
-                  Custom programs
+                  Per-program engagement
                 </li>
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-purple-500"></span>
-                  Per-program + milestones
+                  Milestone + royalty structure
                 </li>
                 <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
                   <span class="h-1.5 w-1.5 rounded-full bg-purple-500"></span>
-                  Dedicated support
+                  Dedicated support team
                 </li>
               </ul>
               <RouterLink to="/contact" class="inline-flex items-center gap-2 text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors">
