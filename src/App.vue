@@ -893,25 +893,25 @@ watch(isHomePage, (newVal) => {
         <!-- Left Column - Hero Content -->
         <div class="hero-content relative flex-1 flex flex-col justify-center py-12 lg:py-0 text-center lg:text-left lg:pr-8">
           <!-- Badge -->
-          <div class="hero-badge mb-6 lg:mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 backdrop-blur-sm self-center lg:self-start">
+          <div class="hero-badge mb-6 lg:mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-4 py-2 backdrop-blur-sm self-center lg:self-start">
             <span class="relative flex h-2 w-2">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-500 dark:bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-600 dark:bg-cyan-500"></span>
             </span>
-            <span class="text-sm font-medium text-cyan-300">mRNA Therapeutics AI Platform</span>
+            <span class="text-sm font-medium text-cyan-700 dark:text-cyan-300">mRNA Therapeutics AI Platform</span>
           </div>
 
           <!-- Hero text -->
           <h1 class="mb-6 lg:mb-8 text-4xl font-bold leading-tight tracking-tight text-[rgb(var(--text-heading))] md:text-5xl lg:text-6xl xl:text-7xl">
             <span class="hero-word block">AI Co-Scientist for</span>
             <span class="hero-word block">
-              <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">mRNA Therapeutics</span>
+              <span class="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 dark:from-cyan-400 dark:via-teal-400 dark:to-emerald-400 bg-clip-text text-transparent">mRNA Therapeutics</span>
             </span>
           </h1>
 
           <p class="hero-subtext mb-8 lg:mb-10 max-w-xl text-base text-[rgb(var(--text-body))] md:text-lg lg:text-xl mx-auto lg:mx-0">
-            The first equivariant foundation model for mRNA design (<span class="text-emerald-400 font-medium">NeurIPS 2025</span>), powering an AI co-scientist platform for the
-            <span class="text-cyan-400 font-semibold">$50B+ mRNA therapeutics market</span>.
+            The first equivariant foundation model for mRNA design (<span class="text-emerald-600 dark:text-emerald-400 font-medium">NeurIPS 2025</span>), powering an AI co-scientist platform for the
+            <span class="text-cyan-600 dark:text-cyan-400 font-semibold">$50B+ mRNA therapeutics market</span>.
           </p>
 
           <div class="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -937,15 +937,15 @@ watch(isHomePage, (newVal) => {
           <!-- Key Stats Row -->
           <div class="mt-10 lg:mt-12 grid grid-cols-3 gap-4 lg:gap-8">
             <div class="hero-stat text-center lg:text-left">
-              <div class="text-2xl lg:text-3xl font-bold text-cyan-400">~10%</div>
+              <div class="text-2xl lg:text-3xl font-bold text-cyan-600 dark:text-cyan-400">~10%</div>
               <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Better expression prediction accuracy</div>
             </div>
             <div class="hero-stat text-center">
-              <div class="text-2xl lg:text-3xl font-bold text-emerald-400">~4x</div>
+              <div class="text-2xl lg:text-3xl font-bold text-emerald-600 dark:text-emerald-400">~4x</div>
               <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Frechet BioDistance improvement</div>
             </div>
             <div class="hero-stat text-center lg:text-right">
-              <div class="text-2xl lg:text-3xl font-bold text-teal-400">NeurIPS '25</div>
+              <div class="text-2xl lg:text-3xl font-bold text-teal-600 dark:text-teal-400">NeurIPS '25</div>
               <div class="text-xs lg:text-sm text-[rgb(var(--text-muted))]">Peer-reviewed publication</div>
             </div>
           </div>
@@ -1024,7 +1024,7 @@ watch(isHomePage, (newVal) => {
     <section id="solutions" class="relative z-10 px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-300 backdrop-blur-sm">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-600/40 dark:border-emerald-500/30 bg-emerald-500/15 dark:bg-emerald-500/10 px-5 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-300 backdrop-blur-sm">
             <span class="relative flex h-2 w-2">
               <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -1032,7 +1032,7 @@ watch(isHomePage, (newVal) => {
             Get Started
           </span>
           <h2 class="mb-4 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl">
-            Two Ways <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">We Solve It</span>
+            Two Ways <span class="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 dark:from-cyan-400 dark:via-teal-400 dark:to-emerald-400 bg-clip-text text-transparent">We Solve It</span>
           </h2>
         </div>
 
@@ -1121,7 +1121,7 @@ watch(isHomePage, (newVal) => {
     <section class="relative z-10 px-6 py-32 reveal-section">
       <div class="mx-auto max-w-6xl">
         <div class="mb-16 text-center">
-          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-sm font-medium text-teal-300 backdrop-blur-sm">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-600/40 dark:border-teal-500/30 bg-teal-500/15 dark:bg-teal-500/10 px-5 py-2 text-sm font-medium text-teal-700 dark:text-teal-300 backdrop-blur-sm">
             <span class="relative flex h-2 w-2">
               <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"></span>
               <span class="relative inline-flex h-2 w-2 rounded-full bg-teal-500"></span>
@@ -1129,7 +1129,7 @@ watch(isHomePage, (newVal) => {
             Our Advantage
           </span>
           <h2 class="mb-4 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl">
-            Why <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">DeepBio Scientific</span>
+            Why <span class="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 dark:from-cyan-400 dark:via-teal-400 dark:to-emerald-400 bg-clip-text text-transparent">DeepBio Scientific</span>
           </h2>
         </div>
 
@@ -1199,7 +1199,7 @@ watch(isHomePage, (newVal) => {
       <div class="relative mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-6xl">
           Join Us in Building a
-          <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">Disease-Free World</span>
+          <span class="bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 dark:from-cyan-400 dark:via-teal-400 dark:to-emerald-400 bg-clip-text text-transparent animate-gradient">Disease-Free World</span>
         </h2>
         <p class="mx-auto mb-12 max-w-2xl text-xl text-[rgb(var(--text-primary))]">
           Partner with us to accelerate your therapeutic program from concept to clinic.
