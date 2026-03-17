@@ -4,21 +4,21 @@ import gsap from 'gsap'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Research & Publications — AI Drug Discovery Science',
-  description: 'Peer-reviewed research in drug-target interaction, mRNA language models, fair machine learning, and large language models. Explore our scientific foundation and publications.',
+  title: 'Research & Publications — mRNA Foundation Models & Drug Discovery',
+  description: 'Peer-reviewed research powering Equi-mRNA and the Helixir AI platform. NeurIPS 2025 publication on equivariant mRNA language models, drug-target interaction, and molecular design.',
   path: '/research',
 })
 
 // Publications from Google Scholar (https://scholar.google.com/citations?user=0RKzNtIAAAAJ&hl=en)
 const publications = [
-  // 2025
+  // 2025 — Drug Discovery & mRNA first
   {
     title: 'Equi-mRNA: Protein Translation Equivariant Encoding for mRNA Language Models',
     authors: 'Yazdani-Jahromi M., Khodabandeh Yalabadi A., Garibay O.O.',
     journal: 'NeurIPS',
     year: 2025,
     citations: 1,
-    color: 'cyan',
+    color: 'purple',
     url: 'https://arxiv.org/abs/2508.15103',
   },
   {
@@ -31,22 +31,13 @@ const publications = [
     url: 'https://academic.oup.com/bioinformaticsadvances/article/5/1/vbaf137/8159881',
   },
   {
-    title: 'FairContrast: Enhancing Fairness through Contrastive Learning and Customized Augmenting Methods on Tabular Data',
-    authors: 'Tayebi A., Khodabandeh Yalabadi A., Yazdani-Jahromi M., Garibay O.O.',
+    title: 'Predicting Through Generation: Why Generation is Better for Prediction',
+    authors: 'Kowsher M., Prottasha N.J., Bhat P., Yu C.N., Soltanalian M., Garibay I., Garibay O.',
     journal: 'arXiv',
     year: 2025,
-    citations: 0,
-    color: 'emerald',
-    url: 'https://arxiv.org/abs/2510.02017',
-  },
-  {
-    title: 'Evaluating Fairness and Bias in Large Language Models for Tabular Data',
-    authors: 'Tayebi A., Garibay O.O.',
-    journal: 'AAAI',
-    year: 2025,
-    citations: 2,
-    color: 'emerald',
-    url: 'https://dl.acm.org/doi/10.1007/978-3-031-93415-5_7',
+    citations: 1,
+    color: 'blue',
+    url: 'https://arxiv.org/abs/2502.17817',
   },
   {
     title: 'LLM-Mixer: Multiscale Mixing in LLMs for Time Series Forecasting',
@@ -58,13 +49,22 @@ const publications = [
     url: 'https://arxiv.org/abs/2410.11674',
   },
   {
-    title: 'Predicting Through Generation: Why Generation is Better for Prediction',
-    authors: 'Kowsher M., Prottasha N.J., Bhat P., Yu C.N., Soltanalian M., Garibay I., Garibay O.',
+    title: 'Evaluating Fairness and Bias in Large Language Models for Tabular Data',
+    authors: 'Tayebi A., Garibay O.O.',
+    journal: 'AAAI',
+    year: 2025,
+    citations: 2,
+    color: 'emerald',
+    url: 'https://dl.acm.org/doi/10.1007/978-3-031-93415-5_7',
+  },
+  {
+    title: 'FairContrast: Enhancing Fairness through Contrastive Learning and Customized Augmenting Methods on Tabular Data',
+    authors: 'Tayebi A., Khodabandeh Yalabadi A., Yazdani-Jahromi M., Garibay O.O.',
     journal: 'arXiv',
     year: 2025,
-    citations: 1,
-    color: 'blue',
-    url: 'https://arxiv.org/abs/2502.17817',
+    citations: 0,
+    color: 'emerald',
+    url: 'https://arxiv.org/abs/2510.02017',
   },
   // 2024
   {
@@ -247,29 +247,28 @@ const totalPublications = computed(() => publications.length)
 
 const focusAreas = [
   {
+    title: 'mRNA Foundation Models',
+    description: 'Equivariant language models for mRNA sequence design. SO(2) codon symmetry encoding for expression prediction, stability optimization, and sequence generation.',
+    color: 'purple',
+  },
+  {
     title: 'Drug-Target Interaction',
     description: 'Interpretable AI models for drug discovery, including attention-based DTI prediction, binding site analysis, and molecular generation.',
     color: 'cyan',
   },
-  // {
-  //   title: 'Fairness in Machine Learning',
-  //   description: 'Novel approaches to algorithmic fairness using GANs, game theory, contrastive learning, and quantum computing.',
-  //   color: 'emerald',
-  // },
   {
-    title: 'Large Language Models',
-    description: 'Parameter-efficient fine-tuning, time series forecasting, and architectural innovations in transformers.',
+    title: 'Foundation Model Architecture',
+    description: 'Transformer innovations, parameter-efficient fine-tuning, and generative approaches powering our biological language models.',
     color: 'blue',
-  },
-  {
-    title: 'Evolutionary Computation & COVID-19',
-    description: 'Foundational work on modular genetic algorithms, agent-based modeling, and pandemic containment strategies.',
-    color: 'teal',
   },
 ]
 
 // Color classes helper for dynamic styling
 const colorClasses: Record<string, { badge: string; icon: string }> = {
+  purple: {
+    badge: 'bg-purple-500/10 text-purple-400 ring-purple-500/30',
+    icon: 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-purple-500/30 text-purple-400',
+  },
   cyan: {
     badge: 'bg-cyan-500/10 text-cyan-400 ring-cyan-500/30',
     icon: 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30 text-cyan-400',
@@ -343,15 +342,15 @@ onMounted(() => {
           Scientific <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Foundation</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Our platform is built on peer-reviewed research in <span class="text-cyan-400">drug discovery</span>, 
-          <span class="text-emerald-400">fair machine learning</span>, and <span class="text-blue-400">large language models</span>.
+          Our platform is built on peer-reviewed research in <span class="text-cyan-400">mRNA foundation models</span>,
+          <span class="text-purple-400">drug-target interaction</span>, and <span class="text-blue-400">molecular design</span>.
         </p>
         
         <!-- Research Stats -->
         <div class="hero-title mt-12 flex flex-wrap items-center gap-8">
           <div class="text-center">
-            <div class="text-4xl font-bold text-purple-400">1</div>
-            <div class="text-sm text-[rgb(var(--text-muted))]">NeurIPS 2025 Publication</div>
+            <div class="text-3xl font-bold text-purple-400">NeurIPS '25</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Peer-Reviewed Publication</div>
           </div>
           <div class="text-center">
             <div class="text-4xl font-bold text-cyan-400">{{ totalPublications }}+</div>
@@ -385,6 +384,7 @@ onMounted(() => {
               <div 
                 class="flex h-12 w-12 items-center justify-center rounded-xl ring-1"
                 :class="[
+                  area.color === 'purple' ? 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-purple-500/30' : '',
                   area.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30' : '',
                   area.color === 'teal' ? 'bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-teal-500/30' : '',
                   area.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-emerald-500/30' : '',

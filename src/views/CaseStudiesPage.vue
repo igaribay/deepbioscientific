@@ -5,8 +5,8 @@ import { useTheme } from '@/composables/useTheme'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Case Studies — AI-Designed Therapeutics',
-  description: 'Explore AI-designed therapeutics with interactive 3D molecular viewers. See proven results including COVID-19 drug discovery, GPR-139 agonist design, and Equi-mRNA benchmarks.',
+  title: 'Research Highlights — AI-Designed Therapeutics',
+  description: 'Explore our research highlights with interactive 3D molecular viewers. Equi-mRNA foundation model benchmarks, de novo peptide design, and drug-target interaction studies.',
   path: '/case-studies',
 })
 
@@ -300,42 +300,24 @@ const drugRepurposingData = {
 const caseStudies = [
   {
     id: 1,
-    title: 'COVID-19 Drug Discovery: CMP-Neu5Ac',
-    partner: 'University Lab',
-    category: 'Antiviral Discovery',
-    sequence: 'CC(=O)N[C@@H]1[C@@H](O)C[C@@](OC2O[C@H](COP(O)(=O)O)[C@@H](O)[C@H]2O)(C(O)=O)O[C@H]1[C@H](O)[C@H](O)CO',
-    moleculeType: 'smallMolecule',
-    description: 'Identified Cytidine-5\'-monophospho-N-acetylneuraminic acid sodium salt (CMP-Neu5Ac) as a SARS-CoV-2 Spike Protein inhibitor through AI-driven molecular docking. Wet lab validated by University Materials Science Lab.',
+    title: 'Equi-mRNA: mRNA Expression & Stability Prediction',
+    partner: 'NeurIPS 2025 Publication',
+    category: 'mRNA Foundation Model',
+    sequence: 'AUG·GCU·GAA·UGC·AAA·GGU·CUG·UAC·CAG·UUG·...',
+    moleculeType: 'mrnaVisualization',
+    description: 'The first codon-level equivariant mRNA language model. Encodes synonymous codon symmetries using SO(2) group theory. 15M parameters outperform 82M-param models across 6 biological benchmarks. Trained on 25M protein-coding sequences.',
     results: [
-      { metric: 'Validated', label: 'Wet Lab Confirmation' },
-      { metric: 'Spike RBD', label: 'Target Binding Site' },
-      { metric: 'In Vitro', label: 'Confirmed Inhibition' },
+      { metric: '0.855', label: 'Best mRFP Score' },
+      { metric: '4.3x', label: 'Generative Fidelity (FBD)' },
+      { metric: '15M', label: 'Params (beats 82M)' },
     ],
-    color: 'purple',
-    gradient: 'from-purple-500 to-blue-500',
-    pdbKey: 'cmpNeu5Ac',
-    viewerStyle: { stick: { colorscheme: 'purpleCarbon', radius: 0.2 }, sphere: { colorscheme: 'Jmol', scale: 0.25 } }
-  },
-  {
-    id: 2,
-    title: 'COVID-19 Drug Repurposing: FDA-Approved Antivirals',
-    partner: 'AttentionSite-Augmented DeepDTA',
-    category: 'Drug Repurposing',
-    sequence: '',
-    moleculeType: 'drugTable',
-    description: 'Top FDA-approved antiviral drugs predicted by AttentionSite-Augmented DeepDTA model to have highest affinity scores with 4 SARS-CoV-2 genome sequences. Identified candidates like Fosamprenavir, Elvitegravir, and Ritonavir as potential COVID-19 treatments.',
-    results: [
-      { metric: '3416', label: 'FDA Drugs Screened' },
-      { metric: '4', label: 'Viral Targets' },
-      { metric: '85', label: 'Antivirals Ranked' },
-    ],
-    color: 'emerald',
-    gradient: 'from-emerald-500 to-teal-500',
+    color: 'cyan',
+    gradient: 'from-cyan-500 to-purple-500',
     pdbKey: null,
     viewerStyle: null
   },
   {
-    id: 3,
+    id: 2,
     title: 'GPR-139 Selective Agonist: De Novo Design',
     partner: 'DeepBio Scientific AI Platform',
     category: 'De Novo Peptide Design',
@@ -353,20 +335,38 @@ const caseStudies = [
     viewerStyle: { cartoon: { color: 'spectrum' }, stick: { colorscheme: 'orangeCarbon', radius: 0.15 } }
   },
   {
-    id: 4,
-    title: 'Equi-mRNA: mRNA Expression & Stability Prediction',
-    partner: 'NeurIPS 2025 Publication',
-    category: 'mRNA Language Model',
-    sequence: 'AUG·GCU·GAA·UGC·AAA·GGU·CUG·UAC·CAG·UUG·...',
-    moleculeType: 'mrnaVisualization',
-    description: 'Equi-mRNA is the first codon-level equivariant mRNA language model that explicitly encodes synonymous codon symmetries using SO(2) group theory. With only 15M parameters, it outperforms models 100x larger across multiple mRNA benchmarks.',
+    id: 3,
+    title: 'COVID-19 Drug Discovery: CMP-Neu5Ac',
+    partner: 'University Lab',
+    category: 'Antiviral Discovery',
+    sequence: 'CC(=O)N[C@@H]1[C@@H](O)C[C@@](OC2O[C@H](COP(O)(=O)O)[C@@H](O)[C@H]2O)(C(O)=O)O[C@H]1[C@H](O)[C@H](O)CO',
+    moleculeType: 'smallMolecule',
+    description: 'Identified Cytidine-5\'-monophospho-N-acetylneuraminic acid sodium salt (CMP-Neu5Ac) as a SARS-CoV-2 Spike Protein inhibitor through AI-driven molecular docking. Wet lab validated by University Materials Science Lab.',
     results: [
-      { metric: '0.855', label: 'Best mRFP Score' },
-      { metric: '0.764', label: 'Best Tc-Ribo Score' },
-      { metric: '15M', label: 'Parameters (vs 1.6B)' },
+      { metric: 'Validated', label: 'Wet Lab Confirmation' },
+      { metric: 'Spike RBD', label: 'Target Binding Site' },
+      { metric: 'In Vitro', label: 'Confirmed Inhibition' },
     ],
-    color: 'cyan',
-    gradient: 'from-cyan-500 to-purple-500',
+    color: 'purple',
+    gradient: 'from-purple-500 to-blue-500',
+    pdbKey: 'cmpNeu5Ac',
+    viewerStyle: { stick: { colorscheme: 'purpleCarbon', radius: 0.2 }, sphere: { colorscheme: 'Jmol', scale: 0.25 } }
+  },
+  {
+    id: 4,
+    title: 'COVID-19 Drug Repurposing: FDA-Approved Antivirals',
+    partner: 'AttentionSite-Augmented DeepDTA',
+    category: 'Drug Repurposing',
+    sequence: '',
+    moleculeType: 'drugTable',
+    description: 'Top FDA-approved antiviral drugs predicted by AttentionSite-Augmented DeepDTA model to have highest affinity scores with 4 SARS-CoV-2 genome sequences. Identified candidates like Fosamprenavir, Elvitegravir, and Ritonavir as potential COVID-19 treatments.',
+    results: [
+      { metric: '3416', label: 'FDA Drugs Screened' },
+      { metric: '4', label: 'Viral Targets' },
+      { metric: '85', label: 'Antivirals Ranked' },
+    ],
+    color: 'emerald',
+    gradient: 'from-emerald-500 to-teal-500',
     pdbKey: null,
     viewerStyle: null
   },
@@ -611,16 +611,16 @@ onUnmounted(() => {
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
           </span>
-          <span class="text-sm font-medium text-amber-300">Case Studies</span>
+          <span class="text-sm font-medium text-amber-300">Research Highlights</span>
         </div>
-        
+
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Proven <span class="bg-gradient-to-r from-amber-400 via-orange-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Results</span>
+          Research <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent animate-gradient">Highlights</span>
         </h1>
-        
+
         <p class="hero-title mx-auto max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Explore our <span class="text-cyan-400">AI-designed therapeutics</span> with interactive 3D molecular viewers. 
-          Rotate, zoom, and examine the structures that are advancing medicine.
+          Explore our <span class="text-cyan-400">peer-reviewed research</span> with interactive 3D molecular viewers.
+          From mRNA foundation models to de novo drug design.
         </p>
         
         <!-- Interactive hint -->
