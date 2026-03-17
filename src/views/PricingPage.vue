@@ -30,8 +30,8 @@ onMounted(() => {
   <div class="min-h-screen pt-24 relative overflow-hidden">
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      <div class="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse"></div>
-      <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-[120px] animate-pulse"></div>
+      <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 1s"></div>
       <div class="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
     </div>
 
@@ -40,7 +40,7 @@ onMounted(() => {
       <div class="mx-auto max-w-4xl text-center">
         <h1 class="pricing-hero-title mb-6 text-4xl font-bold text-[rgb(var(--text-heading))] md:text-5xl lg:text-6xl leading-tight">
           Two Ways to
-          <span class="block mt-2 bg-gradient-to-r from-cyan-400 via-teal-400 to-purple-400 bg-clip-text text-transparent">Get Started</span>
+          <span class="block mt-2 bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-teal-600 dark:via-teal-400 to-purple-600 dark:to-purple-400 bg-clip-text text-transparent">Get Started</span>
         </h1>
         <p class="pricing-hero-sub mx-auto max-w-2xl text-lg text-[rgb(var(--text-body))] leading-relaxed md:text-xl">
           Self-service AI for researchers, or custom partnerships for pharma programs.
@@ -54,10 +54,10 @@ onMounted(() => {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           <!-- Researchers -->
-          <div class="pricing-column rounded-3xl border border-cyan-500/30 bg-[rgb(var(--bg-card))/0.8] p-10 relative overflow-hidden">
+          <div class="pricing-column rounded-3xl border border-cyan-600/40 dark:border-cyan-500/30 bg-[rgb(var(--bg-card))/0.8] p-10 relative overflow-hidden">
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-teal-500"></div>
             <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/15">
-              <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-7 h-7 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
               </svg>
             </div>
@@ -66,15 +66,15 @@ onMounted(() => {
 
             <ul class="space-y-3 text-sm mb-10">
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 Self-serve access
               </li>
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 Codon optimization & stability prediction
               </li>
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 No credit card required
               </li>
             </ul>
@@ -88,10 +88,10 @@ onMounted(() => {
           </div>
 
           <!-- Pharma -->
-          <div class="pricing-column rounded-3xl border border-purple-500/30 bg-[rgb(var(--bg-card))/0.8] p-10 relative overflow-hidden">
+          <div class="pricing-column rounded-3xl border border-purple-600/40 dark:border-purple-500/30 bg-[rgb(var(--bg-card))/0.8] p-10 relative overflow-hidden">
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-violet-500"></div>
             <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-500/15">
-              <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-7 h-7 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
             </div>
@@ -100,15 +100,15 @@ onMounted(() => {
 
             <ul class="space-y-3 text-sm mb-10">
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-purple-600 dark:text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 Custom mRNA design programs
               </li>
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-purple-600 dark:text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 Dedicated support team
               </li>
               <li class="flex items-center gap-3 text-[rgb(var(--text-primary))]">
-                <svg class="h-5 w-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <svg class="h-5 w-5 text-purple-600 dark:text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 Per-program + milestone pricing
               </li>
             </ul>
@@ -135,7 +135,7 @@ onMounted(() => {
           </p>
           <RouterLink
             to="/contact"
-            class="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+            class="inline-flex items-center gap-2 text-sm font-medium text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:text-cyan-300 transition-colors"
           >
             Talk to our team
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>

@@ -580,9 +580,9 @@ onUnmounted(() => {
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
@@ -606,20 +606,20 @@ onUnmounted(() => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl text-center">
         <!-- Badge -->
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-amber-600/40 dark:border-amber-500/30 bg-amber-500/15 dark:bg-amber-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
           </span>
-          <span class="text-sm font-medium text-amber-300">Research Highlights</span>
+          <span class="text-sm font-medium text-amber-700 dark:text-amber-300">Research Highlights</span>
         </div>
 
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Research <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent animate-gradient">Highlights</span>
+          Research <span class="bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-purple-600 dark:via-purple-400 to-amber-600 dark:to-amber-400 bg-clip-text text-transparent animate-gradient">Highlights</span>
         </h1>
 
         <p class="hero-title mx-auto max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Explore our <span class="text-cyan-400">peer-reviewed research</span> with interactive 3D molecular viewers.
+          Explore our <span class="text-cyan-600 dark:text-cyan-400">peer-reviewed research</span> with interactive 3D molecular viewers.
           From mRNA foundation models to de novo drug design.
         </p>
         
@@ -672,11 +672,11 @@ onUnmounted(() => {
                     <span 
                       class="rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide uppercase ring-1"
                       :class="[
-                        study.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400 ring-cyan-500/30' : '',
-                        study.color === 'purple' ? 'bg-purple-500/10 text-purple-400 ring-purple-500/30' : '',
-                        study.color === 'pink' ? 'bg-blue-500/10 text-blue-400 ring-blue-500/30' : '',
-                        study.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 ring-emerald-500/30' : '',
-                        study.color === 'amber' ? 'bg-amber-500/10 text-amber-400 ring-amber-500/30' : '',
+                        study.color === 'cyan' ? 'bg-cyan-500/15 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 ring-cyan-500/30' : '',
+                        study.color === 'purple' ? 'bg-purple-500/15 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-purple-500/30' : '',
+                        study.color === 'pink' ? 'bg-blue-500/15 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/30' : '',
+                        study.color === 'emerald' ? 'bg-emerald-500/15 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/30' : '',
+                        study.color === 'amber' ? 'bg-amber-500/15 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/30' : '',
                       ]"
                     >
                       {{ study.category }}
@@ -697,11 +697,11 @@ onUnmounted(() => {
                     <p class="text-xs text-[rgb(var(--text-muted))] uppercase tracking-wider mb-2">{{ study.moleculeType === 'smallMolecule' ? 'SMILES Structure' : 'Peptide Sequence' }}</p>
                     <p class="font-mono text-sm tracking-wider break-all"
                       :class="[
-                        study.color === 'cyan' ? 'text-cyan-400' : '',
-                        study.color === 'purple' ? 'text-purple-400' : '',
-                        study.color === 'pink' ? 'text-blue-400' : '',
-                        study.color === 'emerald' ? 'text-emerald-400' : '',
-                        study.color === 'amber' ? 'text-amber-400' : '',
+                        study.color === 'cyan' ? 'text-cyan-600 dark:text-cyan-400' : '',
+                        study.color === 'purple' ? 'text-purple-600 dark:text-purple-400' : '',
+                        study.color === 'pink' ? 'text-blue-600 dark:text-blue-400' : '',
+                        study.color === 'emerald' ? 'text-emerald-600 dark:text-emerald-400' : '',
+                        study.color === 'amber' ? 'text-amber-600 dark:text-amber-400' : '',
                       ]"
                     >
                       {{ study.sequence }}
@@ -715,21 +715,21 @@ onUnmounted(() => {
                       :key="result.label" 
                       class="text-center p-4 rounded-xl bg-[rgb(var(--bg-card-muted))/0.3] border border-[rgb(var(--border-muted))/0.3] transition-all duration-300 hover:scale-105"
                       :class="[
-                        study.color === 'cyan' ? 'hover:border-cyan-500/30' : '',
-                        study.color === 'purple' ? 'hover:border-purple-500/30' : '',
-                        study.color === 'pink' ? 'hover:border-blue-500/30' : '',
-                        study.color === 'emerald' ? 'hover:border-emerald-500/30' : '',
-                        study.color === 'amber' ? 'hover:border-amber-500/30' : '',
+                        study.color === 'cyan' ? 'hover:border-cyan-600/40 dark:border-cyan-500/30' : '',
+                        study.color === 'purple' ? 'hover:border-purple-600/40 dark:border-purple-500/30' : '',
+                        study.color === 'pink' ? 'hover:border-blue-600/40 dark:border-blue-500/30' : '',
+                        study.color === 'emerald' ? 'hover:border-emerald-600/40 dark:border-emerald-500/30' : '',
+                        study.color === 'amber' ? 'hover:border-amber-600/40 dark:border-amber-500/30' : '',
                       ]"
                     >
                       <div 
                         class="text-2xl lg:text-3xl font-bold mb-1"
                         :class="[
-                          study.color === 'cyan' ? 'text-cyan-400' : '',
-                          study.color === 'purple' ? 'text-purple-400' : '',
-                          study.color === 'pink' ? 'text-blue-400' : '',
-                          study.color === 'emerald' ? 'text-emerald-400' : '',
-                          study.color === 'amber' ? 'text-amber-400' : '',
+                          study.color === 'cyan' ? 'text-cyan-600 dark:text-cyan-400' : '',
+                          study.color === 'purple' ? 'text-purple-600 dark:text-purple-400' : '',
+                          study.color === 'pink' ? 'text-blue-600 dark:text-blue-400' : '',
+                          study.color === 'emerald' ? 'text-emerald-600 dark:text-emerald-400' : '',
+                          study.color === 'amber' ? 'text-amber-600 dark:text-amber-400' : '',
                         ]"
                       >
                         {{ result.metric }}
@@ -752,7 +752,7 @@ onUnmounted(() => {
                           @click="selectedTarget = target"
                           class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
                           :class="selectedTarget === target 
-                            ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/50' 
+                            ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/50' 
                             : 'bg-[rgb(var(--bg-card-muted))/0.5] text-[rgb(var(--text-body))] hover:bg-[rgb(var(--border-muted))/0.5]'"
                         >
                           {{ target }}
@@ -778,16 +778,16 @@ onUnmounted(() => {
                             >
                               <td class="py-2 px-2 text-[rgb(var(--text-heading))] font-medium text-xs">
                                 <span class="inline-flex items-center gap-2">
-                                  <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">{{ idx + 1 }}</span>
+                                  <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs flex items-center justify-center font-bold">{{ idx + 1 }}</span>
                                   {{ drug.drug }}
                                 </span>
                               </td>
                               <td class="py-2 px-2 text-center">
-                                <span class="text-emerald-400 font-mono font-bold">{{ drug.pIC50.toFixed(2) }}</span>
+                                <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">{{ drug.pIC50.toFixed(2) }}</span>
                               </td>
                               <td class="py-2 px-2 text-center text-[rgb(var(--text-primary))]">#{{ drug.rankFDA }}</td>
                               <td class="py-2 px-2 text-center">
-                                <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">#{{ drug.rankAntiviral }}</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium">#{{ drug.rankAntiviral }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -797,7 +797,7 @@ onUnmounted(() => {
                       <!-- Table Footer -->
                       <div class="mt-4 pt-3 border-t border-[rgb(var(--border-muted))/0.5] flex items-center justify-between">
                         <p class="text-xs text-[rgb(var(--text-muted))]">Top 5 candidates for {{ selectedTarget }} target</p>
-                        <div class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/20 text-emerald-300">
+                        <div class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">
                           <span class="inline-block w-2 h-2 rounded-full animate-pulse mr-2 bg-emerald-400"></span>
                           AI Predictions
                         </div>
@@ -810,7 +810,7 @@ onUnmounted(() => {
                       class="relative rounded-2xl overflow-hidden border border-[rgb(var(--border-muted))/0.5] bg-[rgb(var(--bg-card))/0.8] p-4 shadow-lg shadow-cyan-500/10"
                     >
                       <h4 class="text-lg font-semibold text-[rgb(var(--text-heading))] mb-4 flex items-center gap-2">
-                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
                         Benchmark Results
@@ -879,21 +879,21 @@ onUnmounted(() => {
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-body))]">0.822</td>
                             </tr>
                             <!-- Equi-mRNA (Ours) -->
-                            <tr class="border-b border-cyan-500/30 bg-cyan-500/5">
-                              <td class="py-1.5 px-1 text-cyan-300 font-semibold">Equi-mRNA (5M)</td>
+                            <tr class="border-b border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/5">
+                              <td class="py-1.5 px-1 text-cyan-700 dark:text-cyan-300 font-semibold">Equi-mRNA (5M)</td>
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.581</td>
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.705</td>
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.519</td>
-                              <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.764</td>
+                              <td class="py-1.5 px-1 text-center font-bold text-cyan-600 dark:text-cyan-400">0.764</td>
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.853</td>
                             </tr>
                             <tr class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10">
-                              <td class="py-1.5 px-1 text-cyan-300 font-bold">Equi-mRNA (15M)</td>
-                              <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.613</td>
-                              <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.710</td>
-                              <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.537</td>
+                              <td class="py-1.5 px-1 text-cyan-700 dark:text-cyan-300 font-bold">Equi-mRNA (15M)</td>
+                              <td class="py-1.5 px-1 text-center font-bold text-cyan-600 dark:text-cyan-400">0.613</td>
+                              <td class="py-1.5 px-1 text-center font-bold text-cyan-600 dark:text-cyan-400">0.710</td>
+                              <td class="py-1.5 px-1 text-center font-bold text-cyan-600 dark:text-cyan-400">0.537</td>
                               <td class="py-1.5 px-1 text-center text-[rgb(var(--text-primary))]">0.737</td>
-                              <td class="py-1.5 px-1 text-center font-bold text-cyan-400">0.855</td>
+                              <td class="py-1.5 px-1 text-center font-bold text-cyan-600 dark:text-cyan-400">0.855</td>
                             </tr>
                           </tbody>
                         </table>
@@ -906,7 +906,7 @@ onUnmounted(() => {
                           href="https://arxiv.org/abs/2508.15103" 
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
+                          class="inline-flex items-center gap-1 text-xs text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:text-cyan-300 transition-colors"
                         >
                           NeurIPS 2025 Paper
                           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -975,10 +975,10 @@ onUnmounted(() => {
                         <div 
                           class="px-3 py-1.5 rounded-lg text-xs font-medium backdrop-blur-sm"
                           :class="[
-                            study.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-300' : '',
-                            study.color === 'purple' ? 'bg-purple-500/20 text-purple-300' : '',
-                            study.color === 'pink' ? 'bg-blue-500/20 text-blue-300' : '',
-                            study.color === 'amber' ? 'bg-amber-500/20 text-amber-300' : '',
+                            study.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-700 dark:text-cyan-300' : '',
+                            study.color === 'purple' ? 'bg-purple-500/20 text-purple-700 dark:text-purple-300' : '',
+                            study.color === 'pink' ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300' : '',
+                            study.color === 'amber' ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300' : '',
                           ]"
                         >
                           <span class="inline-block w-2 h-2 rounded-full animate-pulse mr-2"
@@ -1029,7 +1029,7 @@ onUnmounted(() => {
     <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-32">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-16">
-          <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
+          <span class="mb-4 inline-block rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-700 dark:text-cyan-300">
             Testimonials
           </span>
           <h2 class="text-3xl font-bold text-white md:text-4xl">What Partners Say</h2>
@@ -1078,7 +1078,7 @@ onUnmounted(() => {
           
           <div class="relative">
             <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">
-              Ready to Start Your <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">Success Story</span>?
+              Ready to Start Your <span class="bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-purple-600 dark:via-purple-400 to-blue-600 dark:to-blue-400 bg-clip-text text-transparent">Success Story</span>?
             </h2>
             <p class="mb-8 text-lg text-[rgb(var(--text-body))] max-w-2xl mx-auto">
               Join leading pharmaceutical and biotech companies using DeepBio Scientific to accelerate therapeutic discovery with AI-powered molecular design.
