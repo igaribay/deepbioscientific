@@ -4,21 +4,21 @@ import gsap from 'gsap'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'Research & Publications — AI Drug Discovery Science',
-  description: 'Peer-reviewed research in drug-target interaction, mRNA language models, fair machine learning, and large language models. Explore our scientific foundation and publications.',
+  title: 'Research & Publications — mRNA Foundation Models & Drug Discovery',
+  description: 'Peer-reviewed research powering Equi-mRNA and the Helixir AI platform. NeurIPS 2025 publication on equivariant mRNA language models, drug-target interaction, and molecular design.',
   path: '/research',
 })
 
 // Publications from Google Scholar (https://scholar.google.com/citations?user=0RKzNtIAAAAJ&hl=en)
 const publications = [
-  // 2025
+  // 2025 — Drug Discovery & mRNA first
   {
     title: 'Equi-mRNA: Protein Translation Equivariant Encoding for mRNA Language Models',
     authors: 'Yazdani-Jahromi M., Khodabandeh Yalabadi A., Garibay O.O.',
     journal: 'NeurIPS',
     year: 2025,
     citations: 1,
-    color: 'cyan',
+    color: 'purple',
     url: 'https://arxiv.org/abs/2508.15103',
   },
   {
@@ -31,22 +31,13 @@ const publications = [
     url: 'https://academic.oup.com/bioinformaticsadvances/article/5/1/vbaf137/8159881',
   },
   {
-    title: 'FairContrast: Enhancing Fairness through Contrastive Learning and Customized Augmenting Methods on Tabular Data',
-    authors: 'Tayebi A., Khodabandeh Yalabadi A., Yazdani-Jahromi M., Garibay O.O.',
+    title: 'Predicting Through Generation: Why Generation is Better for Prediction',
+    authors: 'Kowsher M., Prottasha N.J., Bhat P., Yu C.N., Soltanalian M., Garibay I., Garibay O.',
     journal: 'arXiv',
     year: 2025,
-    citations: 0,
-    color: 'emerald',
-    url: 'https://arxiv.org/abs/2510.02017',
-  },
-  {
-    title: 'Evaluating Fairness and Bias in Large Language Models for Tabular Data',
-    authors: 'Tayebi A., Garibay O.O.',
-    journal: 'AAAI',
-    year: 2025,
-    citations: 2,
-    color: 'emerald',
-    url: 'https://dl.acm.org/doi/10.1007/978-3-031-93415-5_7',
+    citations: 1,
+    color: 'blue',
+    url: 'https://arxiv.org/abs/2502.17817',
   },
   {
     title: 'LLM-Mixer: Multiscale Mixing in LLMs for Time Series Forecasting',
@@ -58,13 +49,22 @@ const publications = [
     url: 'https://arxiv.org/abs/2410.11674',
   },
   {
-    title: 'Predicting Through Generation: Why Generation is Better for Prediction',
-    authors: 'Kowsher M., Prottasha N.J., Bhat P., Yu C.N., Soltanalian M., Garibay I., Garibay O.',
+    title: 'Evaluating Fairness and Bias in Large Language Models for Tabular Data',
+    authors: 'Tayebi A., Garibay O.O.',
+    journal: 'AAAI',
+    year: 2025,
+    citations: 2,
+    color: 'emerald',
+    url: 'https://dl.acm.org/doi/10.1007/978-3-031-93415-5_7',
+  },
+  {
+    title: 'FairContrast: Enhancing Fairness through Contrastive Learning and Customized Augmenting Methods on Tabular Data',
+    authors: 'Tayebi A., Khodabandeh Yalabadi A., Yazdani-Jahromi M., Garibay O.O.',
     journal: 'arXiv',
     year: 2025,
-    citations: 1,
-    color: 'blue',
-    url: 'https://arxiv.org/abs/2502.17817',
+    citations: 0,
+    color: 'emerald',
+    url: 'https://arxiv.org/abs/2510.02017',
   },
   // 2024
   {
@@ -247,44 +247,43 @@ const totalPublications = computed(() => publications.length)
 
 const focusAreas = [
   {
+    title: 'mRNA Foundation Models',
+    description: 'Equivariant language models for mRNA sequence design. SO(2) codon symmetry encoding for expression prediction, stability optimization, and sequence generation.',
+    color: 'purple',
+  },
+  {
     title: 'Drug-Target Interaction',
     description: 'Interpretable AI models for drug discovery, including attention-based DTI prediction, binding site analysis, and molecular generation.',
     color: 'cyan',
   },
-  // {
-  //   title: 'Fairness in Machine Learning',
-  //   description: 'Novel approaches to algorithmic fairness using GANs, game theory, contrastive learning, and quantum computing.',
-  //   color: 'emerald',
-  // },
   {
-    title: 'Large Language Models',
-    description: 'Parameter-efficient fine-tuning, time series forecasting, and architectural innovations in transformers.',
+    title: 'Foundation Model Architecture',
+    description: 'Transformer innovations, parameter-efficient fine-tuning, and generative approaches powering our biological language models.',
     color: 'blue',
-  },
-  {
-    title: 'Evolutionary Computation & COVID-19',
-    description: 'Foundational work on modular genetic algorithms, agent-based modeling, and pandemic containment strategies.',
-    color: 'teal',
   },
 ]
 
 // Color classes helper for dynamic styling
 const colorClasses: Record<string, { badge: string; icon: string }> = {
+  purple: {
+    badge: 'bg-purple-500/15 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-purple-500/30',
+    icon: 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-purple-500/30 text-purple-600 dark:text-purple-400',
+  },
   cyan: {
-    badge: 'bg-cyan-500/10 text-cyan-400 ring-cyan-500/30',
-    icon: 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30 text-cyan-400',
+    badge: 'bg-cyan-500/15 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 ring-cyan-500/30',
+    icon: 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30 text-cyan-600 dark:text-cyan-400',
   },
   emerald: {
-    badge: 'bg-emerald-500/10 text-emerald-400 ring-emerald-500/30',
-    icon: 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-emerald-500/30 text-emerald-400',
+    badge: 'bg-emerald-500/15 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/30',
+    icon: 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-emerald-500/30 text-emerald-600 dark:text-emerald-400',
   },
   blue: {
-    badge: 'bg-blue-500/10 text-blue-400 ring-blue-500/30',
-    icon: 'bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-blue-500/30 text-blue-400',
+    badge: 'bg-blue-500/15 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/30',
+    icon: 'bg-gradient-to-br from-blue-500/20 to-blue-500/5 ring-blue-500/30 text-blue-600 dark:text-blue-400',
   },
   teal: {
-    badge: 'bg-teal-500/10 text-teal-400 ring-teal-500/30',
-    icon: 'bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-teal-500/30 text-teal-400',
+    badge: 'bg-teal-500/15 dark:bg-teal-500/10 text-teal-600 dark:text-teal-400 ring-teal-500/30',
+    icon: 'bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-teal-500/30 text-teal-600 dark:text-teal-400',
   },
   slate: {
     badge: 'bg-slate-500/10 text-[rgb(var(--text-body))] ring-slate-500/30',
@@ -322,43 +321,43 @@ onMounted(() => {
   <div class="min-h-screen pt-24 relative overflow-hidden">
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse"></div>
-      <div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-teal-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-2/3 right-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-[100px] animate-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-teal-500/15 dark:bg-teal-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-2/3 right-1/4 w-64 h-64 bg-emerald-500/15 dark:bg-emerald-500/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s"></div>
       <div class="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
     </div>
 
     <!-- Hero -->
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl">
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
           </span>
-          <span class="text-sm font-medium text-cyan-300">Research & Publications</span>
+          <span class="text-sm font-medium text-cyan-700 dark:text-cyan-300">Research & Publications</span>
         </div>
         
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Scientific <span class="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Foundation</span>
+          Scientific <span class="bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-teal-600 dark:via-teal-400 to-emerald-600 dark:to-emerald-400 bg-clip-text text-transparent">Foundation</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Our platform is built on peer-reviewed research in <span class="text-cyan-400">drug discovery</span>, 
-          <span class="text-emerald-400">fair machine learning</span>, and <span class="text-blue-400">large language models</span>.
+          Our platform is built on peer-reviewed research in <span class="text-cyan-600 dark:text-cyan-400">mRNA foundation models</span>,
+          <span class="text-purple-600 dark:text-purple-400">drug-target interaction</span>, and <span class="text-blue-600 dark:text-blue-400">molecular design</span>.
         </p>
         
         <!-- Research Stats -->
         <div class="hero-title mt-12 flex flex-wrap items-center gap-8">
           <div class="text-center">
-            <div class="text-4xl font-bold text-purple-400">1</div>
-            <div class="text-sm text-[rgb(var(--text-muted))]">NeurIPS 2025 Publication</div>
+            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">NeurIPS '25</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Peer-Reviewed Publication</div>
           </div>
           <div class="text-center">
-            <div class="text-4xl font-bold text-cyan-400">{{ totalPublications }}+</div>
+            <div class="text-4xl font-bold text-cyan-600 dark:text-cyan-400">{{ totalPublications }}+</div>
             <div class="text-sm text-[rgb(var(--text-muted))]">Publications</div>
           </div>
           <div class="text-center">
-            <div class="text-4xl font-bold text-teal-400">{{ totalCitations.toLocaleString() }}+</div>
+            <div class="text-4xl font-bold text-teal-600 dark:text-teal-400">{{ totalCitations.toLocaleString() }}+</div>
             <div class="text-sm text-[rgb(var(--text-muted))]">Citations</div>
           </div>
         </div>
@@ -369,7 +368,7 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-16">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-300">
+          <span class="mb-4 inline-block rounded-full border border-teal-600/40 dark:border-teal-500/30 bg-teal-500/15 dark:bg-teal-500/10 px-4 py-1 text-sm font-medium text-teal-700 dark:text-teal-300">
             Research Areas
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Core Focus Areas</h2>
@@ -385,6 +384,7 @@ onMounted(() => {
               <div 
                 class="flex h-12 w-12 items-center justify-center rounded-xl ring-1"
                 :class="[
+                  area.color === 'purple' ? 'bg-gradient-to-br from-purple-500/20 to-purple-500/5 ring-purple-500/30' : '',
                   area.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-cyan-500/30' : '',
                   area.color === 'teal' ? 'bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-teal-500/30' : '',
                   area.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-emerald-500/30' : '',
@@ -408,7 +408,7 @@ onMounted(() => {
     <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="mb-8">
-          <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
+          <span class="mb-4 inline-block rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-700 dark:text-cyan-300">
             Publications
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))]">Recent Publications</h2>
@@ -420,14 +420,14 @@ onMounted(() => {
             href="https://arxiv.org/abs/2508.15103"
             target="_blank"
             rel="noopener noreferrer"
-            class="block rounded-2xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-500/10 via-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl transition-all duration-300 hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/10 group"
+            class="block rounded-2xl border-2 border-purple-600/40 dark:border-purple-500/30 bg-gradient-to-br from-purple-500/10 via-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl transition-all duration-300 hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/10 group"
           >
             <div class="flex items-center gap-3 mb-4">
-              <span class="inline-flex items-center gap-1.5 rounded-full bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-400 ring-1 ring-purple-500/30">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/30">
                 <span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
                 Featured
               </span>
-              <span class="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400 ring-1 ring-cyan-500/30">NeurIPS 2025</span>
+              <span class="rounded-full bg-cyan-500/15 dark:bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-600 dark:text-cyan-400 ring-1 ring-cyan-500/30">NeurIPS 2025</span>
             </div>
             <h3 class="text-xl font-bold text-[rgb(var(--text-heading))] mb-2 group-hover:text-purple-400 transition-colors">
               Equi-mRNA: Protein Translation Equivariant Encoding for mRNA Language Models
@@ -436,7 +436,7 @@ onMounted(() => {
             <p class="text-sm text-[rgb(var(--text-body))] leading-relaxed mb-4">
               The first codon-level equivariant mRNA language model that encodes synonymous codon symmetries as SO(2) cyclic subgroups — achieving ~10% better accuracy, ~4x more realistic constructs, and ~28% better functional property preservation.
             </p>
-            <span class="inline-flex items-center gap-2 text-sm font-medium text-purple-400 group-hover:text-purple-300 transition-colors">
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:text-purple-300 transition-colors">
               Read the full paper
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </span>
@@ -477,7 +477,7 @@ onMounted(() => {
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
-                <span :class="pub.citations >= 50 ? 'text-cyan-400 font-semibold' : ''">{{ pub.citations }}</span>
+                <span :class="pub.citations >= 50 ? 'text-cyan-600 dark:text-cyan-400 font-semibold' : ''">{{ pub.citations }}</span>
               </div>
             </div>
           </a>

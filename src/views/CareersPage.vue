@@ -95,9 +95,9 @@ onMounted(() => {
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-2/3 left-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-green-500/15 dark:bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-2/3 left-1/4 w-64 h-64 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(74,222,128,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(74,222,128,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
@@ -121,19 +121,19 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <!-- Badge -->
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-green-600/40 dark:border-green-500/30 bg-green-500/15 dark:bg-green-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
           </span>
-          <span class="text-sm font-medium text-green-300">We're Hiring!</span>
+          <span class="text-sm font-medium text-green-700 dark:text-green-300">We're Hiring!</span>
         </div>
         
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Join Our <span class="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Mission</span>
+          Join Our <span class="bg-gradient-to-r from-green-600 dark:from-green-400 via-cyan-600 dark:via-cyan-400 to-purple-600 dark:to-purple-400 bg-clip-text text-transparent animate-gradient">Mission</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Help us design the <span class="text-green-400">next generation of therapeutic molecules</span>. 
+          Help us design the <span class="text-green-600 dark:text-green-400">next generation of therapeutic molecules</span>. 
           We're building a team of exceptional scientists, engineers, and operators.
         </p>
       </div>
@@ -143,7 +143,7 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-16">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
+          <span class="mb-4 inline-block rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-700 dark:text-cyan-300">
             Why DeepBio Scientific
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Build the Future of Medicine</h2>
@@ -160,9 +160,9 @@ onMounted(() => {
                 class="mb-4 h-16 w-16 rounded-2xl flex items-center justify-center ring-1"
                 :class="'bg-gradient-to-br from-' + value.color + '-500/20 to-' + value.color + '-500/5 ring-' + value.color + '-500/30'"
               >
-                <svg v-if="value.color === 'cyan'" class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <svg v-else class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                <svg v-if="value.color === 'cyan'" class="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <svg v-else class="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               </div>
               <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">{{ value.title }}</h3>
               <p class="text-[rgb(var(--text-body))]">{{ value.description }}</p>
@@ -176,7 +176,7 @@ onMounted(() => {
     <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">
+          <span class="mb-4 inline-block rounded-full border border-purple-600/40 dark:border-purple-500/30 bg-purple-500/15 dark:bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-700 dark:text-purple-300">
             Benefits
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Perks & Benefits</h2>
@@ -215,7 +215,7 @@ onMounted(() => {
       <div class="mx-auto max-w-6xl">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
           <div>
-            <span class="mb-4 inline-block rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-300">
+            <span class="mb-4 inline-block rounded-full border border-blue-600/40 dark:border-blue-500/30 bg-blue-500/15 dark:bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-700 dark:text-blue-300">
               Open Roles
             </span>
             <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))]">Open Positions</h2>
@@ -263,11 +263,11 @@ onMounted(() => {
                   <span 
                     class="rounded-full px-2 py-0.5 text-xs font-medium ring-1"
                     :class="[
-                      position.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400 ring-cyan-500/30' : '',
-                      position.color === 'purple' ? 'bg-purple-500/10 text-purple-400 ring-purple-500/30' : '',
-                      position.color === 'pink' ? 'bg-blue-500/10 text-blue-400 ring-blue-500/30' : '',
-                      position.color === 'green' ? 'bg-green-500/10 text-green-400 ring-green-500/30' : '',
-                      position.color === 'amber' ? 'bg-amber-500/10 text-amber-400 ring-amber-500/30' : '',
+                      position.color === 'cyan' ? 'bg-cyan-500/15 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 ring-cyan-500/30' : '',
+                      position.color === 'purple' ? 'bg-purple-500/15 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-purple-500/30' : '',
+                      position.color === 'pink' ? 'bg-blue-500/15 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-500/30' : '',
+                      position.color === 'green' ? 'bg-green-500/15 dark:bg-green-500/10 text-green-600 dark:text-green-400 ring-green-500/30' : '',
+                      position.color === 'amber' ? 'bg-amber-500/15 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/30' : '',
                     ]"
                   >{{ position.department }}</span>
                   <span class="flex items-center gap-1">
@@ -304,7 +304,7 @@ onMounted(() => {
             <p class="mb-6 text-[rgb(var(--text-body))] max-w-xl mx-auto">We're always looking for exceptional talent. Send us your resume and tell us how you'd contribute.</p>
             <a 
               href="mailto:careers@deepbioscientific.com" 
-              class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+              class="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:text-cyan-300 font-medium transition-colors"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

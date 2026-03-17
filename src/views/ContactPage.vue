@@ -157,9 +157,9 @@ const handleSubmit = async () => {
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/3 left-1/3 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-2/3 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/3 left-1/3 w-80 h-80 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-2/3 right-1/3 w-64 h-64 bg-blue-500/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
@@ -183,20 +183,20 @@ const handleSubmit = async () => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <!-- Badge -->
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
           </span>
-          <span class="text-sm font-medium text-cyan-300">Contact Us</span>
+          <span class="text-sm font-medium text-cyan-700 dark:text-cyan-300">Contact Us</span>
         </div>
         
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Let's <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Connect</span>
+          Let's <span class="bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-purple-600 dark:via-purple-400 to-blue-600 dark:to-blue-400 bg-clip-text text-transparent animate-gradient">Connect</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
           Interested in partnering with DeepBio Scientific? We'd love to hear about your 
-          <span class="text-cyan-400">therapeutic programs</span> and how we can help.
+          <span class="text-cyan-600 dark:text-cyan-400">therapeutic programs</span> and how we can help.
         </p>
       </div>
     </section>
@@ -208,15 +208,15 @@ const handleSubmit = async () => {
           <!-- Researcher / Startup -->
           <button
             @click="selectPersona('Schedule a Demo')"
-            class="persona-cta group rounded-2xl border-2 border-cyan-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
+            class="persona-cta group rounded-2xl border-2 border-cyan-600/40 dark:border-cyan-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
           >
             <div class="flex items-center gap-3 mb-3">
               <div class="h-10 w-10 rounded-xl bg-cyan-500/15 flex items-center justify-center">
-                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5" />
                 </svg>
               </div>
-              <h3 class="text-lg font-bold text-cyan-400">I'm a researcher or startup</h3>
+              <h3 class="text-lg font-bold text-cyan-600 dark:text-cyan-400">I'm a researcher or startup</h3>
             </div>
             <p class="text-sm text-[rgb(var(--text-body))] mb-5 leading-relaxed">
               Access Helixir AI platform, free trial, self-service tools
@@ -230,15 +230,15 @@ const handleSubmit = async () => {
           <!-- Pharma / Biotech -->
           <button
             @click="selectPersona('Partnership Inquiries')"
-            class="persona-cta group rounded-2xl border-2 border-purple-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
+            class="persona-cta group rounded-2xl border-2 border-purple-600/40 dark:border-purple-500/30 bg-[rgb(var(--bg-card))/0.6] p-8 text-left transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
           >
             <div class="flex items-center gap-3 mb-3">
               <div class="h-10 w-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
               </div>
-              <h3 class="text-lg font-bold text-purple-400">I'm from pharma or biotech</h3>
+              <h3 class="text-lg font-bold text-purple-600 dark:text-purple-400">I'm from pharma or biotech</h3>
             </div>
             <p class="text-sm text-[rgb(var(--text-body))] mb-5 leading-relaxed">
               Partnership programs, custom engagements, enterprise licensing
@@ -432,21 +432,21 @@ const handleSubmit = async () => {
                       <!-- Phone Icon -->
                       <svg
                         v-if="info.icon === 'phone'"
-                        class="h-6 w-6 text-cyan-400"
+                        class="h-6 w-6 text-cyan-600 dark:text-cyan-400"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                       <!-- Email Icon -->
                       <svg
                         v-else-if="info.icon === 'email'"
-                        class="h-6 w-6 text-purple-400"
+                        class="h-6 w-6 text-purple-600 dark:text-purple-400"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                       <!-- Location Icon -->
                       <svg
                         v-else-if="info.icon === 'location'"
-                        class="h-6 w-6 text-blue-400"
+                        class="h-6 w-6 text-blue-600 dark:text-blue-400"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -459,9 +459,9 @@ const handleSubmit = async () => {
                         :href="info.href"
                         class="transition-colors"
                         :class="[
-                          info.color === 'cyan' ? 'text-cyan-400 hover:text-cyan-300' : '',
-                          info.color === 'purple' ? 'text-purple-400 hover:text-purple-300' : '',
-                          info.color === 'blue' ? 'text-blue-400 hover:text-blue-300' : '',
+                          info.color === 'cyan' ? 'text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:text-cyan-300' : '',
+                          info.color === 'purple' ? 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:text-purple-300' : '',
+                          info.color === 'blue' ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:text-blue-300' : '',
                         ]"
                       >
                         {{ info.value }}
@@ -473,11 +473,11 @@ const handleSubmit = async () => {
               </div>
             </div>
 
-            <!-- <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden group hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
+            <!-- <div class="contact-element relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden group hover:border-green-600/40 dark:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
               <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div class="relative">
                 <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 ring-1 ring-green-500/30">
-                  <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>

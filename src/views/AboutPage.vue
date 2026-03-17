@@ -109,8 +109,8 @@ const colorClasses: Record<string, Record<string, string>> = {
     category: 'text-amber-700 dark:text-amber-400',
     iconBg: 'bg-amber-100 dark:bg-amber-500/15 ring-1 ring-amber-300/50 dark:ring-amber-500/30',
     iconText: 'text-amber-600 dark:text-amber-400',
-    link: 'text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300',
-    hoverCard: 'hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5',
+    link: 'text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-700 dark:text-amber-300',
+    hoverCard: 'hover:border-amber-600/40 dark:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5',
   },
   orange: {
     dot: 'bg-orange-400',
@@ -125,24 +125,24 @@ const colorClasses: Record<string, Record<string, string>> = {
     category: 'text-emerald-700 dark:text-emerald-400',
     iconBg: 'bg-emerald-100 dark:bg-emerald-500/15 ring-1 ring-emerald-300/50 dark:ring-emerald-500/30',
     iconText: 'text-emerald-600 dark:text-emerald-400',
-    link: 'text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300',
-    hoverCard: 'hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5',
+    link: 'text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-700 dark:text-emerald-300',
+    hoverCard: 'hover:border-emerald-600/40 dark:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5',
   },
   purple: {
     dot: 'bg-purple-400',
     category: 'text-purple-700 dark:text-purple-400',
     iconBg: 'bg-purple-100 dark:bg-purple-500/15 ring-1 ring-purple-300/50 dark:ring-purple-500/30',
     iconText: 'text-purple-600 dark:text-purple-400',
-    link: 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300',
-    hoverCard: 'hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5',
+    link: 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-700 dark:text-purple-300',
+    hoverCard: 'hover:border-purple-600/40 dark:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5',
   },
   teal: {
     dot: 'bg-teal-400',
     category: 'text-teal-700 dark:text-teal-400',
     iconBg: 'bg-teal-100 dark:bg-teal-500/15 ring-1 ring-teal-300/50 dark:ring-teal-500/30',
     iconText: 'text-teal-600 dark:text-teal-400',
-    link: 'text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300',
-    hoverCard: 'hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/5',
+    link: 'text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-700 dark:text-teal-300',
+    hoverCard: 'hover:border-teal-600/40 dark:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/5',
   },
 }
 
@@ -199,9 +199,9 @@ onMounted(() => {
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-blue-500/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
@@ -225,20 +225,20 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <!-- Badge -->
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-purple-600/40 dark:border-purple-500/30 bg-purple-500/15 dark:bg-purple-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-purple-500"></span>
           </span>
-          <span class="text-sm font-medium text-purple-300">About Us</span>
+          <span class="text-sm font-medium text-purple-700 dark:text-purple-300">About Us</span>
         </div>
         
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Our <span class="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">Mission</span>
+          Our <span class="bg-gradient-to-r from-purple-600 dark:from-purple-400 via-blue-600 dark:via-blue-400 to-cyan-600 dark:to-cyan-400 bg-clip-text text-transparent animate-gradient">Mission</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Building the <span class="text-cyan-400 font-semibold">AI Co-Scientist</span> for drug discovery
-          — starting with <span class="text-purple-400">mRNA therapeutics</span>.
+          Building the <span class="text-cyan-600 dark:text-cyan-400 font-semibold">AI Co-Scientist</span> for drug discovery
+          — starting with <span class="text-purple-600 dark:text-purple-400">mRNA therapeutics</span>.
         </p>
       </div>
     </section>
@@ -247,11 +247,11 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-16">
       <div class="mx-auto max-w-6xl">
         <div class="grid gap-8 md:grid-cols-2">
-          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/10">
+          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-600/40 dark:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/10">
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             <div class="relative">
               <div class="mb-4 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 ring-1 ring-cyan-500/30">
-                <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <svg class="w-7 h-7 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </div>
               <h2 class="mb-4 text-2xl font-bold text-[rgb(var(--text-heading))]">The Challenge</h2>
               <p class="mb-4 text-[rgb(var(--text-body))] leading-relaxed">
@@ -263,11 +263,11 @@ onMounted(() => {
             </div>
           </div>
           
-          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10">
+          <div class="about-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-8 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-purple-600/40 dark:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             <div class="relative">
               <div class="mb-4 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 ring-1 ring-teal-500/30">
-                <svg class="w-7 h-7 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                <svg class="w-7 h-7 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
               </div>
               <h2 class="mb-4 text-2xl font-bold text-[rgb(var(--text-heading))]">Our Approach</h2>
               <p class="mb-4 text-[rgb(var(--text-body))] leading-relaxed">
@@ -286,7 +286,7 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-16">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-300">
+          <span class="mb-4 inline-block rounded-full border border-blue-600/40 dark:border-blue-500/30 bg-blue-500/15 dark:bg-blue-500/10 px-4 py-1 text-sm font-medium text-blue-700 dark:text-blue-300">
             Our Values
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">What Drives Us</h2>
@@ -302,9 +302,9 @@ onMounted(() => {
               class="mx-auto mb-4 h-16 w-16 rounded-2xl flex items-center justify-center ring-1"
               :class="'bg-gradient-to-br from-' + value.color + '-500/20 to-' + value.color + '-500/5 ring-' + value.color + '-500/30'"
             >
-              <svg v-if="value.color === 'cyan'" class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-              <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-              <svg v-else class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <svg v-if="value.color === 'cyan'" class="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <svg v-else-if="value.color === 'teal'" class="w-8 h-8 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              <svg v-else class="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
             <h3 class="mb-3 text-xl font-bold text-[rgb(var(--text-heading))]">{{ value.title }}</h3>
             <p class="text-[rgb(var(--text-body))]">{{ value.description }}</p>
@@ -317,10 +317,17 @@ onMounted(() => {
     <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <span class="mb-4 inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-300">
+          <span class="mb-4 inline-block rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-4 py-1 text-sm font-medium text-cyan-700 dark:text-cyan-300">
             Team
           </span>
-          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Leadership Team</h2>
+          <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl mb-4">Leadership Team</h2>
+          <p class="mx-auto max-w-2xl text-[rgb(var(--text-body))]">
+            The only team building an equivariant foundation model for mRNA.
+            <span class="text-[rgb(var(--text-heading))] font-medium">Computational biology research</span> +
+            <span class="text-[rgb(var(--text-heading))] font-medium">enterprise systems</span> +
+            <span class="text-[rgb(var(--text-heading))] font-medium">pharma commercialization</span>.
+            Vertical depth in mRNA where others go horizontal.
+          </p>
         </div>
         
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto">
@@ -357,7 +364,7 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-5xl">
         <div class="text-center mb-16">
-          <span class="mb-4 inline-block rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1 text-sm font-medium text-green-700 dark:text-green-300">
+          <span class="mb-4 inline-block rounded-full border border-green-600/40 dark:border-green-500/30 bg-green-500/15 dark:bg-green-500/10 px-4 py-1 text-sm font-medium text-green-700 dark:text-green-300">
             Milestones
           </span>
           <h2 class="text-3xl font-bold text-[rgb(var(--text-heading))] md:text-4xl">Our Journey</h2>
@@ -472,7 +479,7 @@ onMounted(() => {
     <!-- Investors -->
     <!-- <section class="relative z-10 bg-gradient-to-b from-transparent via-[rgb(var(--bg-card))/0.5] to-transparent px-6 py-20">
       <div class="mx-auto max-w-6xl text-center">
-        <span class="mb-4 inline-block rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1 text-sm font-medium text-amber-300">
+        <span class="mb-4 inline-block rounded-full border border-amber-600/40 dark:border-amber-500/30 bg-amber-500/15 dark:bg-amber-500/10 px-4 py-1 text-sm font-medium text-amber-700 dark:text-amber-300">
           Backed By
         </span>
         <h2 class="mb-6 text-3xl font-bold text-[rgb(var(--text-heading))]">Leading Investors</h2>
@@ -481,7 +488,7 @@ onMounted(() => {
           <div 
             v-for="i in 4" 
             :key="i"
-            class="about-card group flex h-24 w-44 items-center justify-center rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] text-[rgb(var(--text-muted))] backdrop-blur-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/10 hover:text-amber-400"
+            class="about-card group flex h-24 w-44 items-center justify-center rounded-2xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] text-[rgb(var(--text-muted))] backdrop-blur-sm transition-all duration-300 hover:border-amber-600/40 dark:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/10 hover:text-amber-400"
           >
             <span class="font-medium">Investor {{ i }}</span>
           </div>

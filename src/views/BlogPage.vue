@@ -60,11 +60,11 @@ const posts = [
 ]
 
 const categoryColors: Record<string, { bg: string; text: string; ring: string }> = {
-  Research: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', ring: 'ring-cyan-500/30' },
-  Industry: { bg: 'bg-purple-500/10', text: 'text-purple-400', ring: 'ring-purple-500/30' },
-  Technology: { bg: 'bg-blue-500/10', text: 'text-blue-400', ring: 'ring-blue-500/30' },
-  Vision: { bg: 'bg-green-500/10', text: 'text-green-400', ring: 'ring-green-500/30' },
-  'Case Study': { bg: 'bg-amber-500/10', text: 'text-amber-400', ring: 'ring-amber-500/30' },
+  Research: { bg: 'bg-cyan-500/15 dark:bg-cyan-500/10', text: 'text-cyan-600 dark:text-cyan-400', ring: 'ring-cyan-500/30' },
+  Industry: { bg: 'bg-purple-500/15 dark:bg-purple-500/10', text: 'text-purple-600 dark:text-purple-400', ring: 'ring-purple-500/30' },
+  Technology: { bg: 'bg-blue-500/15 dark:bg-blue-500/10', text: 'text-blue-600 dark:text-blue-400', ring: 'ring-blue-500/30' },
+  Vision: { bg: 'bg-green-500/15 dark:bg-green-500/10', text: 'text-green-600 dark:text-green-400', ring: 'ring-green-500/30' },
+  'Case Study': { bg: 'bg-amber-500/15 dark:bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', ring: 'ring-amber-500/30' },
 }
 
 const featuredPost = posts[0]
@@ -112,9 +112,9 @@ onMounted(() => {
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
-      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/15 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
       
       <!-- Grid pattern -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
@@ -138,19 +138,19 @@ onMounted(() => {
     <section class="relative z-10 px-6 py-20">
       <div class="mx-auto max-w-6xl">
         <!-- Badge -->
-        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-600/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 px-5 py-2 backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
           </span>
-          <span class="text-sm font-medium text-cyan-300">Blog</span>
+          <span class="text-sm font-medium text-cyan-700 dark:text-cyan-300">Blog</span>
         </div>
         
         <h1 class="hero-title mb-6 text-5xl font-bold text-[rgb(var(--text-heading))] md:text-7xl">
-          Insights & <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient">Research</span>
+          Insights & <span class="bg-gradient-to-r from-cyan-600 dark:from-cyan-400 via-purple-600 dark:via-purple-400 to-blue-600 dark:to-blue-400 bg-clip-text text-transparent animate-gradient">Research</span>
         </h1>
         <p class="hero-title max-w-3xl text-xl text-[rgb(var(--text-body))] leading-relaxed">
-          Stay updated with the latest advances in <span class="text-cyan-400">AI-driven therapeutic design</span>, 
+          Stay updated with the latest advances in <span class="text-cyan-600 dark:text-cyan-400">AI-driven therapeutic design</span>, 
           protein engineering, and mRNA technology.
         </p>
       </div>
@@ -159,7 +159,7 @@ onMounted(() => {
     <!-- Featured Post -->
     <section class="relative z-10 px-6 pb-12">
       <div class="mx-auto max-w-6xl">
-        <div class="featured-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10">
+        <div class="featured-card group relative rounded-3xl border border-[rgb(var(--border-subtle))/0.5] bg-gradient-to-br from-[rgb(var(--bg-card))/0.9] to-[rgb(var(--bg-card))/0.5] p-1 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-cyan-600/40 dark:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10">
           <div class="relative grid md:grid-cols-2 gap-8 p-8 lg:p-12">
             <!-- Image -->
             <div class="relative aspect-video md:aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-[rgb(var(--bg-card-muted))] to-[rgb(var(--bg-card))]">
@@ -266,7 +266,7 @@ onMounted(() => {
                 {{ post.excerpt }}
               </p>
               
-              <div class="mt-4 flex items-center text-sm font-medium text-cyan-400 opacity-0 transition-opacity group-hover:opacity-100">
+              <div class="mt-4 flex items-center text-sm font-medium text-cyan-600 dark:text-cyan-400 opacity-0 transition-opacity group-hover:opacity-100">
                 Read more 
                 <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -293,7 +293,7 @@ onMounted(() => {
           <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-full blur-3xl"></div>
           
           <div class="relative">
-            <span class="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-300">
+            <span class="mb-4 inline-block rounded-full border border-purple-600/40 dark:border-purple-500/30 bg-purple-500/15 dark:bg-purple-500/10 px-4 py-1 text-sm font-medium text-purple-700 dark:text-purple-300">
               Newsletter
             </span>
             <h2 class="mb-4 text-3xl font-bold text-[rgb(var(--text-heading))]">Stay Updated</h2>
