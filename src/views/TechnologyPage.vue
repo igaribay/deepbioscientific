@@ -71,15 +71,31 @@ onMounted(() => {
         <div class="flex flex-wrap justify-center gap-8 lg:gap-16 mb-12">
           <div class="text-center">
             <div class="text-4xl lg:text-5xl font-bold text-purple-400">~10%</div>
-            <div class="text-sm text-[rgb(var(--text-muted))]">Better expression prediction accuracy</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Accuracy gain across 6 benchmarks</div>
           </div>
           <div class="text-center">
-            <div class="text-4xl lg:text-5xl font-bold text-cyan-400">~4x</div>
-            <div class="text-sm text-[rgb(var(--text-muted))]">Frechet BioDistance improvement</div>
+            <div class="text-4xl lg:text-5xl font-bold text-cyan-400">4.3x</div>
+            <div class="text-sm text-[rgb(var(--text-muted))]">Generative fidelity improvement (FBD)</div>
           </div>
           <div class="text-center">
             <div class="text-4xl lg:text-5xl font-bold text-emerald-400">~28%</div>
             <div class="text-sm text-[rgb(var(--text-muted))]">Better functional property preservation</div>
+          </div>
+        </div>
+
+        <!-- Capital Efficiency callout -->
+        <div class="flex flex-wrap justify-center gap-6 mb-12">
+          <div class="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card))/0.5] px-4 py-2 text-sm">
+            <span class="text-[rgb(var(--text-muted))]">Trained on</span>
+            <span class="font-bold text-[rgb(var(--text-heading))]">25M sequences</span>
+          </div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card))/0.5] px-4 py-2 text-sm">
+            <span class="text-[rgb(var(--text-muted))]">15M params beats</span>
+            <span class="font-bold text-[rgb(var(--text-heading))]">82M-param models</span>
+          </div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border-muted))] bg-[rgb(var(--bg-card))/0.5] px-4 py-2 text-sm">
+            <span class="text-[rgb(var(--text-muted))]">Validated on</span>
+            <span class="font-bold text-[rgb(var(--text-heading))]">6 biological benchmarks</span>
           </div>
         </div>
 
@@ -114,27 +130,35 @@ onMounted(() => {
             <p class="text-[rgb(var(--text-body))] leading-relaxed mb-6">
               mRNA codons encoding the same amino acid are <span class="text-[rgb(var(--text-heading))]">synonymous</span> — they share function but differ in sequence. Traditional models ignore this. Equi-mRNA explicitly encodes these symmetries as cyclic subgroups of SO(2).
             </p>
-            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-8">
+            <p class="text-[rgb(var(--text-body))] leading-relaxed mb-6">
               By integrating group-theoretic priors with an auxiliary equivariance loss and symmetry-aware pooling, the model learns <span class="text-purple-400">biologically grounded representations</span> that capture what matters: function, not just sequence.
             </p>
+
+            <!-- Interpretability proof -->
+            <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 mb-8">
+              <p class="text-sm text-[rgb(var(--text-heading))] font-medium mb-1">Validated: the model learned real biology</p>
+              <p class="text-xs text-[rgb(var(--text-body))]">
+                Learned codon rotations correlate with GC-content biases (r=0.98, R&sup2;=0.97) and tRNA abundance patterns (&rho;=&minus;0.69) — confirming the model captures known biological constraints, not just statistical patterns.
+              </p>
+            </div>
 
             <!-- Key Results -->
             <div class="grid grid-cols-2 gap-4">
               <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
                 <div class="text-3xl font-bold text-purple-400 mb-1">~10%</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Accuracy improvement on expression & stability prediction</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">Accuracy gain across expression, stability, and riboswitch benchmarks</div>
               </div>
               <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-cyan-400 mb-1">~4x</div>
+                <div class="text-3xl font-bold text-cyan-400 mb-1">4.3x</div>
                 <div class="text-sm text-[rgb(var(--text-body))]">More realistic mRNA constructs (Frechet BioDistance)</div>
               </div>
               <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-emerald-400 mb-1">~28%</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Better at preserving functional properties</div>
+                <div class="text-3xl font-bold text-emerald-400 mb-1">15M</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">params beats RNA-FM, RNABERT (82M), CodonBert (82M), and HELM (50M)</div>
               </div>
               <div class="rounded-xl border border-[rgb(var(--border-subtle))/0.5] bg-[rgb(var(--bg-card))/0.5] p-4">
-                <div class="text-3xl font-bold text-teal-400 mb-1">SO(2)</div>
-                <div class="text-sm text-[rgb(var(--text-body))]">Symmetry-aware codon encoding</div>
+                <div class="text-3xl font-bold text-teal-400 mb-1">25M</div>
+                <div class="text-sm text-[rgb(var(--text-body))]">protein-coding sequences from 56M RefSeq entries for training</div>
               </div>
             </div>
           </div>
