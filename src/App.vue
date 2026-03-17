@@ -19,7 +19,7 @@ const isHomePage = computed(() => route.path === '/')
 const navLinks = [
   { name: 'Technology', path: '/technology' },
   { name: 'Research', path: '/research' },
-  { name: 'Case Studies', path: '/case-studies' },
+  { name: 'Research Highlights', path: '/case-studies' },
   { name: 'Platform', path: '/platform' },
   { name: 'Pricing', path: '/pricing' },
   { name: 'About', path: '/about' },
@@ -1216,7 +1216,7 @@ watch(isHomePage, (newVal) => {
             to="/case-studies"
             class="rounded-full border-2 border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10 hover:scale-105"
           >
-            View Case Studies
+            View Research Highlights
           </RouterLink>
         </div>
       </div>
@@ -1263,7 +1263,7 @@ watch(isHomePage, (newVal) => {
             <ul class="space-y-2 text-sm text-[rgb(var(--text-body))]">
               <li><RouterLink to="/technology" class="transition hover:text-[rgb(var(--text-heading))]">Technology</RouterLink></li>
               <li><RouterLink to="/research" class="transition hover:text-[rgb(var(--text-heading))]">Research</RouterLink></li>
-              <li><RouterLink to="/case-studies" class="transition hover:text-[rgb(var(--text-heading))]">Case Studies</RouterLink></li>
+              <li><RouterLink to="/case-studies" class="transition hover:text-[rgb(var(--text-heading))]">Research Highlights</RouterLink></li>
             </ul>
           </div>
           <div>

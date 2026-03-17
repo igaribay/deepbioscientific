@@ -592,7 +592,7 @@ onUnmounted(() => {
             <span class="relative z-10">Schedule Partnership Call</span>
           </router-link>
           <router-link to="/case-studies" class="rounded-full border-2 border-white/30 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/5">
-            View Case Studies
+            View Research Highlights
           </router-link>
         </div>
       </div>
