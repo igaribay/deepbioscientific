@@ -6,8 +6,8 @@ import { useTheme } from '@/composables/useTheme'
 import { usePageSeo } from '@/composables/usePageSeo'
 
 usePageSeo({
-  title: 'DeepBio Scientific — AI Co-Scientist for Drug Discovery',
-  description: 'Design mRNA and protein therapeutics with AI. From natural language specifications to validated therapeutic candidates using evolutionary AI and molecular biology.',
+  title: 'DeepBio Scientific — AI Co-Scientist for mRNA Therapeutics',
+  description: 'Powered by Equi-mRNA, the first equivariant foundation model for mRNA sequence design. NeurIPS 2025. AI co-scientist platform for mRNA therapeutic design.',
   path: '/',
 })
 
